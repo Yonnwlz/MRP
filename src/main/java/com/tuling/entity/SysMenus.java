@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * 菜单信息实体类
+ */
 public class SysMenus implements Serializable {
     private Long id;            //序号
     @JsonIgnore

@@ -1,10 +1,16 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>Ñ¡ÔñÎï×Ê</TITLE>
+<HTML><HEAD><TITLE>é€‰æ‹©ç‰©èµ„</TITLE>
 <META http-equiv=Content-Language content=zh-cn>
-<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
 <META content="MSHTML 6.00.2900.5626" name=GENERATOR>
-<META content=FrontPage.Editor.Document name=ProgId><LINK 
-href="css/style.css" rel=stylesheet>
+<META content=FrontPage.Editor.Document name=ProgId><LINK
+            href="css/style.css" rel=stylesheet>
+
+    <link rel="stylesheet" type="text/css" href="../jquery-easyui-1.8.5/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../jquery-easyui-1.8.5/themes/icon.css">
+    <script type="text/javascript" src="../jquery-easyui-1.8.5/jquery.min.js"></script>
+    <script type="text/javascript" src="../jquery-easyui-1.8.5/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../jquery-easyui-1.8.5/locale/easyui-lang-zh_CN.js"></script>
 
 <SCRIPT language=JAVASCRIPT>
  function delCheckbox(){
@@ -18,7 +24,7 @@ href="css/style.css" rel=stylesheet>
 		}
 	}
 	if(count==0){
-		alert("ÇëÑ¡ÔñÒ»ÌõÒªÉ¾³ýµÄÊý¾Ý¡£");
+		alert("è¯·é€‰æ‹©ä¸€æ¡è¦åˆ é™¤çš„æ•°æ®ã€‚");
 	}
   }
   
@@ -37,77 +43,45 @@ encType=multipart/form-data></HEAD>
   <TBODY>
   <TR>
     <TD align=middle><FONT 
-  color=red>Ñ¡ÔñÎï×Ê</FONT>====&gt;Â¼ÈëÐèÇó¼Æ»®====&gt;ÐèÇó¼Æ»®È·ÈÏ</TD></TR></TBODY></TABLE>
+  color=red>é€‰æ‹©ç‰©èµ„</FONT>====&gt;å½•å…¥éœ€æ±‚è®¡åˆ’====&gt;éœ€æ±‚è®¡åˆ’ç¡®è®¤</TD></TR></TBODY></TABLE>
 <TABLE cellSpacing=1 cellPadding=0 width="100%" bgColor=#ffffff 
 borderColorLight=#ffffff border=0>
   <TBODY>
-  <tr>
-  	<td>
-		<div align="center">
-			<FONT color=#000064>¡ô&nbsp;</FONT><FONT color=#000064>Ê×Ò³ 
-			ÉÏÒ»Ò³</FONT>&nbsp;<A 
-			href="#"><FONT 
-			color=#0000be>ÏÂÒ»Ò³</FONT></A>&nbsp;<A 
-			href="#"><FONT 
-			color=#0000be>Î²Ò³</FONT></A><FONT color=#000064>&nbsp;¹² 40 ¸öÐèÇó¼Æ»® Ã¿Ò³10 
-			¸öÐèÇó¼Æ»®</FONT><FONT color=#000064>&nbsp;Ò³´Î:<FONT 
-			color=blue>1</FONT>/4Ò³</FONT><FONT color=#000064>&nbsp;¡ô&nbsp;</FONT> 
-		</div>
-	</td>
-  </tr>
+
   <tr>
   	<td>
     	<div>
-        	<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
-                <tr>
-                <td>
-                <table cellpadding="3" cellspacing="1" border="0" width="100%" id="table1">
-                
-                <center>
-                <form name=form action="Order_wtb_do.asp" method="post">
-                    <tr  class="t1">
-                    <td nowrap align="center">Ñ¡Ôñ</td>
-                    <td nowrap align="center">ÐòºÅ</td>
-                    <td nowrap align="center">²úÆ·±àÂë</td>
-                    <td nowrap align="center">²úÆ·Ãû³Æ</td>
-                    </tr>
-                
-                    <tr class="t2" >
-                    <td align=center><input type="checkbox" name="p_orderno" value="1000201011133305" checked="checked"></td>
-                    <td >1</td>
-                    <td >W64001005000<br></td>
-                    
-                    <td >¾§Õñ(HC-49U-500K-0.005%)<br></td>
-                    
-                     </tr>
-                
-                    <tr class="t2" >
-                    <td align=center><input type="checkbox" name="p_orderno" value="1000201011133272"  checked="checked"></td>
-                    <td >2</td>
-                    <td >W64001005000<br></td>
-                    
-                    <td >¾§Õñ(HC-49U-500K-0.005%)<br></td>
-                    
-                     
-                    </tr>
-                
-                    <tr class="t2" >
-                    <td align=center><input type="checkbox" name="p_orderno" value="1000201011133262" checked="checked"></td>
-                    <td >3</td>
-                    <td >W64001005000<br></td>
-                    
-                    <td >¾§Õñ(HC-49U-500K-0.005%)<br></td>
-                    
-                    </tr>
-                
-                </table></td></tr></table>
+            <table id="tg"></table>
+            <script type="text/javascript" th:inline="none">
+                $('#tg').datagrid({
+                    url:'../selMatPageHelper',
+                    pagination:true,//åˆ†é¡µå·¥å…·æ 
+                    rownumbers:true,//åˆ†é¡µè¡Œå·
+                    pageList:[2,4,6,8,10],
+                    columns:[[
+                        {field:'',title:'',checkbox:true},
+                        {field:'id',title:'åºå·',width:300},
+                        {field:'materialNum',title:'äº§å“ç¼–å·',width:300},
+                        {field:'materialName',title:'äº§å“åç§°',width:300},
+                    ]]
+                })
+                function  material_Next(){
+                    //èŽ·å–é€‰ä¸­çš„æ•°æ®
+                    var rows = $('#tg').datagrid('getSelections');
+                    var ob = [];
+                    for(var i=0;i<rows.length;i++){
+                        ob[i]=rows[i].id;
+                    }
+                    location.href="../addOrder?orderId="+ob;
+                }
+            </script>
+
                 <div align="center">
-               ÇëÏÈÑ¡ÔñÎï×Ê£¬È»ºóµã»÷£º<A 
-            href="javascript:window.document.location='Order_newform.htm'"><FONT 
-            size=3><U>ÏÂÒ»²½</U>
-			</div>
+
+                    è¯·å…ˆé€‰æ‹©ç‰©èµ„ï¼Œç„¶åŽç‚¹å‡»ï¼š
+                    <a href="javascript:material_Next()"><u style="font-size: 40px">ä¸‹ä¸€æ­¥</u></a>
+			    </div>
                 </form>
-                
         </div>
     </td>
   </tr>
@@ -117,51 +91,51 @@ borderColorLight=#ffffff border=0>
         <TBODY>
        
         <TR bgColor=#99ccff>
-          <TD colSpan=2><A href="javascript: productX()"><B>¾§Õñ 
+          <TD colSpan=2><A href="javascript: productX()"><B>æ™¶æŒ¯ 
             W64</B></A> </TD></TR>
         <TR bgColor=#ffffff>
-          <TD>¡¡ <A href="#">¡¾¾§ÕñÏµÁÐ¡¿¡¾W640¡¿</A> </TD>
+          <TD>ã€€ <A href="#">ã€æ™¶æŒ¯ç³»åˆ—ã€‘ã€W640ã€‘</A> </TD>
           <TD><BR></TD></TR>
         <TR bgColor=#99ccff>
-          <TD colSpan=2><A href="#"><B>Âß¼­¼¯³ÉµçÂ· 
+          <TD colSpan=2><A href="#"><B>é€»è¾‘é›†æˆç”µè·¯ 
             W65</B></A> </TD></TR>
         <TR bgColor=#ffffff>
-          <TD>¡¡ <A href="#">¡¾CMOSµçÂ·¡¿¡¾W650¡¿</A> 
+          <TD>ã€€ <A href="#">ã€CMOSç”µè·¯ã€‘ã€W650ã€‘</A> 
 </TD>
-          <TD>¡¡ <A href="#">¡¾¸ßËÙCMOSµçÂ·¡¿¡¾W651¡¿</A> 
+          <TD>ã€€ <A href="#">ã€é«˜é€ŸCMOSç”µè·¯ã€‘ã€W651ã€‘</A> 
           </TD></TR>
         <TR bgColor=#ffffff>
-          <TD>¡¡ <A href="#">¡¾TTLµçÂ·¡¿¡¾W652¡¿</A> </TD>
-          <TD>¡¡ <A href="#">¡¾ÆäËüÂß¼­µçÂ·¡¿¡¾W659¡¿</A> 
+          <TD>ã€€ <A href="#">ã€TTLç”µè·¯ã€‘ã€W652ã€‘</A> </TD>
+          <TD>ã€€ <A href="#">ã€å…¶å®ƒé€»è¾‘ç”µè·¯ã€‘ã€W659ã€‘</A> 
         </TD></TR>
         <TR bgColor=#99ccff>
-          <TD colSpan=2><A href="#"><B>ÏßÐÔ¼¯³ÉµçÂ· 
+          <TD colSpan=2><A href="#"><B>çº¿æ€§é›†æˆç”µè·¯ 
             W66</B></A> </TD></TR>
         <TR bgColor=#ffffff>
-          <TD>¡¡ <A href="#">¡¾·Å´óÆ÷¡¿¡¾W660¡¿</A> </TD>
-          <TD>¡¡ <A href="#">¡¾±È½ÏÆ÷¡¿¡¾W661¡¿</A> 
+          <TD>ã€€ <A href="#">ã€æ”¾å¤§å™¨ã€‘ã€W660ã€‘</A> </TD>
+          <TD>ã€€ <A href="#">ã€æ¯”è¾ƒå™¨ã€‘ã€W661ã€‘</A> 
 </TD></TR>
         <TR bgColor=#ffffff>
-          <TD>¡¡ <A href="#">¡¾µçÔ´ÏµÁÐ¡¿¡¾W662¡¿</A> </TD>
-          <TD>¡¡ <A href="#">¡¾Ä£ÄâµçÂ·¡¿¡¾W663¡¿</A> 
+          <TD>ã€€ <A href="#">ã€ç”µæºç³»åˆ—ã€‘ã€W662ã€‘</A> </TD>
+          <TD>ã€€ <A href="#">ã€æ¨¡æ‹Ÿç”µè·¯ã€‘ã€W663ã€‘</A> 
         </TD></TR>
         <TR bgColor=#ffffff>
-          <TD>¡¡ <A href="#">¡¾×ª»»Æ÷¡¿¡¾W664¡¿</A> </TD>
-          <TD>¡¡ <A href="#">¡¾ÆäËüÏßÐÔµçÂ·¡¿¡¾W669¡¿</A> 
+          <TD>ã€€ <A href="#">ã€è½¬æ¢å™¨ã€‘ã€W664ã€‘</A> </TD>
+          <TD>ã€€ <A href="#">ã€å…¶å®ƒçº¿æ€§ç”µè·¯ã€‘ã€W669ã€‘</A> 
         </TD></TR>
         <TR bgColor=#99ccff>
-          <TD colSpan=2><A href="#)"><B>CPU¼°ÍâÎ§µçÂ· 
+          <TD colSpan=2><A href="#)"><B>CPUåŠå¤–å›´ç”µè·¯ 
             W67</B></A> </TD></TR>
         <TR bgColor=#ffffff>
-          <TD>¡¡ <A href="'#">¡¾CPUµçÂ·¡¿¡¾W670¡¿</A> </TD>
-          <TD>¡¡ <A href="#">¡¾Î¢¿ØµçÂ·¡¿¡¾W671¡¿</A> 
+          <TD>ã€€ <A href="'#">ã€CPUç”µè·¯ã€‘ã€W670ã€‘</A> </TD>
+          <TD>ã€€ <A href="#">ã€å¾®æŽ§ç”µè·¯ã€‘ã€W671ã€‘</A> 
         </TD></TR>
         <TR bgColor=#ffffff>
-          <TD>¡¡ <A href="#">¡¾½Ó¿ÚµçÂ·¡¿¡¾W672¡¿</A> </TD>
-          <TD>¡¡ <A href="#">¡¾Ê±¼äµçÂ·¡¿¡¾W673¡¿</A> 
+          <TD>ã€€ <A href="#">ã€æŽ¥å£ç”µè·¯ã€‘ã€W672ã€‘</A> </TD>
+          <TD>ã€€ <A href="#">ã€æ—¶é—´ç”µè·¯ã€‘ã€W673ã€‘</A> 
         </TD></TR>
         <TR bgColor=#ffffff>
-          <TD>¡¡ <A href="#">¡¾´æ´¢Æ÷¡¿¡¾W674¡¿</A> </TD>
-          <TD>¡¡ <A href="#">¡¾¿É±à³ÌÂß¼­µçÂ·¡¿¡¾W675¡¿</A> 
+          <TD>ã€€ <A href="#">ã€å­˜å‚¨å™¨ã€‘ã€W674ã€‘</A> </TD>
+          <TD>ã€€ <A href="#">ã€å¯ç¼–ç¨‹é€»è¾‘ç”µè·¯ã€‘ã€W675ã€‘</A> 
           </TD></TR>
         </TBODY></TABLE></TD></TR></TBODY></TABLE></FORM></CENTER></BODY></HTML>

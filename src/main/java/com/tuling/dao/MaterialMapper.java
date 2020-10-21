@@ -37,11 +37,10 @@ public interface MaterialMapper {
     Integer selectMaterialCount();
 
     /**
-     * 分页查询
-     * @param curPage   当前页数
-     * @param pageSize  当前显示条数
+     * 分页
+     * @param curPage 当前页数
+     * @param pageSize 当前有几条
      * @return
      */
-    @Select("select * from MATERIAL LIMIT #{curPage},#{pageSize}")
-    public List<Material> selectMaterialAll(Integer curPage,Integer pageSize);
+    public List<Material> selectMaterialAll(Integer curPage, Integer pageSize);
 }

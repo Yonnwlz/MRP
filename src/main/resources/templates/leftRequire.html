@@ -20,8 +20,11 @@
 				method:'get',
 				//当点击列表项时  发生相对应的页面改变
 				onClick: function(node){
-					//跳转相对应的页面
-					window.parent.main.location=node.attributes.linkUrl;
+					//判断是否为文件夹
+					if(!(node.attributes.linkUrl==null)){
+						//跳转相对应的页面
+						window.parent.main.location=node.attributes.linkUrl;
+					}
 				}
 			})
 		</script>
