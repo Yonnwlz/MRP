@@ -11,5 +11,6 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("leftRequire").setViewName("leftRequire");
+        registry.addViewController("jiffprov_look").setViewName("planman/jiffprov_look");
     }
 }

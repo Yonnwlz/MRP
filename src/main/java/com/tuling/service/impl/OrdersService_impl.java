@@ -2,6 +2,7 @@ package com.tuling.service.impl;
 
 import com.tuling.dao.OrdersMapper;
 import com.tuling.entity.Orders;
+import com.tuling.entity.OrdersExample;
 import com.tuling.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;

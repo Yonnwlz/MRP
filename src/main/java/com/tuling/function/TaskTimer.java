@@ -18,7 +18,7 @@ public class TaskTimer {
     @Autowired
     private OrdersService ordersService;
     //每年10月22号1点1分
-    @Scheduled(cron = "0 10 22 01 01 ?")
+    @Scheduled(cron = "0 1 1 1 1 ?")
     public void myTimes(){
         //创建需求计划对象
         Orders orders = new Orders();

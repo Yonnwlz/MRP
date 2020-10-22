@@ -54,6 +54,7 @@ borderColorLight=#ffffff border=0>
             <table id="tg"></table>
             <script type="text/javascript" th:inline="none">
                 $('#tg').datagrid({
+
                     url:'../selMatPageHelper',
                     pagination:true,//分页工具栏
                     rownumbers:true,//分页行号
@@ -72,12 +73,11 @@ borderColorLight=#ffffff border=0>
                     for(var i=0;i<rows.length;i++){
                         ob[i]=rows[i].id;
                     }
-                    location.href="../addOrder?orderId="+ob;
+                    location.href="../passMaterial?orderId="+ob;
                 }
             </script>
 
                 <div align="center">
-
                     请先选择物资，然后点击：
                     <a href="javascript:material_Next()"><u style="font-size: 40px">下一步</u></a>
 			    </div>

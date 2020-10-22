@@ -25,6 +25,8 @@ public class SerialNumber {
         //当前日期
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
         SimpleDateFormat years = new SimpleDateFormat("yyyy");
+
+
         //调用查询流水号的方法
         Orders byOrderNum = ordersService.findByOrderNum(nu+years.format(date));
         //截取最后六位数

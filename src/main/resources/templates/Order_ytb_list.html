@@ -1,5 +1,5 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>����һ����</TITLE>
+<!DOCTYPE html>
+<HTML><HEAD><TITLE>需求一览表</TITLE>
 <SCRIPT language=JAVASCRIPT> 
 function select_check(theForm)
       {
@@ -42,7 +42,7 @@ function Add(SourceList,TargetList)
 	if (nIndex == -1)
 	{
 		// Process continue only if at least one item selected
-		//alert("����ѡ��һ��!");
+		//alert("请先选择一项!");
 		return;
 	}
 	for (i=0;i<SourceList.length;i++)
@@ -83,7 +83,7 @@ function Remove(SelectList)
 	if (nIndex == -1)
 	{
 		// Process continue only if at least one item selected
-		//alert("����ѡ��һ��!");
+		//alert("请先选择一项!");
 		return;
 	}
   while(nCount<SelectList.length)
@@ -180,7 +180,7 @@ function check_num_dot()
        {
          if (NotNumber(window.document.forms[0].elements[i].value))
          {
-            alert("��ʾ��Ϣ��\n������Ч�����֣����������롣");
+            alert("提示信息：\n不是有效的数字，请重新输入。");
             window.document.forms[0].elements[i].focus();
             return;
          }
@@ -192,7 +192,7 @@ function check_num_dot()
        {
          if (NotNumber(window.document.forms[0].elements[i].value))
          {
-            alert("��ʾ��Ϣ��\n������Ч�����֣����������롣");
+            alert("提示信息：\n不是有效的数字，请重新输入。");
             window.document.forms[0].elements[i].focus();
             return;
          }
@@ -245,11 +245,10 @@ function check_num_dot()
 </SCRIPT>
 
 <META http-equiv=Content-Language content=zh-cn>
-<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
 <META content="MSHTML 6.00.2900.5626" name=GENERATOR>
-<META content=FrontPage.Editor.Document name=ProgId><LINK 
-href="css/style.css" rel=stylesheet>
-<SCRIPT language=JavaScript src="css/pub_Calendar.js"></SCRIPT>
+<META content=FrontPage.Editor.Document name=ProgId><LINK href="/planman/css/style.css" rel=stylesheet>
+<SCRIPT language=JavaScript src="/planman/css/pub_Calendar.js"></SCRIPT>
 
 <SCRIPT language=javascript>
       function submit_form(theForm,i)
@@ -261,7 +260,7 @@ href="css/style.css" rel=stylesheet>
         count++;
         if (count==0)
         {
-          alert("��ʾ��Ϣ��\n��ѡ������ƻ���");
+          alert("提示信息：\n请选择需求计划。");
           return;
         }
         document.form.p_type.value=i;
@@ -291,17 +290,17 @@ href="css/style.css" rel=stylesheet>
 				count++;
 				var objTable = document.getElementById("table1");
 				var oldTr=objTable.rows[i+1];
-				if(oldTr.cells[6].innerText=="ȷ��"){
-					alert("��ȷ��������ƻ������޸ģ�");
+				if(oldTr.cells[6].innerText=="确定"){
+					alert("已确定的需求计划不能修改！");
 					no=1;
 					break;
 				}
 			}
 		}
 		if(count==0){
-			alert("����ѡ��һ�������޸ģ�");
+			alert("至少选择一条数据修改！");
 		}else if(count>1){
-			alert("һ��ֻ���޸�һ�����ݣ�");
+			alert("一次只能修改一条数据！");
 		}else if(no=0){
 				window.location="update_xuqiujihua.htm";
 				}
@@ -317,22 +316,22 @@ href="css/style.css" rel=stylesheet>
 				count++;
 				var objTable = document.getElementById("table1");
 				var oldTr=objTable.rows[i+1];
-				if(oldTr.cells[6].innerText=="ȷ��"){
-					alert("ѡ����������������ȷ����������ѡ��");
+				if(oldTr.cells[6].innerText=="确定"){
+					alert("选定的数据中有数已确定，请重新选择。");
 					no=1;
 					break;
 				}
 			}
 		}
 		if(count==0){
-			alert("����ѡ��һ�����ݣ�");
+			alert("至少选择一条数据！");
 		}else if(no!=1){
 			
 			for(var i=0;i<len;i++){
 			if(obj[i].checked){
 				var objTable = document.getElementById("table1");
 				var oldTr=objTable.rows[i+1];
-				oldTr.cells[6].innerText="ȷ��";
+				oldTr.cells[6].innerText="确定";
 			}
 		}
 		}		
@@ -349,7 +348,7 @@ href="css/style.css" rel=stylesheet>
 	 	if(obj.checked){
 			obj01.deleteRow(cGetRow);
 		}else{
-			alert("��ѡ��Ҫɾ�������ݣ�");
+			alert("请选择要删除的数据！");
 		}
 	 }
 	
@@ -372,9 +371,9 @@ href="css/style.css" rel=stylesheet>
 			}
 		}
 		if(count==0){
-			alert("����ѡ��һ�����ݣ�");
+			alert("至少选择一条数据！");
 		}else if(count>1){
-			alert("һ��ֻ�ܲ鿴һ�����ݣ�");
+			alert("一次只能查看一条数据！");
 		}else{
 			window.open("print_order_detail.htm","Canny2","toolbar=0,location=0,status=0,menubar=0,scrollbars=0,width=600,height=440,left=100,top=60");
 			
@@ -388,7 +387,7 @@ href="css/style.css" rel=stylesheet>
 <CENTER>
 <FORM name=form action=Order_ytb_do.asp method=post><INPUT type=hidden value=3 
 name=p_type> 
-<H2><FONT color=#0070c0>����ƻ�һ����</FONT></H2>
+<H2><FONT color=#0070c0>需求计划一览表</FONT></H2>
 <TABLE cellSpacing=1 cellPadding=0 width="100%" bgColor=#ffffff 
 borderColorLight=#ffffff border=0>
   <TBODY>
@@ -397,26 +396,26 @@ borderColorLight=#ffffff border=0>
       <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
         <TBODY>
         <TR>
-          <TD noWrap align=middle>���ʱ��룺<INPUT size=10 
-            name=p_prodno>&nbsp;&nbsp; �������ƣ�<INPUT size=10 
-            name=p_prodname>&nbsp;&nbsp; ״̬��
+          <TD noWrap align=middle>物资编码：<INPUT size=10 
+            name=p_prodno>&nbsp;&nbsp; 物资名称：<INPUT size=10 
+            name=p_prodname>&nbsp;&nbsp; 状态：
             <SELECT style="WIDTH: 115px" 
             name=p_status>
-              <OPTION value="" selected>ȫ��</OPTION>
+              <OPTION value="" selected>全部</OPTION>
               <OPTION 
-              value=70>δȷ��</OPTION>
+              value=70>未确定</OPTION>
               <OPTION 
-              value=70>ȷ��</OPTION>
-            </SELECT> <INPUT onclick=submit_form_cx() type=button value=��ѯ></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><FORM 
+              value=70>确定</OPTION>
+            </SELECT> <INPUT onclick=submit_form_cx() type=button value=查询></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><FORM 
 name="form1" action="" method="Post">
-<CENTER><FONT color=#000064>��&nbsp;</FONT><FONT color=#000064>��ҳ 
-��һҳ</FONT>&nbsp;<A 
+<CENTER><FONT color=#000064>◆&nbsp;</FONT><FONT color=#000064>首页 
+上一页</FONT>&nbsp;<A 
 href="http://169.254.158.100/zzdl/Order/Order_ytb_list.asp?p_type=3&amp;p_prodno=&amp;p_prodname=&amp;p_status=&amp;p_stocktype=&amp;p_ordertype=&amp;page=2"><FONT 
-color=#0000be>��һҳ</FONT></A>&nbsp;<A 
+color=#0000be>下一页</FONT></A>&nbsp;<A 
 href="http://169.254.158.100/zzdl/Order/Order_ytb_list.asp?p_type=3&amp;p_prodno=&amp;p_prodname=&amp;p_status=&amp;p_stocktype=&amp;p_ordertype=&amp;page=22"><FONT 
-color=#0000be>βҳ</FONT></A><FONT color=#000064>&nbsp;�� 214 ������ƻ� ÿҳ10 
-������ƻ�</FONT><FONT color=#000064>&nbsp;ҳ��:<FONT 
-color=blue>1</FONT>/22ҳ</FONT><FONT color=#000064>&nbsp;��&nbsp;</FONT> 
+color=#0000be>尾页</FONT></A><FONT color=#000064>&nbsp;共 214 个需求计划 每页10 
+个需求计划</FONT><FONT color=#000064>&nbsp;页次:<FONT 
+color=blue>1</FONT>/22页</FONT><FONT color=#000064>&nbsp;◆&nbsp;</FONT> 
 <TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0 width="100%" 
 bgColor=#336699 borderColorLight=#006699 border=0>
   <TBODY>
@@ -425,13 +424,13 @@ bgColor=#336699 borderColorLight=#006699 border=0>
       <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0 id="table1">
         <TBODY>
         <TR class=t1>
-          <TD noWrap align=middle>ѡ��</TD>
-          <TD noWrap align=middle>���</TD>
-          <TD noWrap align=middle>���ʴ���</TD>
-          <TD noWrap align=middle>��������</TD>
-          <TD noWrap align=middle>����</TD>
-          <TD noWrap align=middle>�ɹ�����</TD>
-          <TD noWrap align=middle>�ɹ�����</TD>
+          <TD noWrap align=middle>选择</TD>
+          <TD noWrap align=middle>序号</TD>
+          <TD noWrap align=middle>物资代码</TD>
+          <TD noWrap align=middle>物资名称</TD>
+          <TD noWrap align=middle>数量</TD>
+          <TD noWrap align=middle>采购类型</TD>
+          <TD noWrap align=middle>采购进度</TD>
           </TR>
         <TR class=t2>
           <TD align=middle><label>
@@ -439,10 +438,10 @@ bgColor=#336699 borderColorLight=#006699 border=0>
             </label></TD>
           <TD>1</TD>
           <TD>W64001005001<BR></TD>
-          <TD>����(HC-49U-500M-0.005%)<BR></TD>
+          <TD>晶振(HC-49U-500M-0.005%)<BR></TD>
           <TD align=right>222<BR></TD>
-          <TD>�������Ĳɹ�</TD>
-          <TD>δȷ��<BR></TD>
+          <TD>制造中心采购</TD>
+          <TD>未确认<BR></TD>
           </TR>
         <TR class=t2>
           <TD align=middle><label>
@@ -450,34 +449,34 @@ bgColor=#336699 borderColorLight=#006699 border=0>
           </label></TD>
           <TD>2</TD>
           <TD>W65000400101<BR></TD>
-          <TD>CMOS��·(CD4001BCN)<BR></TD>
+          <TD>CMOS电路(CD4001BCN)<BR></TD>
           <TD align=right>12<BR></TD>
-          <TD>�������Ĳɹ�</TD>
-          <TD>ȷ��<BR></TD>
+          <TD>制造中心采购</TD>
+          <TD>确定<BR></TD>
           </TR>
         <TR class=t2>
           <TD align=middle><input type="checkbox" name="checkbox" value="checkbox" onClick="opp(true)"></TD>
           <TD>3</TD>
           <TD>W64001005000<BR></TD>
-          <TD>����(HC-49U-500K-0.005%)<BR></TD>
+          <TD>晶振(HC-49U-500K-0.005%)<BR></TD>
           <TD align=right>222<BR></TD>
-          <TD>�������Ĳɹ�</TD>
-          <TD>δȷ��<BR></TD>
+          <TD>制造中心采购</TD>
+          <TD>未确认<BR></TD>
           </TR>
         <TR class=t2>
           <TD align=middle><input type="checkbox" name="checkbox" value="checkbox" onClick="opp(true)"></TD>
           <TD>4</TD>
           <TD>WW0000000005<BR></TD>
-          <TD>�������<BR></TD>
+          <TD>网络配件<BR></TD>
           <TD align=right>44444444444<BR></TD>
-          <TD>�������Ĳɹ�������</TD>
-          <TD>δȷ��<BR></TD>
+          <TD>制造中心采购公开求购</TD>
+          <TD>未确认<BR></TD>
           </TR>
         </TBODY></TABLE></TD></TR></TBODY></TABLE><INPUT 
 type=hidden value=3 name=p_listtype> <INPUT type=hidden value=1 name=page> 
 <P align=center>
-<INPUT name="button" type=button onclick=select_check(document.form) value=ȫѡ/ȡ��>
-<INPUT onClick="quedingData()" type=button value=ȷ��>
-<INPUT onClick="javascript:ddtzDdmx()" type=button value=����> <INPUT onClick="update_xuqiujihua();" type=button value=�޸� name=��xiugai��> <INPUT onClick="delData();" type=button value=ɾ�� name='shanchu'>
+<INPUT name="button" type=button onclick=select_check(document.form) value=全选/取消>
+<INPUT onClick="quedingData()" type=button value=确定>
+<INPUT onClick="javascript:ddtzDdmx()" type=button value=详情> <INPUT onClick="update_xuqiujihua();" type=button value=修改 name=‘xiugai’> <INPUT onClick="delData();" type=button value=删除 name='shanchu'>
 </P>
             </FORM></CENTER></CENTER></BODY></HTML>
