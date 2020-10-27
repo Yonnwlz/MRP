@@ -4,6 +4,7 @@ import com.tuling.dao.MaterialMapper;
 import com.tuling.dao.SysMenusMapper;
 import com.tuling.entity.EasyUiDataGrid;
 import com.tuling.entity.Material;
+import com.tuling.entity.MaterialExample;
 import com.tuling.service.MaterialService;
 import org.springframework.stereotype.Service;
 
@@ -38,5 +39,13 @@ public class MaterialService_impl implements MaterialService {
     public Material findByIdMaterial(Integer id) {
         //通过id查询物资信息
         return materialMapper.selectByPrimaryKey((long)id);
+    }
+
+    @Override
+    public Material findByMaterialNum(String matNum) {
+        //通过物资编号查询物资信息
+        MaterialExample example = new MaterialExample();
+        example.createCriteria().andMaterialNumEqualTo(matNum);
+        return materialMapper.selectByExample(example).get(0);
     }
 }

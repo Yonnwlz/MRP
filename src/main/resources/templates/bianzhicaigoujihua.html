@@ -6,116 +6,36 @@
     <meta name="ProgId" content="FrontPage.Editor.Document">
     <link rel="stylesheet" href="css/style.css">
     <script Language="JavaScript" src="css/pub_Calendar.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="jquery-easyui-1.8.5/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="jquery-easyui-1.8.5/themes/icon.css">
+    <script type="text/javascript" src="jquery-easyui-1.8.5/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery-easyui-1.8.5/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="jquery-easyui-1.8.5/locale/easyui-lang-zh_CN.js"></script>
+
+
     <title>编制采购计划</title>
-    <SCRIPT LANGUAGE=javascript>
-        function abc(){
-            var ll=document.getElementById("p_cgtype").value;
-            var dis1=document.getElementById("gkqg");
-            var dis2=document.getElementById("dxqg");
+    <script type="text/javascript">
+        $(function (){
+            //当前日期
+            var now = new Date();
+            var date = now.getFullYear()+"/"+(now.getMonth()+1)+"/"+now.getDate();
+            $("#p_input").html(date);
+        })
 
-            if(ll==1){
-                dis1.style.display="block";
-                dis2.style.display="none";
-            }else{
-                dis2.style.display="block";
-                dis1.style.display="none";
-            }
+        //点击确定保存采购计划
+        function submit_form(){
+            var $stoform = $("#stoform").serialize();
+            alert($stoform);
         }
-        function submit_form(theForm,i)
-        {
-            document.form.action="Project_Save.asp";
-            if ((document.form.p_gys_sel.options.length==0)&&
-                (document.form.p_cgtype.value==2||
-                    document.form.p_cgtype.value==4||
-                    document.form.p_cgtype.value==5||
-                    document.form.p_cgtype.value==6||
-                    document.form.p_cgtype.value==7||
-                    document.form.p_cgtype.value==8||
-                    document.form.p_cgtype.value==11))
-            {
-                alert("请选择供应商。");
-                return;
-            }
-            if (form.p_input[5].value.length>400)
-            {
-                alert("说明不能超过400字。");
-                return;
-            }
-            for (n=0;n<document.form.p_gys_all.options.length;n++)
-            {
-                document.form.p_gys_all.options(n).selected=true;
-            }
-            for (n=0;n<document.form.p_gys_sel.options.length;n++)
-            {
-                document.form.p_gys_sel.options(n).selected=true;
-            }
-            document.form.p_type.value=i;
-            alert("采购计划编制成功！");
-            window.location.href="Project_list.htm";
-            //CheckAll();
-        }
-        function select_cgtype(xyprice_null)
-        {
-            document.form.action="Project_form.asp";
-
-            if (document.form.p_cgtype.value==2||
-                document.form.p_cgtype.value==4||
-                document.form.p_cgtype.value==5||
-                document.form.p_cgtype.value==6||
-                document.form.p_cgtype.value==7||
-                document.form.p_cgtype.value==8||
-                document.form.p_cgtype.value==11)
-            {
-                document.form.add.disabled=false;
-                document.form.del.disabled=false;
-            }
-            else
-            {
-                document.form.add.disabled=true;
-                document.form.del.disabled=true;
-            }
-            if (xyprice_null=="True"&&document.form.p_cgtype.value==6)
-            {
-                alert("提示信息：\n物资对应的协议价格为空。\n请先维护供应商对应物资的协议价格后再编制协议采购的采购计划。");
-                document.form.p_cgtype.value="1";
-                document.form.add.disabled=true;
-                document.form.del.disabled=true;
-            }
-            document.form.submit();
-        }
-        function back(i)
-        {
-            if (i==1)
-            {
-                window.location="../Order/Order_wbxjfa_list.asp?p_type=0";
-                //  window.location="../Order/Order_wbxjfa_list.asp";
-            }
-            else if (i==2)
-            {
-                window.location="Project_list.asp?p_type=6";
-            }
-            else if (i==3)
-            {
-                window.location="../Order/Order_wbxjfa_list.asp?p_type=4";
-            }
-            else if (i==4)
-            {
-                window.location="../Order/Order_wbxjfa_list.asp?p_type=5";
-            }
-            else if (i==5)
-            {
-                window.location="../Order/Order_wbxjfa_list.asp?p_type=6";
-            }
-        }
-    </SCRIPT>
+    </script>
 </head>
 <body>
 <center>
 
     <h2><font color=#0070C0>编制采购计划</font></h2>
 
-    <form name="form" action="Project_Save.asp" method="post">
-
+        <form id="stoform">
         <TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
             <tr>
                 <td>
@@ -125,11 +45,12 @@
                         <tr class="t1">
                             <td>采购计划编号</td>
                             <td>
-                                [[${ordernum}]]
-                                <input type="hidden" name="p_input" th:value="${ordernum}">      	</td>
+                                [[${stockNum}]]
+                                     	</td>
+                        <input type="hidden" name="stockNum" th:value="${stockNum}">
                             <td><font color=red>采购计划名称</font></td>
                             <td>
-                                <input type="text" name="p_input" size="20" maxlength="100" value="20020055100109"  Chk=1 alt="请输入采购计划名称。">      </td>
+                                <input type="text" name="stockName" size="20" maxlength="100" value="20020055100109"  Chk=1 alt="请输入采购计划名称。">      </td>
                         </tr>
                         <tr class="t1" >
                             <td>公司名称</td>
@@ -138,16 +59,17 @@
                                 <input type="hidden" name="p_input" value="1000">      	</td>
                             <td>编制人</td>
                             <td>
-                                <input type="text" name="p_input" size="20"  readonly  maxlength="100" value="杨春"  Chk=1 alt="请输入编制人。">       </td>
+                                <input type="text" name="author" size="20"  readonly  maxlength="100" value="杨春"  Chk=1 alt="请输入编制人。">       </td>
                         </tr>
                         <tr class="t1" >
                             <td>预算金额(元)</td>
                             <td>
-                                <input type="text" name="p_input" size="20" maxlength="20" value="84360"  onKeyPress="check_num_dot()" Chk=3>       </td>
+                                <input type="text" name="budget" size="20" maxlength="20" value="84360"  onKeyPress="check_num_dot()" Chk=3>       </td>
                             <td>采购计划编制时间</td>
-                            <td>2010/01/09</td>
+                            <td id="startDate">2010/01/09</td>
                         </tr>
                     </table></td></tr></table>
+        </form>
 
         <TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
             <tr>
@@ -219,13 +141,9 @@
                                             <th>
                                                 <font color="black">供应商名称</font>		</th>
                                         </tr>
-                                        <tr class="t2">
+                                        <tr class="t2" th:each="su : ${suppliers}">
                                             <td>
-                                                <div align="center">好又多			  </div></td>
-                                        </tr>
-                                        <tr class="t2">
-                                            <td>
-                                                <div align="center">多又好			  </div></td>
+                                                <div align="center" th:text="${su.getCompany()}">好又多			  </div></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -283,12 +201,10 @@
         <input type="hidden" name="page" value="">
 
         <br>
-        <input type="button" value="确定" onClick="submit_form(document.form,1)">
+        <input type="button" value="确定" onClick="submit_form()">
         <input type="button" value="重设" onClick="form.reset()">
 
         <input type="button" value="取消" onClick="window.location='Order_wbxjfa_list.htm'">
-
-    </form>
     <form name="form1" action="../Demand/xjfatz_gysxx.asp" method="post"target=_new>
         <input type="hidden" name="p_suppsql" value="select * from Tb_ProjectSupp_Tmp where strProjCode='1000201001251787'">
     </form>

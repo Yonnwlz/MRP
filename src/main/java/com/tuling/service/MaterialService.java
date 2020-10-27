@@ -22,4 +22,11 @@ public interface MaterialService {
      * @return
      */
     public Material findByIdMaterial(Integer id);
+
+    /**
+     * 通过物资编号 查询物资信息
+     * @param matNum    物资编号
+     * @return
+     */
+    public Material findByMaterialNum(String matNum);
 }

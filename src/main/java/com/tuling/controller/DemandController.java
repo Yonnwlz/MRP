@@ -57,7 +57,7 @@ public class DemandController {
      */
     @RequestMapping("selMatPageHelper")
     @ResponseBody
-    public EasyUiDataGrid selMatPageHelper(@RequestParam(defaultValue = "1") Integer curPage, @RequestParam(defaultValue = "2") Integer pageSize){
+    public EasyUiDataGrid selMatPageHelper(@RequestParam(defaultValue = "1") Integer curPage, @RequestParam(defaultValue = "4") Integer pageSize){
         return materialService.findMaterialCountPageHelper(curPage,pageSize);
     }
 
@@ -156,7 +156,7 @@ public class DemandController {
      */
     @RequestMapping("orderAllPaging")
     @ResponseBody
-    public EasyUiDataGrid orderAllPaging(@RequestParam(defaultValue = "1") Integer curPage,@RequestParam(defaultValue = "3") Integer pageSize){
+    public EasyUiDataGrid orderAllPaging(@RequestParam(defaultValue = "1") Integer curPage,@RequestParam(defaultValue = "10") Integer pageSize){
         //查询出来 总数量 + 需求计划信息项
         EasyUiDataGrid orderOneIdMapper = ordersService.findOrderOneIdMapper(curPage, pageSize,"e",null);
 
