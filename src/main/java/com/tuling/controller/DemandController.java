@@ -6,20 +6,16 @@ import com.tuling.service.MaterialService;
 import com.tuling.service.OrdersService;
 import com.tuling.service.SysMenusService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * 需求计划控制层
@@ -96,7 +92,6 @@ public class DemandController {
     @ResponseBody
     public String saveSessionMaterial(Orders orders, HttpServletRequest request){
         ArrayList<Orders> ordList  = new ArrayList<Orders>();
-
         //流失号
         int orderNum =0;
         //当前时间
@@ -135,13 +130,11 @@ public class DemandController {
     public String addOrders(HttpServletRequest request){
         //获取所有选择的物资 需求计划项
         ArrayList<Orders> list = (ArrayList<Orders>) request.getSession().getAttribute("ordList");
-        System.out.println(list.size()+"当前数量");
         Integer integer1 = 0;
         //遍历所有需求计划项
         for (Orders s:list) {
             //添加需求计划项
             Integer integer = ordersService.insertOrders(s);
-            System.out.println(s.getId()+"当前需求计划编号");
             if(integer>0){
                 //添加编号对照项
                 IdMapping idMapping = new IdMapping();
@@ -150,6 +143,72 @@ public class DemandController {
                 integer1 = idMappingService.insertIdMapping(idMapping);
             }
         }
+        //统计完 清空session
+        request.getSession().removeAttribute("ordList");
         return "Order_ytb_list";
+    }
+
+    /**
+     * 查询需求计划信息
+     * @param curPage  当前页数
+     * @param pageSize  当前页数条数
+     * @return
+     */
+    @RequestMapping("orderAllPaging")
+    @ResponseBody
+    public EasyUiDataGrid orderAllPaging(@RequestParam(defaultValue = "1") Integer curPage,@RequestParam(defaultValue = "3") Integer pageSize){
+        //查询出来 总数量 + 需求计划信息项
+        EasyUiDataGrid orderOneIdMapper = ordersService.findOrderOneIdMapper(curPage, pageSize,"e",null);
+
+        //把所有需求信息项取出来  通过map 进行存储
+        List<?> rows = orderOneIdMapper.getRows();
+        ArrayList arrayList = new ArrayList();
+        for (Object s: rows) {
+            Orders or = (Orders) s;
+            Map map = new HashMap();
+            map.put("id",or.getId());
+            map.put("idMapper",or.getIdMapping().getId());
+            map.put("materialCode",or.getMaterialCode());
+            map.put("materialName",or.getMaterialName());
+            map.put("amount",or.getAmount());
+            map.put("type","制造中心采购公开求购");
+            map.put("status",or.getIdMapping().getStatus());
+            //把map  放进list中
+            arrayList.add(map);
+        }
+        //给EasyUiDataGrid   Rows 重新赋值
+        orderOneIdMapper.setRows(arrayList);
+        return orderOneIdMapper;
+    }
+
+    /**
+     * 需求计划保存
+     * @param idMapperId
+     * @return
+     */
+    @RequestMapping("updateOrderIdState")
+    @ResponseBody
+    public String updateOrderIdState(@RequestParam("idMapperId") Integer idMapperId){
+            IdMapping idMapping = new IdMapping();
+            System.out.println(idMapperId+"保存id");
+            idMapping.setId((long)idMapperId);
+            idMapping.setStatus("C001-20");
+            //通过id  修改对照信息
+            Integer integer = idMappingService.updateById(idMapping);
+            return integer+"";
+    }
+
+    /**
+     * 查询需求计划信息项
+     * @param ordersid 通过需求计划id查询
+     * @return
+     */
+    @RequestMapping("selOrdersByIdView")
+    public ModelAndView selOrdersByIdView(Integer ordersid){
+        ModelAndView mv = new ModelAndView("print_order_detail");
+        //查询需求计划项
+        Orders byIdOrders = ordersService.findByIdOrders(ordersid);
+        mv.addObject("byIdOrders",byIdOrders);
+        return mv;
     }
 }

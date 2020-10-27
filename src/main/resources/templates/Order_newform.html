@@ -24,7 +24,7 @@
                 alert("单价不能为空");
                 return false;
             }else{
-                window.location="Order_ytb_list.htm";
+                window.location="Order_ytb_list";
             }
             var len2 = document.getElementById("p_date1").value.length;
             if(len2==0){
@@ -32,7 +32,6 @@
             }else{
                 //表单序列化
                 var $form = $("#myform").serialize();
-                alert($form);
                 window.location="addOrders";
             }
         }
@@ -42,6 +41,7 @@
                 alert("单价不能为空");
                 return false;
             }else{
+                alert($("#measureUnit").val());
                 //表单序列化
                 var $form = $("#myform").serialize();
                 $.ajax({
@@ -175,8 +175,8 @@
                         <td >计量单位</td>
                         <td>
                             个
-                            <input type="hidden" name="measureUnit" id="measureUnit" value="个">
                         </td>
+                        <input type="hidden" name="measureUnit" id="measureUnit" value="个">
                     </tr>
                     <tr class="t1">
                         <td >预单价(元)</td>

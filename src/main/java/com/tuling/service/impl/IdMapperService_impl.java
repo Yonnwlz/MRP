@@ -2,6 +2,7 @@ package com.tuling.service.impl;
 
 import com.tuling.dao.IdMappingMapper;
 import com.tuling.entity.IdMapping;
+import com.tuling.entity.IdMappingExample;
 import com.tuling.service.IdMappingService;
 import org.springframework.stereotype.Service;
 

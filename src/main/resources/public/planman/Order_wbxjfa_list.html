@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD><TITLE>未编采购计划的需求计划一览表</TITLE>
+  <link rel="stylesheet" type="text/css" href="../jquery-easyui-1.8.5/themes/default/easyui.css">
+  <link rel="stylesheet" type="text/css" href="../jquery-easyui-1.8.5/themes/icon.css">
+  <script type="text/javascript" src="../jquery-easyui-1.8.5/jquery.min.js"></script>
+  <script type="text/javascript" src="../jquery-easyui-1.8.5/jquery.easyui.min.js"></script>
+  <script type="text/javascript" src="../jquery-easyui-1.8.5/locale/easyui-lang-zh_CN.js"></script>
+
+<META http-equiv=Content-Language content=zh-cn>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 6.00.2900.5626" name=GENERATOR>
+<META content=FrontPage.Editor.Document name=ProgId><LINK
+          href="css/style.css" rel=stylesheet>
+</HEAD>
+<BODY>
+<CENTER>
+<FORM name=form action="" method=post>
+<H2><FONT color=#0070c0>未编采购计划的需求一览表</FONT></H2>
+<TABLE cellSpacing=1 cellPadding=0 width="100%" bgColor=#ffffff 
+borderColorLight=#ffffff border=0>
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD noWrap align=middle>物资编码：<INPUT maxLength=15 size=15 
+            name=p_prodno>&nbsp;&nbsp; 物资名称：<INPUT maxLength=15 size=15 
+            name=p_prodname>&nbsp;&nbsp; 每页显示个数： <SELECT name=p_pagesize> 
+              <OPTION value=10 selected>10</OPTION> <OPTION value=20>20</OPTION> 
+              <OPTION value=30>30</OPTION> <OPTION value=50>50</OPTION> <OPTION 
+              value=100>100</OPTION> <OPTION value=4>全部</OPTION></SELECT> 排序： 
+            <SELECT name=p_orderby> <OPTION value="" selected>按物资代码</OPTION> 
+              <OPTION value=1>按需求时间</OPTION> <OPTION 
+            value=2>按需求数量</OPTION></SELECT> <INPUT id=button2 onclick=submit_form_cx() type=button value=查询 name=button2></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><FORM 
+name="form1" action="" method="Post">
+<CENTER><FONT color=#000064>◆&nbsp;</FONT><FONT color=#000064>首页 
+上一页</FONT>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Order/Order_Wbxjfa_List.asp?p_type=0&amp;p_prodno=&amp;p_pagesize=&amp;p_ftype=&amp;p_orderby=&amp;page=2"><FONT 
+color=#0000be>下一页</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Order/Order_Wbxjfa_List.asp?p_type=0&amp;p_prodno=&amp;p_pagesize=&amp;p_ftype=&amp;p_orderby=&amp;page=4"><FONT 
+color=#0000be>尾页</FONT></A><FONT color=#000064>&nbsp;共 40 个需求计划 每页10 
+个需求计划</FONT><FONT color=#000064>&nbsp;页次:<FONT 
+color=blue>1</FONT>/4页</FONT><FONT color=#000064>&nbsp;◆&nbsp;</FONT>
+  <table id="tg"></table>
+  <script type="text/javascript" th:inline="none">
+    $('#tg').datagrid({
+      url:'../stockNotAll',
+      pagination:true,//分页工具栏
+      rownumbers:true,//分页行号
+      pageList:[2,4,6,8,10],
+      columns:[[
+        {field:'',title:'',checkbox:true},
+        {field:'id',title:'id',hidden:true},
+        {field:'materialCode',title:'物资编码',width:300},
+        {field:'materialName',title:'物资名称',width:300},
+        {field:'amount',title:'数量',width:200},
+        {field:'unitPrice',title:'预算价格',width:200},
+        {field:'startDate',title:'需求时间',width:200},
+      ]]
+    })
+  </script>
+<INPUT type=hidden value=0
+name=p_type>
+<P align=center><INPUT onclick=select_check(document.form) type=button value=全选/取消>
+  <INPUT onclick=submit_form() type=button value=编制采购计划 name=upd> <INPUT onClick=" javascript:history.back()" type=button value=返回 name=goback>
+</P></FORM></CENTER></CENTER>
+<script type="text/javascript">
+    //编辑采购计划
+    function submit_form(){
+      //获取选中的数据
+      var rows = $('#tg').datagrid('getSelections');
+      var ob = [];
+      for(var i=0;i<rows.length;i++){
+        ob[i]=rows[i].id;
+      }
+      location.href="../stockByOrder?ordersid="+ob;
+    }
+</script>
+</BODY></HTML>

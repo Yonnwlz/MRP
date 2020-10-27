@@ -44,6 +44,16 @@ public class Orders implements Serializable {
 
     private String remark;          //备注
 
+    private IdMapping idMapping;    //编号对照类
+
+    public IdMapping getIdMapping() {
+        return idMapping;
+    }
+
+    public void setIdMapping(IdMapping idMapping) {
+        this.idMapping = idMapping;
+    }
+
     private static final long serialVersionUID = 1L;
 
     public Long getId() {

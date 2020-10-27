@@ -1,5 +1,6 @@
 package com.tuling.service;
 
+import com.tuling.entity.EasyUiDataGrid;
 import com.tuling.entity.Orders;
 
 import java.util.List;
@@ -22,4 +23,19 @@ public interface OrdersService {
      * @return
      */
     public Orders findByOrderNum(String orderNum);
+
+    /**
+     * 需求计划+编号对照  一对一查询 + 分页查询
+     * @param curPage
+     * @param pageSize
+     * @return
+     */
+    public EasyUiDataGrid findOrderOneIdMapper(Integer curPage, Integer pageSize,String ordernm,String status);
+
+    /**
+     * 通过id查询需求计划信息
+     * @param ordersId  需求序号
+     * @return
+     */
+    public Orders findByIdOrders(Integer ordersId);
 }
