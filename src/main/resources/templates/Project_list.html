@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD><TITLE>采购计划一览表</TITLE>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" type="text/css" href="jquery-easyui-1.8.5/themes/default/easyui.css">
+  <link rel="stylesheet" type="text/css" href="jquery-easyui-1.8.5/themes/icon.css">
+  <script type="text/javascript" src="jquery-easyui-1.8.5/jquery.min.js"></script>
+  <script type="text/javascript" src="jquery-easyui-1.8.5/jquery.easyui.min.js"></script>
+  <script type="text/javascript" src="jquery-easyui-1.8.5/locale/easyui-lang-zh_CN.js"></script>
+
+<SCRIPT language=JAVASCRIPT>
+  //详情
+  function submit_form(){
+      //获取当前选中的行
+      var $stocksel = $("#stocktg").treegrid("getSelected");
+      location.href="stockDetails?stockNum="+$stocksel.stockNum;
+  }
+
+  //报批
+  function approval(){
+      $.get("stockUpdateIdMapperStatus",{stockNum:$("#stocktg").treegrid("getSelected").stockNum},function(rdata){
+          if(rdata=="1"){
+              alert("报批后，采购计划将进行审批流程！ 状态改为待审");
+              $('#stocktg').datagrid('reload');
+          }else{
+            alert("报批失败！")
+          }
+      })
+  }
+
+ function openwindown(page)
+ {
+    window.open(page,"newuser","toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=700,height=400,left=100,top=150");
+ }
+</SCRIPT>
+
+<META http-equiv=Content-Language content=zh-cn>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 6.00.2900.5626" name=GENERATOR>
+<META content=FrontPage.Editor.Document name=ProgId><LINK
+            href="../public/planman/css/style.css" rel=stylesheet>
+<SCRIPT language=JavaScript src="../public/planman/css/pub_Calendar.js"></SCRIPT>
+
+<style type="text/css">
+<!--
+.STYLE1 {color: #FF0000}
+-->
+</style>
+</HEAD>
+<BODY>
+<DIV id=overDiv style="Z-INDEX: 1; POSITION: absolute"></DIV>
+<CENTER>
+<FORM name=form action="xjfatz_xjfamx.html" method=post>
+<H2><FONT color=#0070c0>采购计划一览表</FONT></H2>
+<TABLE cellSpacing=1 cellPadding=0 width="100%" bgColor=#ffffff 
+borderColorLight=#ffffff border=0>
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+        <TBODY>
+        <TR bgColor=#ffffff>
+          <TD noWrap align=middle>采购计划名称：<INPUT size=10 
+            name=p_title>&nbsp;&nbsp; 物资名称：<INPUT size=10 
+            name=p_Item>&nbsp;&nbsp; 计划状态：<SELECT style="WIDTH: 115px" 
+            name=p_status> <OPTION value="" selected>全部</OPTION> <OPTION 
+              value=70>未确定</OPTION> <OPTION value=80>待审</OPTION> 
+              <OPTION value=100>驳回</OPTION> <OPTION value=110>下达</OPTION> 
+              <OPTION value=120>通过</OPTION> <OPTION value=140>废弃</OPTION> 
+              </SELECT>&nbsp;&nbsp; 采购类型：<SELECT 
+            style="WIDTH: 80px" name=p_stocktype> <OPTION value="" 
+              selected>全部</OPTION> <OPTION value=1>公开求购</OPTION> <OPTION 
+              value=2>定向询价</OPTION></SELECT>&nbsp;&nbsp; <INPUT onclick=submit_form_cx() type=button value=查询></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><FORM
+        name="form1" action="xjfatz_xjfamx.html" method="Post">
+<CENTER><FONT color=#000064>◆&nbsp;</FONT><FONT color=#000064>首页 
+上一页</FONT>&nbsp;<FONT color=#ff0000>1</FONT>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=2"><FONT 
+color=#0000be>2</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=3"><FONT 
+color=#0000be>3</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=4"><FONT 
+color=#0000be>4</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=5"><FONT 
+color=#0000be>5</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=6"><FONT 
+color=#0000be>6</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=7"><FONT 
+color=#0000be>7</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=8"><FONT 
+color=#0000be>8</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=9"><FONT 
+color=#0000be>9</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=10"><FONT 
+color=#0000be>10</FONT></A>&nbsp; 到第 <SELECT onchange=submit_form_cx() 
+  name=page> <OPTION value=1 selected>1</OPTION> <OPTION value=2>2</OPTION> 
+  <OPTION value=3>3</OPTION> <OPTION value=4>4</OPTION> <OPTION 
+  value=5>5</OPTION> <OPTION value=6>6</OPTION> <OPTION value=7>7</OPTION> 
+  <OPTION value=8>8</OPTION> <OPTION value=9>9</OPTION> <OPTION 
+  value=10>10</OPTION> <OPTION value=11>11</OPTION> <OPTION value=12>12</OPTION> 
+  <OPTION value=13>13</OPTION></SELECT>页&nbsp; <A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=2"><FONT 
+color=#0000be>下一页</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=13"><FONT 
+color=#0000be>尾页</FONT></A><FONT color=#000064>&nbsp;共 127 个采购计划 每页10 
+个采购计划</FONT><FONT color=#000064>&nbsp;页次:<FONT 
+color=blue>1</FONT>/13页</FONT><FONT color=#000064>&nbsp;◆&nbsp;</FONT>
+  <table id="stocktg"></table>
+
+<INPUT type=hidden value=1 name=p_listtype>
+<P align=center>
+<INPUT onClick="approval()" type=button value=报批>
+<INPUT onclick=submit_form() type=button value=详情> <INPUT onClick=" javascript:history.back()" type=button value=返回>
+</P></FORM></CENTER></CENTER></BODY>
+<script type="text/javascript" th:inline="none">
+  $(function(){
+      //当页面加载完后显示表格数据
+      $('#stocktg').datagrid({
+        url:'stockSelectAll',
+        pagination:true,//分页工具栏
+        rownumbers:true,//分页行号
+        pageList:[2,4,6,8,10],
+        singleSelect:true,
+        columns:[[
+          {field:'',title:'',width:100,checkbox:true},
+          {field:'number',title:'序号',width:100},
+          {field:'stockNum',title:'采购计划编号',width:200,hidden:true},
+          {field:'stockName',title:'采购计划名称',width:200},
+          {field:'stockType',title:'采购类型',width:200},
+          {field:'status',title:'状态',width:200,formatter :function(value,row,index) {
+                  if(value=='C001-30'){
+                      return "未确定";
+                  }else if(value=='C001-40'){
+                      return "待审批";
+                  }else if(value=='C001-60'){
+                      return "下达";
+                  }
+            }},
+          {field:'submitDate',title:'采购计划下达时间',width:200},
+          {field:'enquire',title:'对应询价书',width:300},
+        ]]
+      });
+  })
+</script>
+</HTML>

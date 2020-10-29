@@ -4,6 +4,7 @@ import com.tuling.entity.*;
 import com.tuling.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,6 +41,13 @@ public class ProcurementController {
     @Autowired
     private SuppMaterialService suppMaterialService;
 
+    //注入 编号对照 业务层  idMappingService;
+    @Autowired
+    private IdMappingService idMappingService;
+
+    //注入 采购计划已选供应商 业务层  stockSupplierService;
+    @Autowired
+    private StockSupplierService stockSupplierService;
 
     //物资是否相对应的供应商
     boolean fign = true;
@@ -123,12 +131,101 @@ public class ProcurementController {
     };
 
     /**
-     * 添加采购计划 和 修改对照编号
+     * 添加采购计划 + 修改对照编号 + 选择供应商
+     * @param stock     采购计划对象
+     * @param orderid   需求计划序号
+     * @param suppid    供应商序号
      * @return
      */
     @RequestMapping("stockInsertUpdIdMapper")
-    public String stockInsert(){
+    public String stockInsert(Stock stock,Integer orderid,String suppid){
+        //添加采购计划
+        Integer integer = stockService.insertStock(stock);
+        if(integer>0){
+            //调用 需求计划序号 查询对照信息
+            IdMapping idMapping = idMappingService.selectByOrderId(orderid);
+            idMapping.setStockId(stock.getId());
+            idMapping.setStatus("C001-30");
+            //通过对照信息序号 修改状态+采购计划
+            Integer upd = idMappingService.updateById(idMapping);
+            if(upd>0){
+                //遍历供应商ID
+                String[] split = suppid.split(",");
+                for (String s:split) {
+                    //创建采购计划已选供应商
+                    StockSupplier stockSupplier = new StockSupplier();
+                    stockSupplier.setStockId(stock.getId());
+                    stockSupplier.setSupplierId((long)Integer.parseInt(s));
+                    //添加采购计划已选供应商
+                    Integer insertStockSupplier = stockSupplierService.insertStockSupplier(stockSupplier);
+                    if(insertStockSupplier>0){
+                        return "Project_list";
+                    }
+                }
+            }
+        }
+        return "bianzhicaigoujihua";
+    }
 
-        return null;
+    /**
+     * 查询所有采购计划 + 分页 + 模糊查询
+     * @param curPage
+     * @param pageSize
+     * @return
+     */
+    @RequestMapping("stockSelectAll")
+    @ResponseBody
+    public EasyUiDataGrid stockSelectAll(@RequestParam(defaultValue = "1") Integer curPage,@RequestParam(defaultValue = "3") Integer pageSize){
+        //调用easyuidatagrid 对象
+        EasyUiDataGrid stockPageAll = stockService.findStockPageAll(curPage, pageSize);
+        //创建list
+        List<Object> objects = new ArrayList<Object>();
+        //时间格式化
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        int i = 0;
+        //遍历EasyUiDataGrid rows属性
+        for (Object o :stockPageAll.getRows()) {
+            i++;
+            //创建map
+            Map<String,String> map = new HashMap<String, String>();
+            map.put("stockNum",((Stock)o).getStockNum());
+            map.put("number",String.valueOf(i));
+            map.put("stockName",((Stock) o).getStockName());
+            map.put("stockType","制造中心采购公开求购");
+            map.put("status",((Stock) o).getIdMapping().getStatus());
+            map.put("submitDate",simpleDateFormat.format(((Stock) o).getSubmitDate()));
+            map.put("enquire","");
+            //把map存入list中
+            objects.add(map);
+        }
+        //重新给EasyUiDataGrid rows属性赋值
+        stockPageAll.setRows(objects);
+        return stockPageAll;
+    }
+
+    /**
+     * 查询采购计划详情
+     * @param stockNum 采购计划编号
+     * @return
+     */
+    @RequestMapping("stockDetails")
+    public String stockDetails(String stockNum, Model model){
+        //调用查询 采购计划 + 物资 信息
+        Stock stockAndIdMapperAndOrders = stockService.findStockAndIdMapperAndOrders(stockNum);
+        model.addAttribute("stockIdMapperOrders",stockAndIdMapperAndOrders);
+        return "xjfatz_xjfamx";
+    }
+
+    /**
+     * 采购计划报批
+     * @param stockNum 采购计划编号
+     * @return
+     */
+    @RequestMapping("stockUpdateIdMapperStatus")
+    @ResponseBody
+    public String stockUpdateIdMapperStatus(String stockNum){
+        System.out.println(stockNum);
+        //修改编号对照状态
+        return stockService.updateStockByStockNumIdmaStatus("C001-40",stockNum).toString();
     }
 }

@@ -18,7 +18,38 @@
     <result column="LEAD_AGREE" jdbcType="VARCHAR" property="leadAgree" />
     <result column="LEAD_OPINION" jdbcType="VARCHAR" property="leadOpinion" />
     <result column="LEAD_DATE" jdbcType="TIMESTAMP" property="leadDate" />
+    <association property="idMapping" javaType="com.tuling.entity.IdMapping">
+      <id column="ID" jdbcType="BIGINT" property="id" />
+      <result column="ORDER_ID" jdbcType="BIGINT" property="orderId" />
+      <result column="STOCK_ID" jdbcType="BIGINT" property="stockId" />
+      <result column="ENQUIRE_ID" jdbcType="BIGINT" property="enquireId" />
+      <result column="CONT_APP_ID" jdbcType="BIGINT" property="contAppId" />
+      <result column="QUOTE_ID" jdbcType="BIGINT" property="quoteId" />
+      <result column="CONT_ID" jdbcType="BIGINT" property="contId" />
+      <result column="STATUS" jdbcType="VARCHAR" property="status" />
+      <association property="orders" javaType="com.tuling.entity.Orders">
+        <id column="ID" jdbcType="BIGINT" property="id" />
+        <result column="ORDER_NUM" jdbcType="VARCHAR" property="orderNum" />
+        <result column="ORDER_SOURCE" jdbcType="VARCHAR" property="orderSource" />
+        <result column="MATERIAL_CODE" jdbcType="VARCHAR" property="materialCode" />
+        <result column="MATERIAL_NAME" jdbcType="VARCHAR" property="materialName" />
+        <result column="AMOUNT" jdbcType="VARCHAR" property="amount" />
+        <result column="MEASURE_UNIT" jdbcType="VARCHAR" property="measureUnit" />
+        <result column="UNIT_PRICE" jdbcType="DECIMAL" property="unitPrice" />
+        <result column="SUM_PRICE" jdbcType="DECIMAL" property="sumPrice" />
+        <result column="START_DATE" jdbcType="TIMESTAMP" property="startDate" />
+        <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+        <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+        <result column="AUTHOR_ID" jdbcType="VARCHAR" property="authorId" />
+        <result column="AUTHOR" jdbcType="VARCHAR" property="author" />
+        <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+        <result column="FAX" jdbcType="VARCHAR" property="fax" />
+        <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+        <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+      </association>
+    </association>
   </resultMap>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -125,7 +156,7 @@
       #{leader,jdbcType=VARCHAR}, #{leadAgree,jdbcType=VARCHAR}, #{leadOpinion,jdbcType=VARCHAR}, 
       #{leadDate,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.tuling.entity.Stock">
+  <insert id="insertSelective" parameterType="com.tuling.entity.Stock" useGeneratedKeys="true" keyProperty="id">
     insert into STOCK
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -386,5 +417,22 @@
   <!-- 查询当前最大流水号 -->
   <select id="selectByCount" resultMap="BaseResultMap">
      SELECT * from STOCK WHERE STOCK_NUM LIKE '${num}%' ORDER BY STOCK_NUM desc LIMIT 1
+  </select>
+
+  <!-- 采购计划==编号对照 一对一 查询所有采购计划 +分页+模糊查询 -->
+  <select id="selectStockAll" resultMap="BaseResultMap">
+    select * from STOCK s
+    INNER JOIN ID_MAPPING m
+    on m.STOCK_ID=s.ID
+    WHERE s.ID!=1 LIMIT #{curPage},#{pageSize}
+  </select>
+
+  <!-- 采购计划==编号对照==需求计划  一对一对一 三表联查 -->
+  <select id="selectStockAndIdMapperAndOrdersAll" resultMap="BaseResultMap">
+    select * from STOCK s
+    INNER JOIN ID_MAPPING m
+    on s.ID=m.STOCK_ID
+    INNER JOIN ORDERS o
+    on m.ORDER_ID=o.ID WHERE s.STOCK_NUM=#{stockNum}
   </select>
 </mapper>

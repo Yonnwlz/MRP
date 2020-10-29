@@ -20,4 +20,11 @@ public interface IdMappingService {
      * @return
      */
     public Integer updateById(IdMapping idMapping);
+
+    /**
+     * 通过需求计划序号  查询对照信息
+     * @param orderId 需求计划序号
+     * @return
+     */
+    public IdMapping selectByOrderId(Integer orderId);
 }

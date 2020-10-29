@@ -26,7 +26,14 @@
         //点击确定保存采购计划
         function submit_form(){
             var $stoform = $("#stoform").serialize();
-            alert($stoform);
+
+            var $suppidsuppid = [];
+            //获取供应商
+            for(var i=0;i<$(".suppid").length;i++){
+                $suppidsuppid[i] = $(".suppid")[i].value;
+            }
+            alert($suppidsuppid);
+            location.href="stockInsertUpdIdMapper?stock="+$stoform+"&stockNum="+$("#stockNum").val()+"&suppid="+$suppidsuppid;
         }
     </script>
 </head>
@@ -47,9 +54,9 @@
                             <td>
                                 [[${stockNum}]]
                                      	</td>
-                        <input type="hidden" name="stockNum" th:value="${stockNum}">
                             <td><font color=red>采购计划名称</font></td>
                             <td>
+                                <input type="hidden" name="stockNum" id="stockNum" th:value="${stockNum}">
                                 <input type="text" name="stockName" size="20" maxlength="100" value="20020055100109"  Chk=1 alt="请输入采购计划名称。">      </td>
                         </tr>
                         <tr class="t1" >
@@ -59,7 +66,7 @@
                                 <input type="hidden" name="p_input" value="1000">      	</td>
                             <td>编制人</td>
                             <td>
-                                <input type="text" name="author" size="20"  readonly  maxlength="100" value="杨春"  Chk=1 alt="请输入编制人。">       </td>
+                                <input type="text"  size="20"  readonly  maxlength="100" value="杨春"  Chk=1 alt="请输入编制人。">       </td>
                         </tr>
                         <tr class="t1" >
                             <td>预算金额(元)</td>
@@ -69,7 +76,6 @@
                             <td id="startDate">2010/01/09</td>
                         </tr>
                     </table></td></tr></table>
-        </form>
 
         <TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
             <tr>
@@ -94,6 +100,7 @@
                             -->
                         </tr>
                         <tr class="t2" th:each="ors,index : ${orlist}">
+                            <input type="hidden" name="orderid" th:value="${ors.getId()}"/>
                             <td align=center th:text="${index.index+1}">1</td>
                             <td th:text="${ors.getMaterialCode()}">W64001005001<br></td>
                             <td ><a href="../Project/print_order_detail.asp?p_type=1&p_orderno=1000201011133266&p_ordernum=1" target="_new" th:text="${ors.getMaterialName()}">晶振(HC-49U-500M-0.005%)</a><br></td>
@@ -112,6 +119,7 @@
                         </tr>
 
                     </table></td></tr></table>
+        </form>
 
         <TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
             <tr>
@@ -143,6 +151,7 @@
                                         </tr>
                                         <tr class="t2" th:each="su : ${suppliers}">
                                             <td>
+                                                <input type="hidden" class="suppid" th:value="${su.getId()}"/>
                                                 <div align="center" th:text="${su.getCompany()}">好又多			  </div></td>
                                         </tr>
                                     </table>

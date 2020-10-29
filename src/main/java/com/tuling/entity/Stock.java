@@ -23,7 +23,7 @@ public class Stock implements Serializable {
 
     private Date endDate;
 
-    private Date submitDate;
+    private Date submitDate;        //下达时间
 
     private String remark;
 
@@ -36,6 +36,16 @@ public class Stock implements Serializable {
     private String leadOpinion;
 
     private Date leadDate;
+
+    private IdMapping idMapping;
+
+    public IdMapping getIdMapping() {
+        return idMapping;
+    }
+
+    public void setIdMapping(IdMapping idMapping) {
+        this.idMapping = idMapping;
+    }
 
     private static final long serialVersionUID = 1L;
 

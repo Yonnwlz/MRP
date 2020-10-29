@@ -40,6 +40,16 @@ public class IdMapping implements Serializable {
      */
     private String status;
 
+    private Orders orders;
+
+    public Orders getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Orders orders) {
+        this.orders = orders;
+    }
+
     private static final long serialVersionUID = 1L;
 
     public Long getId() {

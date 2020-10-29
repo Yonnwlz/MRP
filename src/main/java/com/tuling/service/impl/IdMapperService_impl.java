@@ -28,4 +28,12 @@ public class IdMapperService_impl implements IdMappingService {
         //通过编号对照id修改 相对应的信息
         return idMappingMapper.updateByPrimaryKeySelective(idMapping);
     }
+
+    @Override
+    public IdMapping selectByOrderId(Integer orderId) {
+        //通过需求计划序号 查询对照信息
+        IdMappingExample example = new IdMappingExample();
+        example.createCriteria().andOrderIdEqualTo((long)orderId);
+        return idMappingMapper.selectByExample(example).get(0);
+    }
 }

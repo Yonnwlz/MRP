@@ -16,6 +16,7 @@ public interface IdMappingMapper {
 
     int insertSelective(IdMapping record);
 
+
     List<IdMapping> selectByExample(IdMappingExample example);
 
     IdMapping selectByPrimaryKey(Long id);
