@@ -30,7 +30,7 @@ public interface StockService {
      * @param pageSize  当前页数条数
      * @return
      */
-    public EasyUiDataGrid findStockPageAll(Integer curPage, Integer pageSize);
+    public EasyUiDataGrid findStockPageAll(Integer curPage, Integer pageSize,String status);
 
     /**
      * 查询采购计划 详情信息
@@ -46,4 +46,11 @@ public interface StockService {
      * @return
      */
     public Integer updateStockByStockNumIdmaStatus(String status,String stockNum);
+
+    /**
+     * 通过采购计划序号修改
+     * @param stock
+     * @return
+     */
+    public Integer updateStockById(Stock stock);
 }

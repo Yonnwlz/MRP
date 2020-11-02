@@ -168,16 +168,17 @@ public class ProcurementController {
     }
 
     /**
-     * 查询所有采购计划 + 分页 + 模糊查询
+     * 查询所有采购计划 + 分页 + 模糊查询  + 采购计划下达 + 未通过审批采购计划
      * @param curPage
      * @param pageSize
+     * @param status       编号对照 状态条件
      * @return
      */
     @RequestMapping("stockSelectAll")
     @ResponseBody
-    public EasyUiDataGrid stockSelectAll(@RequestParam(defaultValue = "1") Integer curPage,@RequestParam(defaultValue = "3") Integer pageSize){
+    public EasyUiDataGrid stockSelectAll(@RequestParam(defaultValue = "1") Integer curPage,@RequestParam(defaultValue = "10") Integer pageSize,String status){
         //调用easyuidatagrid 对象
-        EasyUiDataGrid stockPageAll = stockService.findStockPageAll(curPage, pageSize);
+        EasyUiDataGrid stockPageAll = stockService.findStockPageAll(curPage, pageSize,status);
         //创建list
         List<Object> objects = new ArrayList<Object>();
         //时间格式化
@@ -191,10 +192,29 @@ public class ProcurementController {
             map.put("stockNum",((Stock)o).getStockNum());
             map.put("number",String.valueOf(i));
             map.put("stockName",((Stock) o).getStockName());
+            map.put("submitDate",((Stock) o).getSubmitDate()==null?"":simpleDateFormat.format(((Stock) o).getSubmitDate()));
+            map.put("progress","采购计划未下达");
             map.put("stockType","制造中心采购公开求购");
             map.put("status",((Stock) o).getIdMapping().getStatus());
-            map.put("submitDate",simpleDateFormat.format(((Stock) o).getSubmitDate()));
+            map.put("endDate",((Stock) o).getEndDate()==null?"":simpleDateFormat.format(((Stock) o).getEndDate()));
             map.put("enquire","");
+            //status!=null   采购计划下达 + 未通过审批采购计划
+            if(status!=null){
+                //采购计划下达
+                if(status.equals("C001-50")){
+                    map.put("progress","采购计划未下达");
+                    map.put("stockType","制造中心采购公开求购");
+                    map.put("status",((Stock) o).getIdMapping().getStatus());
+                    map.put("endDate",((Stock) o).getEndDate()==null?"":simpleDateFormat.format(((Stock) o).getEndDate()));
+                    map.put("enquire","");
+                }else if(status.equals("C001-51")){
+                    //未通过采购审批采购计划
+                    map.put("id",((Stock) o).getId().toString());
+                    map.put("stockType","公开求购");
+                    map.put("progress",((Stock) o).getIdMapping().getStatus());
+                    map.put("author",((Stock) o).getAuthor());
+                }
+            }
             //把map存入list中
             objects.add(map);
         }
@@ -205,27 +225,84 @@ public class ProcurementController {
 
     /**
      * 查询采购计划详情
-     * @param stockNum 采购计划编号
+     * @param stockNum  采购计划编号
+     * @param model
+     * @param stockType  采购类型 详情 == 1  驳回 == 2
      * @return
      */
     @RequestMapping("stockDetails")
-    public String stockDetails(String stockNum, Model model){
+    public String stockDetails(String stockNum, Model model,String stockType){
+        //返回路径
+        String url = "";
+        //供应商编号
+        Map<Long,Long> supplierIdList = new HashMap<Long,Long>();
+
         //调用查询 采购计划 + 物资 信息
         Stock stockAndIdMapperAndOrders = stockService.findStockAndIdMapperAndOrders(stockNum);
         model.addAttribute("stockIdMapperOrders",stockAndIdMapperAndOrders);
-        return "xjfatz_xjfamx";
+        //stockType == 1 返回采购计划详情页
+        if(stockType.equals("1")){
+            url = "xjfatz_xjfamx";
+        }else if(stockType.equals("2")){
+            //通过需求计划物资编号查询物资序号
+            System.out.println(stockAndIdMapperAndOrders.getIdMapping().getOrders().getMaterialCode());
+            Material byMaterialNum = materialService.findByMaterialNum(stockAndIdMapperAndOrders.getIdMapping().getOrders().getMaterialCode());
+            //通过物资序号查询相对应的供应商信息
+            List<SuppMaterial> bySuppMaterial = suppMaterialService.findBySuppMaterial(byMaterialNum.getId().intValue());
+            //遍历供应商对应商品
+            for (SuppMaterial su:bySuppMaterial) {
+                if(su==null){
+                    fign = false;
+                }else {
+                    supplierIdList.put(su.getSupplierId(),su.getSupplierId());
+                }
+            }
+            //把查询出的供应商通过集合存储
+            ArrayList<Supplier> suppliers = new ArrayList<Supplier>();
+            //判断是否是相对应的供应商
+            if(fign && supplierIdList.size()>0){
+                for (Map.Entry<Long,Long> entry :supplierIdList.entrySet()) {
+                    //调用查询供应商名称的方法
+                    Supplier bySupplierid = supplierService.findBySupplierid(entry.getValue().intValue());
+                    suppliers.add(bySupplierid);
+                }
+            }
+            model.addAttribute("suppliers",suppliers);
+            //返回 驳回详情页
+            url = "xjfatz_xjfamx3";
+        }
+        return url;
     }
 
     /**
-     * 采购计划报批
+     * 采购计划报批 + 采购计划下达
+     * @param status 对照编号 状态
      * @param stockNum 采购计划编号
      * @return
      */
     @RequestMapping("stockUpdateIdMapperStatus")
     @ResponseBody
-    public String stockUpdateIdMapperStatus(String stockNum){
-        System.out.println(stockNum);
+    public String stockUpdateIdMapperStatus(String status,String stockNum){
         //修改编号对照状态
-        return stockService.updateStockByStockNumIdmaStatus("C001-40",stockNum).toString();
+        return stockService.updateStockByStockNumIdmaStatus(status,stockNum).toString();
+    }
+
+    @RequestMapping("stockUpdateRejectedApproval")
+    public String stockUpdateRejectedApproval(Stock stock,Orders orders,Integer stoId){
+        stock.setId((long)stoId);
+        //修改采购计划项
+        Integer stockRes = stockService.updateStockById(stock);
+        if(stockRes>0){
+           //通过采购计划编号查询需求计划项  采购计划+编号对照+需求计划
+            Stock stockAndIdMapperAndOrders = stockService.findStockAndIdMapperAndOrders(stock.getStockNum());
+            orders.setId(stockAndIdMapperAndOrders.getIdMapping().getOrders().getId());
+            Integer ordersRes = ordersService.updateOrderById(orders);
+             if(ordersRes>0){
+                 //修改采购计划状态
+                 stockService.updateStockByStockNumIdmaStatus("C001-40",stock.getStockNum());
+                 return "Project_list";
+             }
+        }
+        return "";
     }
 }

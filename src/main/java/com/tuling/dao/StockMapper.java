@@ -48,9 +48,10 @@ public interface StockMapper {
      * 查询所有采购计划 + 分页 + 模糊查询
      * @param curPage  当前页数
      * @param pageSize  当前页数条数
+     * @param status    编号对照状态
      * @return
      */
-    List<Stock> selectStockAll(Integer curPage,Integer pageSize);
+    List<Stock> selectStockAll(Integer curPage,Integer pageSize,String status);
 
     /**
      * 三表联查  采购计划 + 编号对照 + 需求计划 表

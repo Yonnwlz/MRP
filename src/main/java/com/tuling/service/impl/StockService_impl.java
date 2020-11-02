@@ -36,13 +36,13 @@ public class StockService_impl implements StockService {
     }
 
     @Override
-    public EasyUiDataGrid findStockPageAll(Integer curPage, Integer pageSize) {
+    public EasyUiDataGrid findStockPageAll(Integer curPage, Integer pageSize,String status) {
         //创建easyuiDatagrid 对象
         EasyUiDataGrid eas = new EasyUiDataGrid();
         //查询当前总条数
         Integer integer = stockMapper.selectSumCount();
         //查询所有采购计划项
-        List<Stock> stocks = stockMapper.selectStockAll((curPage - 1) * pageSize, pageSize);
+        List<Stock> stocks = stockMapper.selectStockAll((curPage - 1) * pageSize, pageSize,status);
         eas.setTotal(integer);
         eas.setRows(stocks);
         return eas;
@@ -73,5 +73,11 @@ public class StockService_impl implements StockService {
             }
         }
         return 0;
+    }
+
+    @Override
+    public Integer updateStockById(Stock stock) {
+        //通过采购计划序号修改
+        return stockMapper.updateByPrimaryKeySelective(stock);
     }
 }

@@ -1,6 +1,12 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<!-- saved from url=(0086)http://169.254.158.100/zzdl/ContApply/Apply_Exam.asp?p_Applyno=10002010182564&p_type=4 -->
-<HTML><HEAD><TITLE>²ÆÎñ²¿³¤ÉóÅúºÏÍ¬ÉêÇë</TITLE>
+<!DOCTYPE html>
+<HTML xmlns:th="http://www.thymeleaf.org"><HEAD><TITLE>è´¢åŠ¡éƒ¨é•¿å®¡æ‰¹åˆåŒç”³è¯·</TITLE>
+
+  <link rel="stylesheet" type="text/css" href="jquery-easyui-1.8.5/themes/default/easyui.css">
+  <link rel="stylesheet" type="text/css" href="jquery-easyui-1.8.5/themes/icon.css">
+  <script type="text/javascript" src="jquery-easyui-1.8.5/jquery.min.js"></script>
+  <script type="text/javascript" src="jquery-easyui-1.8.5/jquery.easyui.min.js"></script>
+  <script type="text/javascript" src="jquery-easyui-1.8.5/locale/easyui-lang-zh_CN.js"></script>
+
 <SCRIPT language=JAVASCRIPT> 
 function chck()
 {  var  count=0;
@@ -20,7 +26,7 @@ function Add(SourceList,TargetList)
 	if (nIndex == -1)
 	{
 		// Process continue only if at least one item selected
-		//alert("ÇëÏÈÑ¡ÔñÒ»Ïî!");
+		//alert("è¯·å…ˆé€‰æ‹©ä¸€é¡¹!");
 		return;
 	}
 	for (i=0;i<SourceList.length;i++)
@@ -61,7 +67,7 @@ function Remove(SelectList)
 	if (nIndex == -1)
 	{
 		// Process continue only if at least one item selected
-		//alert("ÇëÏÈÑ¡ÔñÒ»Ïî!");
+		//alert("è¯·å…ˆé€‰æ‹©ä¸€é¡¹!");
 		return;
 	}
   while(nCount<SelectList.length)
@@ -158,7 +164,7 @@ function check_num_dot()
        {
          if (NotNumber(window.document.forms[0].elements[i].value))
          {
-            alert("ÌáÊ¾ÐÅÏ¢£º\n²»ÊÇÓÐÐ§µÄÊý×Ö£¬ÇëÖØÐÂÊäÈë¡£");
+            alert("æç¤ºä¿¡æ¯ï¼š\nä¸æ˜¯æœ‰æ•ˆçš„æ•°å­—ï¼Œè¯·é‡æ–°è¾“å…¥ã€‚");
             window.document.forms[0].elements[i].focus();
             return;
          }
@@ -170,7 +176,7 @@ function check_num_dot()
        {
          if (NotNumber(window.document.forms[0].elements[i].value))
          {
-            alert("ÌáÊ¾ÐÅÏ¢£º\n²»ÊÇÓÐÐ§µÄÊý×Ö£¬ÇëÖØÐÂÊäÈë¡£");
+            alert("æç¤ºä¿¡æ¯ï¼š\nä¸æ˜¯æœ‰æ•ˆçš„æ•°å­—ï¼Œè¯·é‡æ–°è¾“å…¥ã€‚");
             window.document.forms[0].elements[i].focus();
             return;
          }
@@ -235,7 +241,7 @@ function Add(SourceList,TargetList)
 	if (nIndex == -1)
 	{
 		// Process continue only if at least one item selected
-		//alert("ÇëÏÈÑ¡ÔñÒ»Ïî!");
+		//alert("è¯·å…ˆé€‰æ‹©ä¸€é¡¹!");
 		return;
 	}
 	for (i=0;i<SourceList.length;i++)
@@ -276,7 +282,7 @@ function Remove(SelectList)
 	if (nIndex == -1)
 	{
 		// Process continue only if at least one item selected
-		//alert("ÇëÏÈÑ¡ÔñÒ»Ïî!");
+		//alert("è¯·å…ˆé€‰æ‹©ä¸€é¡¹!");
 		return;
 	}
   while(nCount<SelectList.length)
@@ -373,7 +379,7 @@ function check_num_dot()
        {
          if (NotNumber(window.document.forms[0].elements[i].value))
          {
-            alert("ÌáÊ¾ÐÅÏ¢£º\n²»ÊÇÓÐÐ§µÄÊý×Ö£¬ÇëÖØÐÂÊäÈë¡£");
+            alert("æç¤ºä¿¡æ¯ï¼š\nä¸æ˜¯æœ‰æ•ˆçš„æ•°å­—ï¼Œè¯·é‡æ–°è¾“å…¥ã€‚");
             window.document.forms[0].elements[i].focus();
             return;
          }
@@ -385,7 +391,7 @@ function check_num_dot()
        {
          if (NotNumber(window.document.forms[0].elements[i].value))
          {
-            alert("ÌáÊ¾ÐÅÏ¢£º\n²»ÊÇÓÐÐ§µÄÊý×Ö£¬ÇëÖØÐÂÊäÈë¡£");
+            alert("æç¤ºä¿¡æ¯ï¼š\nä¸æ˜¯æœ‰æ•ˆçš„æ•°å­—ï¼Œè¯·é‡æ–°è¾“å…¥ã€‚");
             window.document.forms[0].elements[i].focus();
             return;
          }
@@ -432,116 +438,95 @@ function check_num_dot()
 
 function queding()
 {
-if(	confirm('ÄúÈ·ÈÏÐÅÏ¢ÕýÈ·²¢Í¨¹ýÂð£¿')){
-	window.document.location = "Apply_daishencaiwu.htm";
+if(	confirm('æ‚¨ç¡®è®¤ä¿¡æ¯æ­£ç¡®å¹¶é€šè¿‡å—ï¼Ÿ')){
+    //èŽ·å–é€‰ä¸­çš„å®¡æ ¸æŒ‰é’®
+	var $status = $("input[name='p_agree']:checked");
+  location.href="stockExamination?stockNum="+$("#stockNum").val()+"&status="+$status.val();
 }
 }
 
 </SCRIPT>
 
 <META http-equiv=Content-Language content=zh-cn>
-<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
 <META content="MSHTML 6.00.2900.5626" name=GENERATOR>
-<META content=FrontPage.Editor.Document name=ProgId><LINK 
-href="js/style.css" rel=stylesheet></HEAD>
+<META content=FrontPage.Editor.Document name=ProgId><LINK
+          href="../public/contractmanager/js/style.css" rel=stylesheet></HEAD>
 <BODY>
 <CENTER>
 <CENTER>
-<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0 width="100%" 
-bgColor=#336699 borderColorLight=#006699 border=0>
-  <TBODY>
-  <TR>
-    <TD>
-      <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
-        <TBODY>
-        <TR bgColor=#ffffff>
-          <TD align=middle width="100%" bgColor=#ffffff colSpan=20 
-            height=22><B>
-            <H2><FONT color=#0070c0>ºÏÍ¬ÉêÇëÉóÅú</B> 
-           <IMG alt=°ïÖú 
-            src="img/help_a.gif" border=0></FONT></H2></TD></TR>
-        <TR class=t1>
-          <TD width="20%">Ñ¯¼ÛÊéÃû³Æ£º</TD>
-          <TD class=t2 width="30%"><A 
-            href="javascript:alert('¶ÔÓ¦Ñ¯¼ÛÊéÏêÏ¸')">ÌìÏÂÎÞÔô</A></TD><!--<td>ºÏÍ¬±àºÅ£º</td>
-  <td colspan=2>W20100040</td>-->
-          <TD width="20%">±¨¼Û·ÝÊý£º</TD>
-          <TD class=t2 width="30%">1</TD></TR>
-        <TR class=t1>
-          <TD width="20%">×î¸ß±¨¼Û£¨Ôª£©£º</TD>
-          <TD class=t2 width="30%">5001</TD>
-          <TD width="20%">×îµÍ±¨¼Û£¨Ôª£©£º</TD>
-          <TD class=t2 
-width="30%">5001</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
-<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0 width="100%" 
-bgColor=#336699 borderColorLight=#006699 border=0>
-  <TBODY>
-  <TR>
-    <TD>
-      <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
-        <TBODY>
-        <TR class=t1>
-          <TD align=middle>¹©Ó¦ÉÌÃû³Æ</TD>
-          <TD align=middle>±¨¼ÛÊ±¼ä</TD>
-          <TD align=middle>±¨¼Û×Ü½ð¶î£¨Ôª£©</TD>
-          <TD align=middle>±¨¼Û´ò·Ö</TD>
-          <TD align=middle>×ÛºÏÆÀ·Ö</TD></TR>
-        <TR class=t2>
-          <TD><A 
-            href="javascript:alert('¶ÔÓ¦¹©Ó¦ÉÌÏêÏ¸')"><FONT 
-            color=green>Best</FONT></A><BR></TD>
-          <TD>2010/01/08 17:07:30<BR></TD>
-          <TD>5001<BR></TD>
-          <TD><BR></TD>
-          <TD><BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
-<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0 width="100%" 
-bgColor=#336699 borderColorLight=#006699 border=0>
-  <TBODY>
-  <TR>
-    <TD>
-      <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
-        <TBODY>
-        <TR class=T1>
-          <TD noWrap align=middle colSpan=9>Îï×Ê<B><FONT color=red>1 
-            &nbsp;</B></FONT><A 
-            href="javascript:alert('¶ÔÓ¦ÐèÇó¼Æ»®ÊéÏêÏ¸')">¾§Õñ(HC-49U-500K-0.005%)[W64001005000]</A> 999¸ö 
-            <B>¼Æ»®¼Û£¨Ôª/º¬Ë°£©</B><A 
-            href="javascript:alert('¶ÔÓ¦±¨¼ÛÊéÏêÏ¸')"> 
-            ±¨¼ÛÃ÷Ï¸ÐÅÏ¢</A></TD></TR>
-        <TR class=t1>
-          <TD noWrap align=middle width="20%">¹©Ó¦ÉÌ</TD>
-          <TD noWrap align=middle>ÊýÁ¿</TD>
-          <TD noWrap align=middle>µ¥¼Û<BR>£¨Ôª/º¬Ë°£©</TD>
-          <TD noWrap align=middle>ÔËÔÓ·Ñ<BR>£¨Ôª£©</TD>
-          <TD noWrap align=middle>ÆäËü·ÑÓÃ<BR>£¨Ôª£©</TD>
-          <TD noWrap align=middle>×Ü¼Æ<BR>£¨Ôª£©</TD>
-          <TD noWrap align=middle width="12%">¼Æ»®¿ªÊ¼<BR>½»»õÆÚ</TD>
-          <TD noWrap align=middle>¿ªÊ¼<BR>½»»õÆÚ</TD>
-          <TD noWrap align=middle>½áÊø<BR>½»»õÆÚ</TD></TR>
-        <TR class=t2>
-          <TD width="20%"><A 
-            href="javascript:alert('¶ÔÓ¦¹©Ó¦ÉÌÏêÏ¸')"><FONT 
-            color=green>Best</FONT></A><BR></TD>
-          <TD align=right>999<BR></TD>
-          <TD align=right>5<BR></TD>
-          <TD align=right>5<BR></TD>
-          <TD align=right>1<BR></TD>
-          <TD align=right>5001<BR></TD>
-          <TD align=right>2010/01/08</TD>
-          <TD align=middle>2010/01/08<BR></TD>
-          <TD align=middle>2010/01/08<BR></TD></TR>
-        <TR class=t1>
-          <TD noWrap align=middle><B>ÐèÇó¼Æ»®ÊýÁ¿<B></B></B></TD>
-          <TD align=right colSpan=4>999<BR></TD>
-          <TD noWrap align=middle><B>¶©»õÊýÁ¿<B></B></B></TD>
-          <TD align=right colSpan=4>999<BR></TD></TR>
-        <TR class=t1>
-          <TD align=middle>×Ü½ð¶î£¨Ôª£©</TD>
-          <TD colSpan=8>5001<BR></TD></TR>
-        </TBODY></TABLE></TD></TR></TBODY></TABLE>
-</CENTER><TD 
+  <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+    <TBODY>
+    <TR bgColor=#ffffff>
+      <TD align=middle width="100%" bgColor=#ffffff colSpan=20
+          height=22><B>
+        <H2><FONT color=#0070c0>åˆåŒç”³è¯·æ˜Žç»†</B> <A
+              onclick="window.open('../help/Help.asp?Value=é‡‡è´­è®¡åˆ’æ˜Žç»†ä¿¡æ¯','child','status=NO,scrollbars=yes,toolbar=no,menubar=no,location=no,left=200,top=100,width=700,height=400')"
+              href="javascript:void(null)"><IMG alt=å¸®åŠ©
+                                                src="../public/planman/css/help_a.gif" border=0></A>
+        </FONT></H2></TD></TR>
+    <TR class=t1>
+      <TD noWrap width="20%">é‡‡è´­è®¡åˆ’ç¼–å·</TD>
+      <input type="hidden" id="stockNum" th:value="${stockIdMapperOrders.getStockNum()}"/>
+      <TD class=t2 noWrap th:text="${stockIdMapperOrders.getStockNum()}">1000201001251780</TD><!--*******************************************************************ä»¥ä¸‹ä¸ºç¬¬äºŒåˆ—****************************************************************-->
+      <TD noWrap width="20%">é‡‡è´­è®¡åˆ’åç§°</TD>
+      <TD class=t2 noWrap th:text="${stockIdMapperOrders.getStockName()}">11111111111111</TD>
+    </TR>
+    <TR class=t1>
+      <TD noWrap width="20%">å…¬å¸åç§°</TD>
+      <TD class=t2 noWrap>æ ªæ´²å—è½¦æ—¶ä»£ç”µæ°”è‚¡ä»½æœ‰é™å…¬å¸</TD><!--*******************************************************************ä»¥ä¸‹ä¸ºç¬¬äºŒåˆ—****************************************************************-->
+      <TD noWrap width="20%">ç¼–åˆ¶äºº</TD>
+      <TD class=t2 noWrap th:text="${stockIdMapperOrders.getAuthor()}">æ¨æ˜¥</TD></TR>
+    <TR class=t1>
+      <TD noWrap width="20%">é¢„ç®—é‡‘é¢(å…ƒ)</TD>
+      <TD class=t2 noWrap th:text="${stockIdMapperOrders.getBudget()}">55</TD><!--*******************************************************************ä»¥ä¸‹ä¸ºç¬¬äºŒåˆ—****************************************************************-->
+      <TD noWrap width="20%">è®¡åˆ’è¯¢ä»·å¼€å§‹æ—¶é—´</TD>
+      <TD class=t2 noWrap th:text="${stockIdMapperOrders.getStartDate()}">2010/01/09</TD></TR>
+    <TR class=t1>
+      <TD noWrap width="20%">è®¡åˆ’æŠ¥ä»·æˆªæ­¢æ—¶é—´</TD>
+      <TD class=t2 noWrap th:text="${stockIdMapperOrders.getEndDate()}">2010/01/10 00:00</TD>
+      <TD class=t2 colSpan=2><BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+  <TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0 width="100%"
+         bgColor=#336699 borderColorLight=#006699 border=0>
+    <TBODY>
+    <TR>
+      <TD>
+        <TABLE cellSpacing=1 cellPadding=3 width="100%" border=1>
+          <TBODY>
+          <TR class=t1>
+            <TD noWrap align=middle>åºå·</TD>
+            <TD noWrap align=middle>ç‰©èµ„ç¼–ç </TD>
+            <TD noWrap align=middle>ç‰©èµ„åç§°</TD>
+            <TD noWrap align=middle>æ•°é‡</TD>
+            <TD noWrap align=middle>è®¡é‡<BR>å•ä½</TD>
+            <TD noWrap align=middle>äº¤è´§æœŸ</TD>
+            <TD noWrap align=middle>åè®®ä»·æ ¼<BR>ï¼ˆå…ƒï¼‰</TD>
+            <TD noWrap align=middle>é¢„ç®—æ€»é‡‘é¢<BR>ï¼ˆå…ƒï¼‰</TD>
+            <TD noWrap align=middle>è®¡åˆ’ä»·<BR>ï¼ˆå…ƒ/ä¸å«ç¨Žï¼‰</TD></TR>
+          <TR class=t2 th:each="ord,index : ${stockIdMapperOrders.getIdMapping().getOrders()}">
+            <TD th:text="${index.index+1}">1</TD>
+            <TD th:text="${ord.getMaterialCode()}">W6400ww1005000<BR></TD>
+            <TD><A
+                    href="http://169.254.158.100/zzdl/Project/print_order_detail.asp?p_type=1&amp;p_orderno=1000201011133300&amp;p_ordernum=1"
+                    target=_new th:text="${ord.getMaterialName()}">æ™¶æŒ¯(HC-49U-500K-0.005%)</A><BR></TD>
+            <TD align=right th:text="${ord.getAmount()}">11<BR></TD>
+            <TD th:text="${ord.getMeasureUnit()}">ä¸ª<BR></TD>
+            <TD th:text="${ord.getEndDate()}">2010/01/09<BR></TD>
+            <TD noWrap align=middle><A
+                    href="http://169.254.158.100/zzdl/Demand/Xyprice_list.asp?itemcode=W64001005000"></A><BR></TD>
+            <TD th:text="${ord.getSumPrice()}">55<BR></TD>
+            <TD>0.43<BR></TD></TR>
+          <TR class=t1>
+            <TD noWrap align=middle><B>éœ€æ±‚è®¡åˆ’æ•°é‡<B></B></B></TD>
+            <TD align=right colSpan=4 th:text="${stockIdMapperOrders.getIdMapping().getOrders().getAmount()}">999<BR></TD>
+            <TD noWrap align=middle><B>è®¢è´§æ•°é‡<B></B></B></TD>
+            <TD align=right colSpan=4 th:text="${stockIdMapperOrders.getIdMapping().getOrders().getAmount()}">999<BR></TD></TR>
+          <TR class=t1>
+            <TD align=middle>æ€»é‡‘é¢ï¼ˆå…ƒï¼‰</TD>
+            <TD colSpan=8 th:text="${stockIdMapperOrders.getBudget()}">5001<BR></TD></TR>
+          </TBODY></TABLE></TD></TR></TBODY></TABLE>
 align="left"><FONT 
-color=red>ËµÃ÷£ºÏµÍ³ÖÐ¹©Ó¦ÉÌÃû³ÆÓÃÀ¶É«±íÊ¾ÎªºÏ¸ñ¹©·½£¬ÂÌÉ«±íÊ¾ÎªÐí¿É¹©·½£¬ºìÉ«±íÊ¾ÎªÆäËû¹©·½£»ÊýÁ¿ÎªºìÉ«±íÊ¾±¨¼ÛÊýÁ¿ÓëÑ¯¼ÛÊýÁ¿²»ÏàµÈ¡£</FONT></TD> 
+color=red>è¯´æ˜Žï¼šç³»ç»Ÿä¸­ä¾›åº”å•†åç§°ç”¨è“è‰²è¡¨ç¤ºä¸ºåˆæ ¼ä¾›æ–¹ï¼Œç»¿è‰²è¡¨ç¤ºä¸ºè®¸å¯ä¾›æ–¹ï¼Œçº¢è‰²è¡¨ç¤ºä¸ºå…¶ä»–ä¾›æ–¹ï¼›æ•°é‡ä¸ºçº¢è‰²è¡¨ç¤ºæŠ¥ä»·æ•°é‡ä¸Žè¯¢ä»·æ•°é‡ä¸ç›¸ç­‰ã€‚</FONT></TD> 
 
 <FORM name=form action=Apply_Exam_Save.asp method=post>
 <TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0 width="100%" 
@@ -552,13 +537,13 @@ bgColor=#336699 borderColorLight=#006699 border=0>
       <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
         <TBODY>
         <TR class=t1>
-          <TD width="20%">ÊÇ·ñÍ¬Òâ</TD>
-          <TD><INPUT type=radio CHECKED value=1 name=p_agree>Í¬Òâ <INPUT 
-            type=radio value=0 name=p_agree>²µ»Ø<INPUT 
-            type=radio value=0 name=p_agree>´ýÉó<INPUT 
-            type=radio value=0 name=p_agree>·ÏÆú</TD></TR>
+          <TD width="20%">æ˜¯å¦åŒæ„</TD>
+          <TD><INPUT type=radio CHECKED value="C001-50" name=p_agree>åŒæ„ <INPUT
+            type=radio value="C001-51" name=p_agree>é©³å›ž<INPUT
+            type=radio value="C001-40" name=p_agree>å¾…å®¡<INPUT
+            type=radio value="C777-77" name=p_agree>åºŸå¼ƒ</TD></TR>
         <TR class=t1>
-          <TD width="20%">ÉóÅúÒâ¼û</TD>
+          <TD width="20%">å®¡æ‰¹æ„è§</TD>
           <TD><TEXTAREA name=p_idea rows=3 cols=60>  </TEXTAREA> 
       </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
 <TABLE cellSpacing=1 cellPadding=0 width="100%" bgColor=#ffffff 
@@ -569,12 +554,22 @@ borderColorLight=#ffffff border=0>
       <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
         <TBODY>
         <TR>
-          <TD align=right>ÉóÅúÈË <INPUT 
+          <TD align=right>å®¡æ‰¹äºº <INPUT 
             style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-BOTTOM-COLOR: black; BORDER-LEFT: 0px; WIDTH: 80px" 
-            readOnly maxLength=20 value=Ëï½£Ã· name=p_spr>&nbsp; &nbsp; ÉóÅúÊ±¼ä <INPUT 
+            readOnly maxLength=20 value=å°çš“ name=p_spr>&nbsp; &nbsp; å®¡æ‰¹æ—¶é—´ <INPUT
             style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-BOTTOM-COLOR: black; BORDER-LEFT: 0px; WIDTH: 80px" 
-            readOnly maxLength=20 value=2010/01/08 name=p_spsj> 
+            readOnly maxLength=20 id="startDate" value=2010/01/08 name=p_spsj>
       </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><INPUT type=hidden 
 value=10002010182564 name=p_Applyno> <INPUT type=hidden value=4 name=p_type> 
-<BR><INPUT onclick="queding();" type=button value=È·¶¨> <INPUT onclick=history.back() type=button value=·µ»Ø> 
-</FORM></CENTER></BODY></HTML>
+<BR><INPUT onclick="queding();" type=button value=ç¡®å®š> <INPUT onclick=history.back() type=button value=è¿”å›ž>
+</FORM></CENTER>
+  <script type="text/javascript">
+    $(function (){
+      //å½“å‰æ—¥æœŸ
+      var now = new Date();
+      var date = now.getFullYear()+"/"+(now.getMonth()+1)+"/"+now.getDate();
+      $("#startDate").val(date);
+    })
+
+  </script>
+</BODY></HTML>

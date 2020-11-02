@@ -199,4 +199,29 @@ public class Orders implements Serializable {
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Orders{" +
+                "id=" + id +
+                ", orderNum='" + orderNum + '\'' +
+                ", orderSource='" + orderSource + '\'' +
+                ", materialCode='" + materialCode + '\'' +
+                ", materialName='" + materialName + '\'' +
+                ", amount='" + amount + '\'' +
+                ", measureUnit='" + measureUnit + '\'' +
+                ", unitPrice=" + unitPrice +
+                ", sumPrice=" + sumPrice +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", address='" + address + '\'' +
+                ", authorId='" + authorId + '\'' +
+                ", author='" + author + '\'' +
+                ", phone='" + phone + '\'' +
+                ", fax='" + fax + '\'' +
+                ", email='" + email + '\'' +
+                ", remark='" + remark + '\'' +
+                ", idMapping=" + idMapping +
+                '}';
+    }
 }

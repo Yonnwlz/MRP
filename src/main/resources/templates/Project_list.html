@@ -13,12 +13,12 @@
   function submit_form(){
       //获取当前选中的行
       var $stocksel = $("#stocktg").treegrid("getSelected");
-      location.href="stockDetails?stockNum="+$stocksel.stockNum;
+      location.href="stockDetails?stockType=1&stockNum="+$stocksel.stockNum;
   }
 
   //报批
   function approval(){
-      $.get("stockUpdateIdMapperStatus",{stockNum:$("#stocktg").treegrid("getSelected").stockNum},function(rdata){
+      $.get("stockUpdateIdMapperStatus",{status:'C001-40',stockNum:$("#stocktg").treegrid("getSelected").stockNum},function(rdata){
           if(rdata=="1"){
               alert("报批后，采购计划将进行审批流程！ 状态改为待审");
               $('#stocktg').datagrid('reload');
@@ -131,6 +131,10 @@ color=blue>1</FONT>/13页</FONT><FONT color=#000064>&nbsp;◆&nbsp;</FONT>
                       return "未确定";
                   }else if(value=='C001-40'){
                       return "待审批";
+                  } else if(value=='C001-50'){
+                    return "通过";
+                  } else if(value=='C001-51'){
+                    return "驳回";
                   }else if(value=='C001-60'){
                       return "下达";
                   }

@@ -38,4 +38,11 @@ public interface OrdersService {
      * @return
      */
     public Orders findByIdOrders(Integer ordersId);
+
+    /**
+     * 通过需求计划序号修改项
+     * @param orders
+     * @return
+     */
+    public Integer updateOrderById(Orders orders);
 }

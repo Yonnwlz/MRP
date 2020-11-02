@@ -176,4 +176,27 @@ public class Stock implements Serializable {
     public void setLeadDate(Date leadDate) {
         this.leadDate = leadDate;
     }
+
+    @Override
+    public String toString() {
+        return "Stock{" +
+                "id=" + id +
+                ", stockNum='" + stockNum + '\'' +
+                ", stockName='" + stockName + '\'' +
+                ", authorId='" + authorId + '\'' +
+                ", author='" + author + '\'' +
+                ", stockType='" + stockType + '\'' +
+                ", budget=" + budget +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", submitDate=" + submitDate +
+                ", remark='" + remark + '\'' +
+                ", leaderId='" + leaderId + '\'' +
+                ", leader='" + leader + '\'' +
+                ", leadAgree='" + leadAgree + '\'' +
+                ", leadOpinion='" + leadOpinion + '\'' +
+                ", leadDate=" + leadDate +
+                ", idMapping=" + idMapping +
+                '}';
+    }
 }

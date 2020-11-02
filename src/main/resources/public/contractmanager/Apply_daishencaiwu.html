@@ -1,6 +1,12 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!DOCTYPE html>
 <!-- saved from url=(0061)http://169.254.158.100/zzdl/ContApply/Apply_list.asp?p_type=3 -->
 <HTML><HEAD><TITLE>待审批合同申请一览表</TITLE>
+  <link rel="stylesheet" type="text/css" href="../jquery-easyui-1.8.5/themes/default/easyui.css">
+  <link rel="stylesheet" type="text/css" href="../jquery-easyui-1.8.5/themes/icon.css">
+  <script type="text/javascript" src="../jquery-easyui-1.8.5/jquery.min.js"></script>
+  <script type="text/javascript" src="../jquery-easyui-1.8.5/jquery.easyui.min.js"></script>
+  <script type="text/javascript" src="../jquery-easyui-1.8.5/locale/easyui-lang-zh_CN.js"></script>
+
 <SCRIPT language=JAVASCRIPT> 
 function chck()
 {  var  count=0;
@@ -275,26 +281,41 @@ bgColor=#336699 borderColorLight=#006699 border=0>
             color=#000064>&nbsp;页次:<FONT color=blue>1</FONT>/1页</FONT><FONT 
             color=#000064>&nbsp;◆&nbsp;</FONT> </TD></TR>
         <TR class=t1>
-          <TD noWrap align=middle>选择</TD>
-          <TD noWrap align=middle>序号</TD>
-          <TD noWrap align=middle>采购计划名称</TD>
-          <TD noWrap align=middle>合同进度</TD>
-          <TD noWrap align=middle>揭示时间</TD>
-          <TD noWrap align=middle>报价总金额（元）</TD>
-          <TD noWrap align=middle>对应询价书</TD></TR>
-        <TR class=t2>
-          <TD align=middle><INPUT type=radio value=10002010182564 
-            name=p_Applyno></TD>
-          <TD align=middle><A 
-            href="Apply_list_do.htm">1<BR></A></TD>
-          <TD>采购1<BR></TD>
-          <TD><A 
-            href="jindulist.html">待审</A><BR></TD>
-          <TD>2010/01/08 17:14:26<BR></TD>
-          <TD >5001<BR></TD>
-		  
-          <TD><A 
-            href="javascript:alert('对应询价书详细')">天下无贼<BR></A></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><INPUT 
+          <table id="stocktg"></table>
+          <script type="text/javascript"  th:inline="none">
+            //显示表格数据
+            $('#stocktg').datagrid({
+              url:'../stockAuditPlannerAll?status=C001-40',
+              pagination:true,//分页工具栏
+              rownumbers:true,//分页行号
+              pageList:[2,4,6,8,10],
+              singleSelect:true,
+              columns:[[
+                {field:'',title:'',width:100,checkbox:true},
+                {field:'number',title:'序号',width:100},
+                {field:'stockNum',title:'序号',width:100,hidden:true},
+                {field:'stockId',title:'序号',width:100,hidden: true},
+                {field:'stockName',title:'采购计划名称',width:200},
+                {field:'progress',title:'合同进度',width:200},
+                {field:'budget',title:'报价总金额（元）',width:200},
+                {field:'startDate',title:'开始时间',width:200},
+                {field:'endDate',title:'结束时间',width:200},
+              ]]
+            });
+
+            //打开
+            function dakai(){
+                //获取当前选中的审批项
+                var $trSelect = $("#stocktg").treegrid("getSelected");
+                location.href="../stockSelectAndIdMppOrdersAll?stockNum="+$trSelect.stockNum+"&approval=1";
+            }
+            function shenpi(){
+              //获取当前选中的审批项
+              var $trSelect = $("#stocktg").treegrid("getSelected");
+              location.href="../stockSelectAndIdMppOrdersAll?stockNum="+$trSelect.stockNum+"&approval=2";
+            }
+          </script>
+        </TBODY></TABLE></TD></TR></TBODY></TABLE><INPUT
 type=hidden name=p_type> <INPUT type=hidden value=3 name=p_lx> 
 <P align=center><input type="button" value="打开" onclick="dakai();" />&nbsp;<input type="button" value="审批" onclick="shenpi();" />&nbsp;<INPUT onclick=" javascript:history.back()" type=button value=返回 name=FLOWLEADShow> 
 </P></FORM></CENTER></BODY></HTML>

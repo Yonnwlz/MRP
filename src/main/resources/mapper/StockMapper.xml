@@ -19,7 +19,7 @@
     <result column="LEAD_OPINION" jdbcType="VARCHAR" property="leadOpinion" />
     <result column="LEAD_DATE" jdbcType="TIMESTAMP" property="leadDate" />
     <association property="idMapping" javaType="com.tuling.entity.IdMapping">
-      <id column="ID" jdbcType="BIGINT" property="id" />
+      <id column="mid" jdbcType="BIGINT" property="id" />
       <result column="ORDER_ID" jdbcType="BIGINT" property="orderId" />
       <result column="STOCK_ID" jdbcType="BIGINT" property="stockId" />
       <result column="ENQUIRE_ID" jdbcType="BIGINT" property="enquireId" />
@@ -28,7 +28,7 @@
       <result column="CONT_ID" jdbcType="BIGINT" property="contId" />
       <result column="STATUS" jdbcType="VARCHAR" property="status" />
       <association property="orders" javaType="com.tuling.entity.Orders">
-        <id column="ID" jdbcType="BIGINT" property="id" />
+        <id column="oid" jdbcType="BIGINT" property="id" />
         <result column="ORDER_NUM" jdbcType="VARCHAR" property="orderNum" />
         <result column="ORDER_SOURCE" jdbcType="VARCHAR" property="orderSource" />
         <result column="MATERIAL_CODE" jdbcType="VARCHAR" property="materialCode" />
@@ -424,12 +424,16 @@
     select * from STOCK s
     INNER JOIN ID_MAPPING m
     on m.STOCK_ID=s.ID
-    WHERE s.ID!=1 LIMIT #{curPage},#{pageSize}
+    WHERE s.ID!=1
+    <if test="status!=null">
+      and m.status=#{status}
+    </if>
+     LIMIT #{curPage},#{pageSize}
   </select>
 
   <!-- 采购计划==编号对照==需求计划  一对一对一 三表联查 -->
   <select id="selectStockAndIdMapperAndOrdersAll" resultMap="BaseResultMap">
-    select * from STOCK s
+    select s.*,m.*,o.*,o.id as oid from STOCK s
     INNER JOIN ID_MAPPING m
     on s.ID=m.STOCK_ID
     INNER JOIN ORDERS o
