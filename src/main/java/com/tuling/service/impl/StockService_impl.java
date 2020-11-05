@@ -55,13 +55,18 @@ public class StockService_impl implements StockService {
     }
 
     @Override
-    public Integer updateStockByStockNumIdmaStatus(String status, String stockNum) {
+    public Integer updateStockByStockNumIdmaStatus(Stock stock,String status, String stockNum) {
         //通过采购编号
         StockExample example = new StockExample();
         example.createCriteria().andStockNumEqualTo(stockNum);
         //查询是否有编号对照项
         List<Stock> stocks = stockMapper.selectByExample(example);
         if(stocks.size()>0){
+//            if(stock!=null){
+//                stock.setId(stocks.get(0).getId());
+//                //添加当前采购计划下达时间
+//                stockMapper.updateByPrimaryKeySelective(stock);
+//            }
             IdMapping idMapping = new IdMapping();
             idMapping.setStatus(status);
             //通过采购计划序号 修改 编号对照状态

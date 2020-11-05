@@ -1,13 +1,15 @@
 package com.tuling.service.impl;
 
+import com.tuling.dao.SysMenuRoleMapper;
 import com.tuling.dao.SysMenusMapper;
-import com.tuling.entity.SysMenus;
-import com.tuling.entity.SysMenusAttributes;
-import com.tuling.entity.SysMenusExample;
+import com.tuling.dao.SysRolesMapper;
+import com.tuling.dao.SysUserRoleMapper;
+import com.tuling.entity.*;
 import com.tuling.service.SysMenusService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,17 +18,40 @@ public class SysMenusService_impl implements SysMenusService {
     @Resource
     private SysMenusMapper sysMenusMapper;
 
-    /**
-     * 查询所有父节点
-     * @param id    通过id查询
-     * @return
-     */
+    //注入
+    @Resource
+    private SysUserRoleMapper sysUserRoleMapper;
+
+    @Resource
+    private SysRolesMapper sysRolesMapper;
+
+    @Resource
+    private SysMenuRoleMapper sysMenuRoleMapper;
     @Override
     public List<SysMenus> findfatAll(Integer id) {
-        SysMenusExample sysMenusExample = new SysMenusExample();
-        sysMenusExample.createCriteria().andIdEqualTo((long)id);
-        List<SysMenus> sysMenus = sysMenusMapper.selectByExample(sysMenusExample);
-        return findSysMenusSouAndNode(sysMenus);
+        //存入跟节点
+        List<SysMenus> list = new ArrayList<>();
+
+        //查询用户角色表
+        SysUserRoleExample example = new SysUserRoleExample();
+        example.createCriteria().andUserIdEqualTo((long)id);
+        List<SysUserRole> sysUserRoles = sysUserRoleMapper.selectByExample(example);
+        if(sysUserRoles.size()>0){
+            SysUserRole sysUserRole = sysUserRoles.get(0);
+            //查询菜单角色
+            SysMenuRoleExample example1 = new SysMenuRoleExample();
+            example1.createCriteria().andRoleIdEqualTo(sysUserRole.getRoleId());
+            List<SysMenuRole> sysMenuRoles = sysMenuRoleMapper.selectByExample(example1);
+            List<SysMenus> sysMenus = sysMenusMapper.selectByIdMenusqier(sysMenuRoles);
+
+
+            for (SysMenus menus:sysMenus) {
+                if(menus.getParentId()==1){
+                    list.add(menus);
+                }
+            }
+        }
+        return findSysMenusSouAndNode(list);
     }
     /**
      * 查询所有子节点

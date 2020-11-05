@@ -98,7 +98,7 @@ public class AuditController {
     @ResponseBody
     public String stockExamination(String stockNum,String status){
         //调用通过采购计划编号修改对照编号状态
-        Integer integer = stockService.updateStockByStockNumIdmaStatus(status,stockNum);
+        Integer integer = stockService.updateStockByStockNumIdmaStatus(null,status,stockNum);
         if(integer>0){
             System.out.println("修改成功！");
         }

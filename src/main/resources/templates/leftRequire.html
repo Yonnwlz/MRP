@@ -1,4 +1,4 @@
-<HTML>
+<HTML xmlns:th="http://www.thymeleaf.org">
 	<HEAD>
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 
@@ -13,11 +13,13 @@
 	</HEAD>
 	<BODY style="cursor: default; background: #e7f3ff;" text=#000000
 		leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+		<h1 th:text="${session.user.getLoginId()}">nihao</h1>
+		<input type="hidden" th:value="${session.user.getId()}" id="userid"/>
 		<ul id="tt"></ul>
 		<script type="text/javascript">
 			//把菜单信息 填写进ul列表中
 			$("#tt").tree({
-				url:'SysMenuSouAndNode',
+				url:'SysMenuSouAndNode?userid='+$("#userid").val(),
 				method:'get',
 				//当点击列表项时  发生相对应的页面改变
 				onClick: function(node){

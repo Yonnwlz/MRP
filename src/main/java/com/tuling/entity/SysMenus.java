@@ -133,4 +133,22 @@ public class SysMenus implements Serializable {
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();
     }
+
+    @Override
+    public String toString() {
+        return "SysMenus{" +
+                "id=" + id +
+                ", parentId=" + parentId +
+                ", seq=" + seq +
+                ", name='" + name + '\'' +
+                ", tip='" + tip + '\'' +
+                ", descn='" + descn + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", linkUrl='" + linkUrl + '\'' +
+                ", target='" + target + '\'' +
+                ", status='" + status + '\'' +
+                ", children=" + children +
+                ", attributes=" + attributes +
+                '}';
+    }
 }

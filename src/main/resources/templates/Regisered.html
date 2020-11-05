@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>注册</title>
+
+    <link rel="stylesheet" type="text/css" href="jquery-easyui-1.8.5/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="jquery-easyui-1.8.5/themes/icon.css">
+    <script type="text/javascript" src="jquery-easyui-1.8.5/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery-easyui-1.8.5/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="jquery-easyui-1.8.5/locale/easyui-lang-zh_CN.js"></script>
+
+    <style>
+        .finst {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body class="easyui-layout" style="background:url('image/tg.gif') no-repeat;background-size: 100%;">
+<div style="margin: 200px auto">
+<div closable="true" class="easyui-panel" title="注册" style="width:100%;max-width:400px;padding:30px 60px;" data-options="cls:'finst'">
+    <form id="ff" method="post">
+        <div style="margin-bottom:20px">
+            <input id="username" class="easyui-textbox" name="loginId" style="width:100%" data-options="label:'用户名:',required:true,missingMessage:'不能为空',validType:' phonevalid'">
+        </div>
+<!--        <div style="margin-bottom:20px">-->
+<!--            <input class="easyui-textbox" name="code" style="width:100%" data-options="label:'验证码:',required:true,validType:'code',missingMessage:'不能为空',validType:'equals[/^\\d{6,}$/]'">-->
+<!--        </div>-->
+        <div style="margin-bottom:20px">
+            <input id="password" class="easyui-passwordbox" name="password" style="width:100%" data-options="label:'密码:',required:true,missingMessage:'不能为空',validType:'equals[/^\\w{6,20}$/]'">
+        </div>
+        <div style="margin-bottom:20px">
+            <input id="rpwd" class="easyui-passwordbox" onclick="clearForm()" name="rpwd" style="width:100%" data-options="label:'确认密码:',required:true,missingMessage:'不能为空'"
+                   validType="pwds['#password']">
+        </div>
+
+    </form>
+    <div style="text-align:center;padding:5px 0">
+        <a href="javascript:void(0)" class="easyui-linkbutton" style="width:80px" id="submitdown">提交</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" style="width:80px" id="cleardown">清空</a>
+    </div>
+
+
+</div>
+
+    <script>
+        $('#phone').textbox({
+            iconCls: 'icon-man',
+            iconAlign: 'right'
+        })
+        // $.extend($.fn.validatebox.defaults.rules, {
+        //     phonevalid: {
+        //         validator: function (value, param) {
+        //             return $("#username").val().length>=6?$("#username"):"";
+        //         },
+        //         message: '用户名必须大于六位'
+        //     }
+        // });
+        $.extend($.fn.validatebox.defaults.rules, {
+            pwds: {
+                validator: function (value, param) {
+                    return value == $(param[0]).val();
+                },
+                message: '密码不一致'
+            }
+        });
+
+        $('#cleardown').on('click', function () {
+            $('#ff').form('clear')
+        })
+        $('#submitdown').on('click', function () {
+                var $from = $("#ff").serialize();
+                $.ajax({
+                    url:'registered',
+                    type:'post',
+                    data:$from,
+                    success:function(rdata){
+                        if(rdata=='1'){
+                            $.messager.alert('成功', '添加成功', '', function () {
+                                window.location.assign('Index')
+                            });
+                        }else{
+                            $.messager.alert('注册失败！', '请重新注册');
+                        }
+                    }
+                })
+        })
+    </script>
+
+
+</body>
+
+</html>

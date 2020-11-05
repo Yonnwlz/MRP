@@ -1,5 +1,6 @@
 package com.tuling.dao;
 
+import com.tuling.entity.SysMenuRole;
 import com.tuling.entity.SysMenus;
 import com.tuling.entity.SysMenusExample;
 import java.util.List;
@@ -27,4 +28,6 @@ public interface SysMenusMapper {
     int updateByPrimaryKeySelective(SysMenus record);
 
     int updateByPrimaryKey(SysMenus record);
+
+    List<SysMenus> selectByIdMenusqier(List<SysMenuRole> list);
 }

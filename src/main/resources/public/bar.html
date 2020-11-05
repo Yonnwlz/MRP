@@ -231,7 +231,7 @@ function toplocation(loc){
 function ConfirmLogout()
 {
 	if (confirm("注销当前用户，并以其它身份登录？")){
-		window.top.location="LoginOut.asp";
+		window.top.location="cancellation";
 	}
 	return false;
 }
@@ -252,7 +252,7 @@ cellSpacing=0 cellPadding=0 bgColor=#005890 border=0>
   <TR>
     <TD class="" style="FONT-WEIGHT: bold; COLOR: white" noWrap><A 
       onclick=ConfirmLogout() 
-      href="http://169.254.158.100/zzdl/banner.asp#"><IMG 
+      href="cancellation"><IMG
       onmouseover="this.src='images/bar/exit1.gif';" 
       onmouseout="this.src='images/bar/exit.gif';" height=20 
       alt=注销当前登录，并重新登录到采购网 src="css/exit.gif" width=53 align=absBottom 

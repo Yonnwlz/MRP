@@ -115,4 +115,19 @@ public class IdMapping implements Serializable {
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();
     }
+
+    @Override
+    public String toString() {
+        return "IdMapping{" +
+                "id=" + id +
+                ", orderId=" + orderId +
+                ", stockId=" + stockId +
+                ", enquireId=" + enquireId +
+                ", contAppId=" + contAppId +
+                ", quoteId=" + quoteId +
+                ", contId=" + contId +
+                ", status='" + status + '\'' +
+                ", orders=" + orders +
+                '}';
+    }
 }

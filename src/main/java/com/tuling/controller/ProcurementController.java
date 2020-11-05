@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.lang.reflect.Array;
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -109,9 +110,9 @@ public class ProcurementController {
         //调用查询流水号的方法
         Stock stockNum = stockService.findByStockNum("200");
         //截取最后七位数
-        int orderNum = Integer.parseInt(stockNum.getStockNum().substring(9))+1;
+        long orderNum =  Long.valueOf(stockNum.getStockNum())+1;
         //采购计划编号  100+当前日期+5位流水号
-        String stocNum = "200"+simpleDateFormat.format(date)+String.valueOf(orderNum).substring(2);
+        String stocNum = "200"+simpleDateFormat.format(date)+String.valueOf(orderNum).substring(11);
         //mv 存入 需要添加的需求计划==orlist  存入自动生成采购计划序号==ordernum  存入所有供应商基本信息==suplist
         mv.addObject("orlist",orlist);
         mv.addObject("stockNum",stocNum);
@@ -168,7 +169,7 @@ public class ProcurementController {
     }
 
     /**
-     * 查询所有采购计划 + 分页 + 模糊查询  + 采购计划下达 + 未通过审批采购计划
+     * 查询所有采购计划 + 分页 + 模糊查询  + 采购计划下达 + 未通过审批采购计划 + 未编制询价书一览表
      * @param curPage
      * @param pageSize
      * @param status       编号对照 状态条件
@@ -213,6 +214,9 @@ public class ProcurementController {
                     map.put("stockType","公开求购");
                     map.put("progress",((Stock) o).getIdMapping().getStatus());
                     map.put("author",((Stock) o).getAuthor());
+                }else if(status.equals("C001-60")){
+                    //未编制询价书一览表
+                    map.put("startDate",((Stock) o).getStartDate()==null?"":simpleDateFormat.format(((Stock) o).getStartDate()));
                 }
             }
             //把map存入list中
@@ -283,8 +287,15 @@ public class ProcurementController {
     @RequestMapping("stockUpdateIdMapperStatus")
     @ResponseBody
     public String stockUpdateIdMapperStatus(String status,String stockNum){
+        Stock stock = new Stock();
+        //当采购计划下达时
+//        if(status.equals("C001-60")){
+//            //当前时间
+//            Date date = new Date();
+//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        }
         //修改编号对照状态
-        return stockService.updateStockByStockNumIdmaStatus(status,stockNum).toString();
+        return stockService.updateStockByStockNumIdmaStatus(stock,status,stockNum).toString();
     }
 
     @RequestMapping("stockUpdateRejectedApproval")
@@ -299,7 +310,7 @@ public class ProcurementController {
             Integer ordersRes = ordersService.updateOrderById(orders);
              if(ordersRes>0){
                  //修改采购计划状态
-                 stockService.updateStockByStockNumIdmaStatus("C001-40",stock.getStockNum());
+                 stockService.updateStockByStockNumIdmaStatus(null,"C001-40",stock.getStockNum());
                  return "Project_list";
              }
         }

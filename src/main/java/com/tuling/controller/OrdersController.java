@@ -53,9 +53,9 @@ public class OrdersController {
             //调用查询流水号的方法
             Orders byOrderNum = ordersService.findByOrderNum("100");
             //截取最后七位数
-            int orderNum = Integer.parseInt(byOrderNum.getOrderNum().substring(9))+1;
+            Long orderNum = Long.valueOf(byOrderNum.getOrderNum())+1;
             //需求计划编号  100+当前日期+5位流水号
-            String ordernum = "100"+simpleDateFormat.format(date)+String.valueOf(orderNum).substring(2);
+            String ordernum = "100"+simpleDateFormat.format(date)+String.valueOf(orderNum).substring(11);
             //赋值需求计划编号
             orders.setOrderNum(ordernum);
             //赋值物资编号

@@ -44,8 +44,8 @@ public class DemandController {
      */
     @RequestMapping("SysMenuSouAndNode")
     @ResponseBody
-    public List<SysMenus> SysMenuSouAndNode(){
-        List<SysMenus> sysMenus = sysMenusService.findfatAll(1);
+    public List<SysMenus> SysMenuSouAndNode(Integer userid){
+        List<SysMenus> sysMenus = sysMenusService.findfatAll(userid);
         return sysMenus;
     }
 

@@ -36,4 +36,12 @@ public class IdMapperService_impl implements IdMappingService {
         example.createCriteria().andOrderIdEqualTo((long)orderId);
         return idMappingMapper.selectByExample(example).get(0);
     }
+
+    @Override
+    public Integer updateByEnquireId(IdMapping idMapping) {
+        //通过询价书修改编号对照状态
+        IdMappingExample example = new IdMappingExample();
+        example.createCriteria().andEnquireIdEqualTo(idMapping.getEnquireId());
+        return idMappingMapper.updateByExampleSelective(idMapping,example);
+    }
 }

@@ -27,4 +27,11 @@ public interface IdMappingService {
      * @return
      */
     public IdMapping selectByOrderId(Integer orderId);
+
+    /**
+     * 通过询价书序号修改状态
+     * @param idMapping
+     * @return
+     */
+    public Integer updateByEnquireId(IdMapping idMapping);
 }

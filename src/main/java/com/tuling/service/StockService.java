@@ -45,7 +45,7 @@ public interface StockService {
      * @param stockNum  采购计划编号
      * @return
      */
-    public Integer updateStockByStockNumIdmaStatus(String status,String stockNum);
+    public Integer updateStockByStockNumIdmaStatus(Stock stock,String status,String stockNum);
 
     /**
      * 通过采购计划序号修改
