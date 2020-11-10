@@ -34,6 +34,7 @@ public class MyController {
         //提交认证
         try {
             subject.login(token);
+
             SysUsers sysUsers = new SysUsers();
             sysUsers.setLoginId(loginId);
             sysUsers.setPassword(password);

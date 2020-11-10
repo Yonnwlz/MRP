@@ -1,6 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE></TITLE>
-<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><HEAD><TITLE>åˆåŒç”³è¯·ä¸€è§ˆè¡¨</TITLE>
+	<link rel="stylesheet" type="text/css" href="jquery-easyui-1.8.5/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="jquery-easyui-1.8.5/themes/icon.css">
+	<script type="text/javascript" src="jquery-easyui-1.8.5/jquery.min.js"></script>
+	<script type="text/javascript" src="jquery-easyui-1.8.5/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="jquery-easyui-1.8.5/locale/easyui-lang-zh_CN.js"></script>
 <SCRIPT language=JAVASCRIPT> 
 function chck()
 {  var  count=0;
@@ -20,7 +24,7 @@ function Add(SourceList,TargetList)
 	if (nIndex == -1)
 	{
 		// Process continue only if at least one item selected
-		//alert("ÇëÏÈÑ¡ÔñÒ»Ïî!");
+		//alert("è¯·å…ˆé€‰æ‹©ä¸€é¡¹!");
 		return;
 	}
 	for (i=0;i<SourceList.length;i++)
@@ -61,7 +65,7 @@ function Remove(SelectList)
 	if (nIndex == -1)
 	{
 		// Process continue only if at least one item selected
-		//alert("ÇëÏÈÑ¡ÔñÒ»Ïî!");
+		//alert("è¯·å…ˆé€‰æ‹©ä¸€é¡¹!");
 		return;
 	}
   while(nCount<SelectList.length)
@@ -158,7 +162,7 @@ function check_num_dot()
        {
          if (NotNumber(window.document.forms[0].elements[i].value))
          {
-            alert("ÌáÊ¾ĞÅÏ¢£º\n²»ÊÇÓĞĞ§µÄÊı×Ö£¬ÇëÖØĞÂÊäÈë¡£");
+            alert("æç¤ºä¿¡æ¯ï¼š\nä¸æ˜¯æœ‰æ•ˆçš„æ•°å­—ï¼Œè¯·é‡æ–°è¾“å…¥ã€‚");
             window.document.forms[0].elements[i].focus();
             return;
          }
@@ -170,7 +174,7 @@ function check_num_dot()
        {
          if (NotNumber(window.document.forms[0].elements[i].value))
          {
-            alert("ÌáÊ¾ĞÅÏ¢£º\n²»ÊÇÓĞĞ§µÄÊı×Ö£¬ÇëÖØĞÂÊäÈë¡£");
+            alert("æç¤ºä¿¡æ¯ï¼š\nä¸æ˜¯æœ‰æ•ˆçš„æ•°å­—ï¼Œè¯·é‡æ–°è¾“å…¥ã€‚");
             window.document.forms[0].elements[i].focus();
             return;
          }
@@ -214,61 +218,110 @@ function check_num_dot()
  {
     window.open(page,"newuser","toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=700,height=400,left=100,top=150");
  }
+
+function dakai()
+	{
+		location.href="prepareContractCont"
+	}
+
+	function bianji(){
+		//è·å–å½“å‰é€‰ä¸­çš„è¡Œ
+		var $stocksel = $("#stocktg").treegrid("getSelected");
+		location.href="prepareContractCont?contId="+$stocksel.id;
+	}
+
 </SCRIPT>
-<LINK href="css/style.css" type=text/css rel=stylesheet>
-<SCRIPT language=javascript>
-<!--
-function toplocation(loc){
-	if (loc.length > 0){
-		if ('$' + window.top.MainFrame == "$undefined"){
-			window.top.location.replace('./index.html');
-		}
-		window.top.MainFrame.document.location.href=loc;
-	}
-	return false;
-}
 
-function ConfirmLogout()
-{
-	if (confirm("×¢Ïúµ±Ç°ÓÃ»§£¬²¢ÒÔÆäËüÉí·İµÇÂ¼£¿")){
-		window.top.location="cancellation";
-	}
-	return false;
-}
-function closewin()
-{
-				//	
+<META http-equiv=Content-Language content=zh-cn>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content="MSHTML 6.00.2900.5626" name=GENERATOR>
+<META content=FrontPage.Editor.Document name=ProgId><LINK
+			href="../public/contractmanager/js/style.css" rel=stylesheet>
 
-}
-//-->
-		</SCRIPT>
-
-<META content="MSHTML 6.00.2900.5626" name=GENERATOR></HEAD>
-<BODY bottomMargin=0 bgColor=#005890 leftMargin=0 topMargin=0 
-rightMargin=0><FONT face=ËÎÌå>
-<TABLE class=td style="WIDTH: 100%; HEIGHT: 21px" borderColor=#ffffff 
-cellSpacing=0 cellPadding=0 bgColor=#005890 border=0>
+</HEAD>
+<BODY>
+<CENTER>
+<FORM name=form action=Apply_list_do.asp method=post>
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0 width="100%" 
+bgColor=#336699 borderColorLight=#006699 border=0>
   <TBODY>
   <TR>
-    <TD class="" style="FONT-WEIGHT: bold; COLOR: white" noWrap><A 
-      onclick=ConfirmLogout() 
-      href="cancellation"><IMG
-      onmouseover="this.src='images/bar/exit1.gif';" 
-      onmouseout="this.src='images/bar/exit.gif';" height=20 
-      alt=×¢Ïúµ±Ç°µÇÂ¼£¬²¢ÖØĞÂµÇÂ¼µ½²É¹ºÍø src="css/exit.gif" width=53 align=absBottom 
-      border=0></A></TD>
-    <TD style="WIDTH: 6px; COLOR: white" align=right>|</TD>
-    <TD align=right width=1><A 
-      href="http://169.254.158.100/zzdl/HELP/Helpasp/HelpMAIN.ASP" 
-      target=_new><IMG onmouseover="this.src='images/bar/help1.gif';" 
-      onmouseout="this.src='images/bar/help.gif';" height=20 
-      alt=ÔÚÈí¼şÊ¹ÓÃÖĞÈçÓĞÒÉÎÊ£¬Çëµ¥»÷°ïÖúÀ´»ñµÃ½â¾ö src="css/help.gif" width=50 
-      align=absMiddle border=0></A> </TD>
-    <TD noWrap align=right width="90%">&nbsp;&nbsp;&nbsp;&nbsp;<FONT 
-      color=white><B>ÓÃ»§£º<FONT 
-      color=white>Ñî´º(ÖêÖŞÄÏ³µÊ±´úµçÆø¹É·İÓĞÏŞ¹«Ë¾)&nbsp;&nbsp;</B></FONT></FONT></TD>
-    <TD noWrap><A 
-      onclick="window.open('About.ASP','child','status=no,scrollbars=no,toolbar=no,menubar=no,location=no,width=458,height=360,left='+(window.screen.width/2-229)+',top='+(window.screen.height/2-230)+' ')" 
-      href="javascript:void(null)" shape=rect coords="162, 184, 242, 258"><IMG 
-      height=16 alt=¹ØÓÚ²É¹ºÍø src="css/About.gif" width=16 align=absBottom 
-      border=0></A> </TD></TR></TBODY></TABLE></FONT></BODY></HTML>
+    <TD>
+      <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+        <TBODY>
+        <TR bgColor=#ffffff>
+          <TD align=middle width="100%" bgColor=#ffffff colSpan=20 
+            height=22><B>
+            <H2><FONT color=#0070c0>åˆåŒç”³è¯·ä¸€è§ˆè¡¨</B> <IMG alt=å¸®åŠ©
+													 src="../public/contractmanager/img/help_a.gif" border=0> </FONT></H2></TD></TR>
+			<TR>
+          <TD align=middle width="100%" bgColor=#ffffff colSpan=9 
+            height=22>
+			<table>
+			<tr>
+			 <td>
+			 è¯¢ä»·ä¹¦åç§°:<input type="text"/>
+			 </td>
+			 <td>
+			 çŠ¶æ€:
+			 <select>
+			 <option>å…¨éƒ¨</option>
+			<option>æœªç¡®å®š</option>
+			<option>å¾…å®¡</option>
+			<option>é©³å›</option>
+			<option>åºŸå¼ƒ</option>
+			<option>é€šè¿‡</option>
+			 </select>
+			 </td>
+			 <td>
+			 <input type="button" value="æŸ¥è¯¢"/>
+			 </td>
+			</tr>
+			</table>
+			</TD></TR>
+        
+       <TR class=t1>
+		   <table id="stocktg"></table>
+		   <script type="text/javascript" th:inline="none">
+			   $(function(){
+				   //å½“é¡µé¢åŠ è½½å®Œåæ˜¾ç¤ºè¡¨æ ¼æ•°æ®
+				   $('#stocktg').datagrid({
+					   url:'prepareTheContract?status=C001-110',
+					   pagination:true,//åˆ†é¡µå·¥å…·æ 
+					   rownumbers:true,//åˆ†é¡µè¡Œå·
+					   pageList:[2,4,6,8,10],
+					   singleSelect:true,
+					   columns:[[
+						   {field:'',title:'',width:100,checkbox:true},
+						   {field:'i',title:'åºå·',width:100},
+						   {field:'contAppNum',title:'åˆåŒç”³è¯·ç¼–å·',width:200},
+						   {field:'stockName',title:'ç­¾è®¢æ—¶é—´',width:200},
+						   {field:'allSumPrice',title:'æ€»é‡‘é¢',width:200},
+						   {field:'status',title:'æ˜¯å¦ç¡®è®¤',width:200,formatter: function(value,row,index){
+								   if (value=='C001-110'){
+									   return "å¦";
+								   } else if(value=='C001-120'){
+									   return "æ˜¯";
+								   }
+							   }
+						   },
+						   {field:'status',title:'æ˜¯å¦å½’æ¡£',width:200,formatter: function(value,row,index){
+								   if (value=='C001-110'){
+									   return "å¦";
+								   } else if(value=='C001-120'){
+									   return "å¦";
+								   } else {
+									   return "æ˜¯";
+								   }
+							   }
+						   },
+					   ]]
+				   });
+			   })
+		   </script>
+       </TR>
+
+			</TBODY></TABLE></TD></TR></TBODY></TABLE><INPUT 
+type=hidden name=p_type> <INPUT type=hidden value=3 name=p_lx> 
+<P align=center><input type="button" value="æ‰“å¼€" onclick="dakai();" />&nbsp;<input type="button" value="ç¼–åˆ¶åˆåŒ" onclick="bianji()" />&nbsp;
+</P></FORM></CENTER></BODY></HTML>

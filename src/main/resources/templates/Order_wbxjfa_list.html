@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<HTML><HEAD><TITLE></TITLE>
+
+<META http-equiv=Content-Language content=zh-cn>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content="MSHTML 6.00.2900.5626" name=GENERATOR>
+<META content=FrontPage.Editor.Document name=ProgId><LINK  href="../public/supplyman/css/style.css" rel=stylesheet>
+
+  <link rel="stylesheet" type="text/css" href="jquery-easyui-1.8.5/themes/default/easyui.css">
+  <link rel="stylesheet" type="text/css" href="jquery-easyui-1.8.5/themes/icon.css">
+  <script type="text/javascript" src="jquery-easyui-1.8.5/jquery.min.js"></script>
+  <script type="text/javascript" src="jquery-easyui-1.8.5/jquery.easyui.min.js"></script>
+  <script type="text/javascript" src="jquery-easyui-1.8.5/locale/easyui-lang-zh_CN.js"></script>
+
+</HEAD>
+<BODY>
+<CENTER>
+<FORM name=form action="" method=post>
+<H2><FONT color=#0070c0>询价书报价列表</FONT></H2>
+  <table id="quotetg"></table>
+  <script type="text/javascript" th:inline="none">
+      //当页面加载完后显示表格数据
+      $('#quotetg').datagrid({
+        url:'Lookupallinquiries',
+        pagination:true,//分页工具栏
+        rownumbers:true,//分页行号
+        pageList:[2,4,6,8,10],
+        singleSelect:true,
+        columns:[[
+          {field:'',title:'',width:100,checkbox:true},
+          {field:'id',title:'',width:100,hidden:true},
+          {field:'i',title:'序号',width:200},
+          {field:'enquireName',title:'询价书名称',width:200},
+          {field:'linkman',title:'联系人',width:200},
+          {field:'company',title:'单位',width:200},
+          {field:'status',title:'类型',width:200},
+          {field:'endDate',title:'截至时间',width:200}
+        ]]
+      });
+      //查看询价书详情
+      function req(){
+        //获取当前选中的行
+        var $quotetg = $("#quotetg").treegrid("getSelected");
+        location.href="enquireByIdAll?id="+$quotetg.id+"&status=2";
+      }
+  </script>
+<P align=center><INPUT onclick=select_check(document.form) type=button value=全选/取消>
+<INPUT onclick="req();" type=button value=详情 name=upd> 
+</P></FORM></CENTER></CENTER></BODY></HTML>

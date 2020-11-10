@@ -33,11 +33,11 @@ public class EnquireService_impl implements EnquireService {
     }
 
     @Override
-    public EasyUiDataGrid findEnquireStatusNameAllPaging(Integer curPage, Integer pageSize, String enquireName) {
+    public EasyUiDataGrid findEnquireStatusNameAllPaging(Integer curPage, Integer pageSize, String enquireName,String issued) {
         //使用分页插件
         Page<Object> page = PageHelper.startPage(curPage,pageSize);
         //查询所有询价书
-        List<Enquire> enquires = enquireMapper.selectEnquireAndIdMapper(enquireName);
+        List<Enquire> enquires = enquireMapper.selectEnquireAndIdMapper(enquireName,issued);
         EasyUiDataGrid easyUiDataGrid = new EasyUiDataGrid();
         easyUiDataGrid.setTotal((int)page.getTotal());
         easyUiDataGrid.setRows(enquires);
@@ -59,5 +59,17 @@ public class EnquireService_impl implements EnquireService {
     public Integer deleteByIdEnquire(Integer enquireId) {
         //删除询价书
         return enquireMapper.deleteByPrimaryKey((long)enquireId);
+    }
+
+    @Override
+    public Enquire findEnquireByIdDetail(Integer enquireId) {
+        //查询询价书详情
+        return enquireMapper.selectEnquireByIdAndEnquireDetail(enquireId);
+    }
+
+    @Override
+    public Enquire findEnquireById(Integer enquireId) {
+        //查询询价书
+        return enquireMapper.selectByPrimaryKey((long)enquireId);
     }
 }

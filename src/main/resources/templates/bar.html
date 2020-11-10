@@ -1,6 +1,6 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<!-- saved from url=(0061)http://169.254.158.100/zzdl/ContApply/Apply_list.asp?p_type=3 -->
-<HTML><HEAD><TITLE>ºÏÍ¬ÉêÇëÒ»ÀÀ±í</TITLE>
+<!DOCTYPE html>
+<HTML xmlns:th="http://www.thymeleaf.org"><HEAD><TITLE></TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
 <SCRIPT language=JAVASCRIPT> 
 function chck()
 {  var  count=0;
@@ -20,7 +20,7 @@ function Add(SourceList,TargetList)
 	if (nIndex == -1)
 	{
 		// Process continue only if at least one item selected
-		//alert("ÇëÏÈÑ¡ÔñÒ»Ïî!");
+		//alert("è¯·å…ˆé€‰æ‹©ä¸€é¡¹!");
 		return;
 	}
 	for (i=0;i<SourceList.length;i++)
@@ -61,7 +61,7 @@ function Remove(SelectList)
 	if (nIndex == -1)
 	{
 		// Process continue only if at least one item selected
-		//alert("ÇëÏÈÑ¡ÔñÒ»Ïî!");
+		//alert("è¯·å…ˆé€‰æ‹©ä¸€é¡¹!");
 		return;
 	}
   while(nCount<SelectList.length)
@@ -158,7 +158,7 @@ function check_num_dot()
        {
          if (NotNumber(window.document.forms[0].elements[i].value))
          {
-            alert("ÌáÊ¾ĞÅÏ¢£º\n²»ÊÇÓĞĞ§µÄÊı×Ö£¬ÇëÖØĞÂÊäÈë¡£");
+            alert("æç¤ºä¿¡æ¯ï¼š\nä¸æ˜¯æœ‰æ•ˆçš„æ•°å­—ï¼Œè¯·é‡æ–°è¾“å…¥ã€‚");
             window.document.forms[0].elements[i].focus();
             return;
          }
@@ -170,7 +170,7 @@ function check_num_dot()
        {
          if (NotNumber(window.document.forms[0].elements[i].value))
          {
-            alert("ÌáÊ¾ĞÅÏ¢£º\n²»ÊÇÓĞĞ§µÄÊı×Ö£¬ÇëÖØĞÂÊäÈë¡£");
+            alert("æç¤ºä¿¡æ¯ï¼š\nä¸æ˜¯æœ‰æ•ˆçš„æ•°å­—ï¼Œè¯·é‡æ–°è¾“å…¥ã€‚");
             window.document.forms[0].elements[i].focus();
             return;
          }
@@ -214,92 +214,56 @@ function check_num_dot()
  {
     window.open(page,"newuser","toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=700,height=400,left=100,top=150");
  }
-
-function dakai()
-	{
-		window.document.location="Apply_list_do22.htm";
-	}
-
 </SCRIPT>
+<LINK href="../public/css/style.css" type=text/css rel=stylesheet>
+<SCRIPT language=javascript>
+<!--
+function toplocation(loc){
+	if (loc.length > 0){
+		if ('$' + window.top.MainFrame == "$undefined"){
+			window.top.location.replace('./index.html');
+		}
+		window.top.MainFrame.document.location.href=loc;
+	}
+	return false;
+}
 
-<META http-equiv=Content-Language content=zh-cn>
-<META http-equiv=Content-Type content="text/html; charset=gb2312">
-<META content="MSHTML 6.00.2900.5626" name=GENERATOR>
-<META content=FrontPage.Editor.Document name=ProgId><LINK 
-href="js/style.css" rel=stylesheet>
+function ConfirmLogout()
+{
+	if (confirm("æ³¨é”€å½“å‰ç”¨æˆ·ï¼Œå¹¶ä»¥å…¶å®ƒèº«ä»½ç™»å½•ï¼Ÿ")){
+		window.top.location="cancellation";
+	}
+	return false;
+}
+function closewin()
+{
+				//	
 
-</HEAD>
-<BODY>
-<CENTER>
-<FORM name=form action=Apply_list_do.asp method=post>
-<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0 width="100%" 
-bgColor=#336699 borderColorLight=#006699 border=0>
+}
+//-->
+		</SCRIPT>
+
+<META content="MSHTML 6.00.2900.5626" name=GENERATOR></HEAD>
+<BODY bottomMargin=0 bgColor=#005890 leftMargin=0 topMargin=0 
+rightMargin=0><FONT face=å®‹ä½“>
+<TABLE class=td style="WIDTH: 100%; HEIGHT: 21px" borderColor=#ffffff 
+cellSpacing=0 cellPadding=0 bgColor=#005890 border=0>
   <TBODY>
   <TR>
-    <TD>
-      <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
-        <TBODY>
-        <TR bgColor=#ffffff>
-          <TD align=middle width="100%" bgColor=#ffffff colSpan=20 
-            height=22><B>
-            <H2><FONT color=#0070c0>ºÏÍ¬ÉêÇëÒ»ÀÀ±í</B> <IMG alt=°ïÖú 
-            src="img/help_a.gif" border=0> </FONT></H2></TD></TR>
-			<TR>
-          <TD align=middle width="100%" bgColor=#ffffff colSpan=9 
-            height=22>
-			<table>
-			<tr>
-			 <td>
-			 Ñ¯¼ÛÊéÃû³Æ:<input type="text"/>
-			 </td>
-			 <td>
-			 ×´Ì¬:
-			 <select>
-			 <option>È«²¿</option>
-			<option>Î´È·¶¨</option>
-			<option>´ıÉó</option>
-			<option>²µ»Ø</option>
-			<option>·ÏÆú</option>
-			<option>Í¨¹ı</option>
-			 </select>
-			 </td>
-			 <td>
-			 <input type="button" value="²éÑ¯"/>
-			 </td>
-			</tr>
-			</table>
-			</TD></TR>
-        
-       <TR class=t1>
-          <TD noWrap align=middle>Ñ¡Ôñ</TD>
-          <TD noWrap align=middle>ĞòºÅ</TD>
-          <TD noWrap align=middle>ºÏÍ¬ÉêÇë±àºÅ</TD>
-          <TD noWrap align=middle>Ç©¶©Ê±¼ä</TD>
-          <TD noWrap align=middle>×Ü½ğ¶î</TD>
-		  <TD noWrap align=middle>ÊÇ·ñÈ·ÈÏ</TD>
-          <TD noWrap align=middle>ÊÇ·ñ¹éµµ</TD></TR>
-       <TR class=t2>
-          <TD align=middle><INPUT type=radio value=10002010182564 
-            name=p_Applyno></TD>
-          <TD align=middle><A 
-            href="Apply_list_do22.htm">1<BR></A></TD>
-          <TD>20090909<BR></TD>
-          <TD>2010/01/08 17:14:26<BR></TD>
-          <TD>66666<BR></TD>
-		  
-			<TD >·ñ<BR></TD>
-          <TD>·ñ<br></TD></TR>
-			
-			<TR>
-          <TD align=middle width="100%" bgColor=#ffffff colSpan=9 
-            height=22><FORM #000064? 
-            action="Apply_list.asp name=form><font color=" 
-            method="Post">¡ô&nbsp;</FONT><FONT color=#000064>Ê×Ò³ 
-            ÉÏÒ»Ò³</FONT>&nbsp;<FONT color=#000064>ÏÂÒ»Ò³ Î²Ò³</FONT><FONT 
-            color=#000064>&nbsp;¹² 1 ¸öºÏÍ¬ÉêÇë 10 ¸öºÏÍ¬ÉêÇë /Ò³</FONT><FONT 
-            color=#000064>&nbsp;Ò³´Î:<FONT color=blue>1</FONT>/1Ò³</FONT><FONT 
-            color=#000064>&nbsp;¡ô&nbsp;</FONT> </TD></TR>
-			</TBODY></TABLE></TD></TR></TBODY></TABLE><INPUT 
-type=hidden name=p_type> <INPUT type=hidden value=3 name=p_lx> 
-<P align=center><input type="button" value="´ò¿ª" onclick="dakai();" />&nbsp;<input type="button" value="±àÖÆºÏÍ¬" onclick="window.document.location='bianzhihetong.htm'" />&nbsp;
-</P></FORM></CENTER></BODY></HTML>
+    <TD class="" style="FONT-WEIGHT: bold; COLOR: white" noWrap><A 
+      onclick=ConfirmLogout() 
+      href="cancellation"><IMG
+            onmouseover="this.src='images/bar/exit1.gif';"
+            onmouseout="this.src='images/bar/exit.gif';" height=20
+            alt=æ³¨é”€å½“å‰ç™»å½•ï¼Œå¹¶é‡æ–°ç™»å½•åˆ°é‡‡è´­ç½‘ src="../public/css/exit.gif" width=53 align=absBottom
+            border=0></A></TD>
+    <TD style="WIDTH: 6px; COLOR: white" align=right>|</TD>
+
+    <TD noWrap align=right width="90%">&nbsp;&nbsp;&nbsp;&nbsp;<FONT 
+      color=white><B>ç”¨æˆ·ï¼š<FONT 
+      color=white>[[${session.user.getLoginId()}]](æ ªæ´²å—è½¦æ—¶ä»£ç”µæ°”è‚¡ä»½æœ‰é™å…¬å¸)&nbsp;&nbsp;</B></FONT></FONT></TD>
+    <TD noWrap><A 
+      onclick="window.open('About.ASP','child','status=no,scrollbars=no,toolbar=no,menubar=no,location=no,width=458,height=360,left='+(window.screen.width/2-229)+',top='+(window.screen.height/2-230)+' ')" 
+      href="javascript:void(null)" shape=rect coords="162, 184, 242, 258"><IMG
+            height=16 alt=å…³äºé‡‡è´­ç½‘ src="../public/css/About.gif" width=16 align=absBottom
+            border=0></A> </TD></TR></TBODY></TABLE></FONT></BODY></HTML>

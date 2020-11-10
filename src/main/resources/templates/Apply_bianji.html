@@ -1,7 +1,7 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML>
+<html xmlns:th="http://www.thyeleaf.org">
+<head>
 	<HEAD>
-		<TITLE>±à¼­ºÏÍ¬ÉêÇë</TITLE>
+		<TITLE>ç¼–è¾‘åˆåŒç”³è¯·</TITLE>
 		<SCRIPT language=JAVASCRIPT> 
 function chck()
 {  var  count=0;
@@ -21,7 +21,7 @@ function Add(SourceList,TargetList)
 	if (nIndex == -1)
 	{
 		// Process continue only if at least one item selected
-		//alert("ÇëÏÈÑ¡ÔñÒ»Ïî!");
+		//alert("è¯·å…ˆé€‰æ‹©ä¸€é¡¹!");
 		return;
 	}
 	for (i=0;i<SourceList.length;i++)
@@ -62,7 +62,7 @@ function Remove(SelectList)
 	if (nIndex == -1)
 	{
 		// Process continue only if at least one item selected
-		//alert("ÇëÏÈÑ¡ÔñÒ»Ïî!");
+		//alert("è¯·å…ˆé€‰æ‹©ä¸€é¡¹!");
 		return;
 	}
   while(nCount<SelectList.length)
@@ -159,7 +159,7 @@ function check_num_dot()
        {
          if (NotNumber(window.document.forms[0].elements[i].value))
          {
-            alert("ÌáÊ¾ÐÅÏ¢£º\n²»ÊÇÓÐÐ§µÄÊý×Ö£¬ÇëÖØÐÂÊäÈë¡£");
+            alert("æç¤ºä¿¡æ¯ï¼š\nä¸æ˜¯æœ‰æ•ˆçš„æ•°å­—ï¼Œè¯·é‡æ–°è¾“å…¥ã€‚");
             window.document.forms[0].elements[i].focus();
             return;
          }
@@ -171,7 +171,7 @@ function check_num_dot()
        {
          if (NotNumber(window.document.forms[0].elements[i].value))
          {
-            alert("ÌáÊ¾ÐÅÏ¢£º\n²»ÊÇÓÐÐ§µÄÊý×Ö£¬ÇëÖØÐÂÊäÈë¡£");
+            alert("æç¤ºä¿¡æ¯ï¼š\nä¸æ˜¯æœ‰æ•ˆçš„æ•°å­—ï¼Œè¯·é‡æ–°è¾“å…¥ã€‚");
             window.document.forms[0].elements[i].focus();
             return;
          }
@@ -218,10 +218,17 @@ function check_num_dot()
 </SCRIPT>
 
 		<META http-equiv=Content-Language content=zh-cn>
-		<META http-equiv=Content-Type content="text/html; charset=gb2312">
+		<META http-equiv=Content-Type content="text/html; charset=UTF-8">
 		<META content="MSHTML 6.00.2900.5626" name=GENERATOR>
 		<META content=FrontPage.Editor.Document name=ProgId>
-		<LINK href="js/style.css" rel=stylesheet>
+		<LINK href="../public/contractmanager/js/style.css" rel=stylesheet>
+
+		<link rel="stylesheet" type="text/css" href="jquery-easyui-1.8.5/themes/default/easyui.css">
+		<link rel="stylesheet" type="text/css" href="jquery-easyui-1.8.5/themes/icon.css">
+		<script type="text/javascript" src="jquery-easyui-1.8.5/jquery.min.js"></script>
+		<script type="text/javascript" src="jquery-easyui-1.8.5/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="jquery-easyui-1.8.5/locale/easyui-lang-zh_CN.js"></script>
+
 		<SCRIPT language=JavaScript src=""></SCRIPT>
 
 		<SCRIPT language=javascript>
@@ -234,22 +241,22 @@ function check_num_dot()
         document.form.p_type.value=i;
         if (v_qty_null)
         {
-            alert("ÊýÁ¿²»ÄÜÎª0£¡");
+            alert("æ•°é‡ä¸èƒ½ä¸º0ï¼");
             return;
         }
         if (v_price_null)
         {
-            alert("µ¥¼Û²»ÄÜÎª0£¡");
+            alert("å•ä»·ä¸èƒ½ä¸º0ï¼");
             return;
         }
         if (v_not_date)
         {
-            alert("ÈÕÆÚÇë°´\"4Î»Äê/2Î»ÔÂ/2Î»ÈÕ\"¸ñÊ½ÊäÈë£¡");
+            alert("æ—¥æœŸè¯·æŒ‰\"4ä½å¹´/2ä½æœˆ/2ä½æ—¥\"æ ¼å¼è¾“å…¥ï¼");
             return;
         }
         if (v_not_js)
         {
-            alert("½áÊø½»»õÆÚ²»ÄÜÐ¡ÓÚ¿ªÊ¼½»»õÆÚ¡£");
+            alert("ç»“æŸäº¤è´§æœŸä¸èƒ½å°äºŽå¼€å§‹äº¤è´§æœŸã€‚");
             return;
         }
         CheckAll();
@@ -272,7 +279,7 @@ function check_num_dot()
       }
       function calc(p_count)
       {
-         //ÊýÁ¿
+         //æ•°é‡
          var qty_input=0;
          qty_input=7*(p_count-1);
          var qty=0;
@@ -282,7 +289,7 @@ function check_num_dot()
          }
          if (qty==0)
          {
-            alert("ÊýÁ¿²»ÄÜÎª0£¡");
+            alert("æ•°é‡ä¸èƒ½ä¸º0ï¼");
             form.p_input[qty_input].focus();
             v_qty_null=true;
             return;
@@ -291,7 +298,7 @@ function check_num_dot()
          {
             v_qty_null=false;
          }
-         //µ¥¼Û
+         //å•ä»·
          var price_input=0;
          price_input=1+7*(p_count-1);
          var price=0;
@@ -301,7 +308,7 @@ function check_num_dot()
          }
          if (price==0)
          {
-            alert("µ¥¼Û²»ÄÜÎª0£¡");
+            alert("å•ä»·ä¸èƒ½ä¸º0ï¼");
             form.p_input[price_input].focus();
             v_price_null=true;
             return;
@@ -310,7 +317,7 @@ function check_num_dot()
          {
             v_price_null=false;
          }
-         //ÔËÔÓ·Ñ
+         //è¿æ‚è´¹
          var free_input=0;
          free_input=2+7*(p_count-1);
          var free=0;
@@ -318,7 +325,7 @@ function check_num_dot()
          {
             free=form.p_input[free_input].value;
          }
-         //ÆäËü·ÑÓÃ
+         //å…¶å®ƒè´¹ç”¨
          var other_input=0;
          other_input=3+7*(p_count-1);
          var other=0;
@@ -326,18 +333,18 @@ function check_num_dot()
          {
             other=form.p_input[other_input].value;
          }
-         //×Ü¼Æ
+         //æ€»è®¡
          var amount_input=0;
          amount_input=4+7*(p_count-1);
          var amount=0;
          amount=parseFloat(qty*price)+parseFloat(free)+parseFloat(other);
          form.p_input[amount_input].value=amount;
-         //¿ªÊ¼½»»õÆÚ
+         //å¼€å§‹äº¤è´§æœŸ
          var ks_input=0;
          ks_input=5+7*(p_count-1);
          if (isdate(form.p_input[ks_input].value)==false)
          {
-             alert("ÈÕÆÚÇë°´\"4Î»Äê/2Î»ÔÂ/2Î»ÈÕ\"¸ñÊ½ÊäÈë£¡");
+             alert("æ—¥æœŸè¯·æŒ‰\"4ä½å¹´/2ä½æœˆ/2ä½æ—¥\"æ ¼å¼è¾“å…¥ï¼");
              //form.p_input[ks_input].focus();
              v_not_date=true;
              return;
@@ -346,12 +353,12 @@ function check_num_dot()
          {
              v_not_date=false;
          }
-         //½áÊø½»»õÆÚ
+         //ç»“æŸäº¤è´§æœŸ
          var js_input=0;
          js_input=6+7*(p_count-1);
          if (isdate(form.p_input[js_input].value)==false)
          {
-             alert("ÈÕÆÚÇë°´\"4Î»Äê/2Î»ÔÂ/2Î»ÈÕ\"¸ñÊ½ÊäÈë£¡");
+             alert("æ—¥æœŸè¯·æŒ‰\"4ä½å¹´/2ä½æœˆ/2ä½æ—¥\"æ ¼å¼è¾“å…¥ï¼");
              //form.p_input[js_input].focus();
              v_not_date=true;
              return;
@@ -362,7 +369,7 @@ function check_num_dot()
          }
          if  (form.p_input[ks_input].value>form.p_input[js_input].value)
          {
-             alert("½áÊø½»»õÆÚ²»ÄÜÐ¡ÓÚ¿ªÊ¼½»»õÆÚ¡£");
+             alert("ç»“æŸäº¤è´§æœŸä¸èƒ½å°äºŽå¼€å§‹äº¤è´§æœŸã€‚");
              //form.p_input[js_input].focus();
              v_not_js=true;
              return;
@@ -371,9 +378,9 @@ function check_num_dot()
          {
              v_not_js=false;
          }
-         //×Ü½ð¶î
+         //æ€»é‡‘é¢
          var total=form.p_total_cb.value
-         //×ÜÊýÁ¿
+         //æ€»æ•°é‡
          var total_qty=0;
          for (var k = 1; k <= (form.p_input.length)/7; k++)
          {
@@ -436,13 +443,37 @@ function check_num_dot()
 
 		function queding()
 		{
-			window.document.location = "Apply_queren.htm";
+			//åºåˆ—åŒ–
+			var $contform = $("#contform").serialize();
+			$.ajax({
+				url:'peserveTheMergerContract',
+				type:'post',
+				data:$contform+"&status=1",
+				success:function(rdata){
+					if(rdata=='success'){
+
+					}
+				}
+			})
 		}
 
 		function baopi()
 		{
-			if(confirm("ÄúÈ·¶¨ÐÅÏ¢ÕýÈ·²¢±¨ÅúÂð£¿")){
-			window.document.location = "jieshilist.html";
+			if(confirm("æ‚¨ç¡®å®šä¿¡æ¯æ­£ç¡®å¹¶æŠ¥æ‰¹å—ï¼Ÿ")){
+				//åºåˆ—åŒ–
+				var $contform = $("#contform").serialize();
+				$.ajax({
+					url:'peserveTheMergerContract',
+					type:'post',
+					data:$contform,
+					success:function(rdata){
+						if(rdata=='success'){
+							alert("ä¿å­˜æˆåŠŸï¼");
+						}else{
+							alert("ä¿å­˜å¤±è´¥ï¼");
+						}
+					}
+				})
 			}
 		}
 
@@ -450,54 +481,51 @@ function check_num_dot()
 	</HEAD>
 	<BODY>
 		<CENTER>
-			<FORM name=form action=Apply_Save.asp method=post>
+			<FORM id="contform">
 				<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0
-					width="100%" bgColor=#336699 borderColorLight=#006699 border=0>
+					width="100%" bgColor=#9ea7bd borderColorLight=#9ea7bd border="1px">
 					<TBODY>
 						<TR>
 							<TD>
-								<TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+								<TABLE cellSpacing=1 cellPadding=3 width="100%" border="1px">
 									<TBODY>
 										<TR bgColor=#ffffff>
 											<TD align=middle width="100%" bgColor=#ffffff colSpan=20
 												height=22>
 												<B>
 													<H2>
-														<FONT color=#0070c0>±à¼­ºÏÍ¬ÉêÇë 
+														<FONT color=#0070c0>ç¼–è¾‘åˆåŒç”³è¯· 
 												</B>
-											<IMG alt=°ïÖú
-														src="img/help_a.gif" border=0 /> 
+											<IMG alt=å¸®åŠ©
+                                                 src="../public/contractmanager/img/help_a.gif" border=0 />
 												</FONT>
 												</H2>
 											</TD>
 										</TR>
 										<TR class=t1>											<TD width="20%">
-												Ñ¯¼ÛÊéÃû³Æ£º
+												è¯¢ä»·ä¹¦åç§°ï¼š	<input type="hidden" name="enquireId" th:value="${enquireById.getId()}"/>
+
+										</TD>
+											<TD class=t2 width="30%" th:text="${enquireById.getEnquireName()}">
+												<A href="javascript:alert('å¯¹åº”è¯¢ä»·ä¹¦è¯¦ç»†')" >è¯¢ä»·ä¹¦1</A>
 											</TD>
-											<TD class=t2 width="30%">
-												<A href="javascript:alert('¶ÔÓ¦Ñ¯¼ÛÊéÏêÏ¸')">Ñ¯¼ÛÊé1</A>
-											</TD>
-											<!--<td>ºÏÍ¬±àºÅ£º</td>
+											<!--<td>åˆåŒç¼–å·ï¼š</td>
   <td colspan=2>W20100040</td>
  </tr>-->
 											<TD width="20%">
-												±¨¼Û·ÝÊý£º
+												æŠ¥ä»·ä»½æ•°ï¼š
 											</TD>
 											<TD class=t2 width="30%">
-												3
+												1
 											</TD>
 										</TR>
 										<TR class=t1>
 											<TD width="20%">
-												×î¸ß±¨¼Û£¨Ôª£©£º
+												æœ€é«˜æŠ¥ä»·ï¼ˆå…ƒï¼‰ï¼š
+
+												<input type="hidden" name="topQuote" th:value="${queryObjetQuoteAndQuoteDetail.getQuoteDetail().getTotalPrice()}">
 											</TD>
-											<TD class=t2 width="30%">
-												5001
-											</TD>
-											<TD width="20%">
-												×îµÍ±¨¼Û£¨Ôª£©£º
-											</TD>
-											<TD class=t2 width="30%">
+											<TD class=t2 width="30%" th:text="${queryObjetQuoteAndQuoteDetail.getQuoteDetail().getTotalPrice()}">
 												5001
 											</TD>
 										</TR>
@@ -509,365 +537,125 @@ function check_num_dot()
 				</TABLE>
 
 				<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0
-					width="100%" bgColor=#336699 borderColorLight=#006699 border=0>
+					width="100%" bgColor=#9ea7bd borderColorLight=#9ea7bd border="1px">
 					<TBODY>
 						<TR>
 							<TD>
-								<TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+								<TABLE cellSpacing=1 cellPadding=3 width="100%" border="1px">
 									<TBODY>
 										<TR class=T1>
 											<TD noWrap align=middle colSpan=9>
-												Îï×Ê
-												<B><FONT color=red>1 &nbsp; 
-												</B></FONT><A href="javascript:alert('¶ÔÓ¦ÐèÇó¼Æ»®ÊéÏêÏ¸')">¾§Õñ(HC-49U-500K-0.005%)[W64001005000]</A>
-												999¸ö
-												<B>¼Æ»®¼Û£¨Ôª/²»º¬Ë°£©</B>£º0.43
+												ç‰©èµ„
+												<B><FONT color=red>
+												</B></FONT><span th:text="${queryObjetQuoteAndQuoteDetail.getQuoteDetail().getMaterialName()}"></span>
+												[[${queryObjetQuoteAndQuoteDetail.getQuoteDetail().getAmount()}]]
+												<B>è®¡åˆ’ä»·ï¼ˆå…ƒ/ä¸å«ç¨Žï¼‰</B>ï¼š[[${queryObjetQuoteAndQuoteDetail.getQuoteDetail().getUnitPrice()}]]
 												<BR>
 												<A href="javascript:showModalDialog('Apply_supplyList.html','status:{no}')"><FONT
-													color=red><U>ÇëÎª¸ÃÎï×ÊÑ¡Ôñ¹©Ó¦ÉÌ</U> </FONT> </A><A
-													href="javascript:alert('¶ÔÓ¦±¨¼ÛÊéÏêÏ¸')"> ±¨¼ÛÃ÷Ï¸ÐÅÏ¢</A>&nbsp;&nbsp;
+													color=red><U>è¯·ä¸ºè¯¥ç‰©èµ„é€‰æ‹©ä¾›åº”å•†</U> </FONT> </A><A
+													href="javascript:alert('å¯¹åº”æŠ¥ä»·ä¹¦è¯¦ç»†')"> æŠ¥ä»·æ˜Žç»†ä¿¡æ¯</A>&nbsp;&nbsp;
 											</TD>
 										</TR>
 										<TR class=t1>
 											<TD noWrap align=middle width="20%">
-												¹©Ó¦ÉÌ
+												ä¾›åº”å•†
 											</TD>
 											<TD noWrap align=middle>
-												ÊýÁ¿
+												æ•°é‡
 											</TD>
 											<TD noWrap align=middle>
-												µ¥¼Û
+												å•ä»·
 												<BR>
-												£¨Ôª/º¬Ë°£©
+												ï¼ˆå…ƒ/å«ç¨Žï¼‰
 											</TD>
 											<TD noWrap align=middle>
-												ÔËÔÓ·Ñ
+												è¿æ‚è´¹
 												<BR>
-												£¨Ôª£©
+												ï¼ˆå…ƒï¼‰
 											</TD>
 											<TD noWrap align=middle>
-												ÆäËü·ÑÓÃ
+												å…¶å®ƒè´¹ç”¨
 												<BR>
-												£¨Ôª£©
+												ï¼ˆå…ƒï¼‰
 											</TD>
 											<TD noWrap align=middle>
-												×Ü¼Æ
+												æ€»è®¡
 												<BR>
-												£¨Ôª£©
+												ï¼ˆå…ƒï¼‰
 											</TD>
 											<TD noWrap align=middle width="12%">
-												¼Æ»®¿ªÊ¼
+												è®¡åˆ’å¼€å§‹
 												<BR>
-												½»»õÆÚ
+												äº¤è´§æœŸ
 											</TD>
 											<TD noWrap align=middle>
-												¿ªÊ¼
+												å¼€å§‹
 												<BR>
-												½»»õÆÚ
+												äº¤è´§æœŸ
 											</TD>
 											<TD noWrap align=middle>
-												½áÊø
+												ç»“æŸ
 												<BR>
-												½»»õÆÚ
+												äº¤è´§æœŸ
 											</TD>
 										</TR>
 										<TR class=t2>
-											<TD width="20%">
-												¹©Ó¦ÉÌ1
+											<TD width="20%" th:text="${bySupplierid.getCompany()}">
+												ä¾›åº”å•†1
 												<BR>
 											</TD>
-											<TD align=right>
+											<TD align=right th:text="${queryObjetQuoteAndQuoteDetail.getQuoteDetail().getAmount()}">
 												999
 												<BR>
 											</TD>
-											<TD align=right>
+											<TD align=right th:text="${queryObjetQuoteAndQuoteDetail.getQuoteDetail().getUnitPrice()}">
 												5
 												<BR>
 											</TD>
-											<TD align=right>
+											<TD align=right th:text="${queryObjetQuoteAndQuoteDetail.getQuoteDetail().getMixPrice()}">
 												5
 												<BR>
 											</TD>
-											<TD align=right>
+											<TD align=right th:text="${queryObjetQuoteAndQuoteDetail.getQuoteDetail().getOtherPrice()}">
 												1
 												<BR>
 											</TD>
-											<TD align=right>
+											<TD align=right th:text="${queryObjetQuoteAndQuoteDetail.getQuoteDetail().getTotalPrice()}">
 												5001
 												<BR>
 											</TD>
-											<TD align=right>
+											<!-- è®¡åˆ’å¼€å§‹æ—¶é—´ -->
+											<TD align=right th:text="${queryObjetQuoteAndQuoteDetail.getQuoteDetail().getAmount()}">
 												2010/01/08
 											</TD>
-											<TD>
-												2010/01/08
-												<BR>
-											</TD>
-											<TD>
-												2010/02/25
-												<BR>
-											</TD>
-										</TR>
-										<TR class=t2>
-											<TD width="20%">
-												¹©Ó¦ÉÌ2
-												<BR>
-											</TD>
-											<TD align=right>
-												999
-												<BR>
-											</TD>
-											<TD align=right>
-												5
-												<BR>
-											</TD>
-											<TD align=right>
-												5
-												<BR>
-											</TD>
-											<TD align=right>
-												1
-												<BR>
-											</TD>
-											<TD align=right>
-												5001
-												<BR>
-											</TD>
-											<TD align=right>
-												2010/01/08
-											</TD>
-											<TD>
+											<TD th:text="${#dates.format(queryObjetQuoteAndQuoteDetail.getQuoteDetail().getStartDate(),'yyyy-MM-dd')}">
 												2010/01/08
 												<BR>
 											</TD>
-											<TD>
-												2010/02/25
-												<BR>
-											</TD>
-										</TR>
-										<TR class=t2>
-											<TD width="20%">
-												¹©Ó¦ÉÌ3
-												<BR>
-											</TD>
-											<TD align=right>
-												999
-												<BR>
-											</TD>
-											<TD align=right>
-												5
-												<BR>
-											</TD>
-											<TD align=right>
-												5
-												<BR>
-											</TD>
-											<TD align=right>
-												1
-												<BR>
-											</TD>
-											<TD align=right>
-												5001
-												<BR>
-											</TD>
-											<TD align=right>
-												2010/01/08
-											</TD>
-											<TD>
-												2010/01/08
-												<BR>
-											</TD>
-											<TD>
+											<TD th:text="${#dates.format(queryObjetQuoteAndQuoteDetail.getQuoteDetail().getEndDate(),'yyyy-MM-dd')}">
 												2010/02/25
 												<BR>
 											</TD>
 										</TR>
 
-										<TR class=T1>
-											<TD noWrap align=middle colSpan=9>
-												Îï×Ê
-												<B><FONT color=red>2&nbsp; 
-												</B></FONT><A href="javascript:alert('¶ÔÓ¦ÐèÇó¼Æ»®ÊéÏêÏ¸')">¾§Õñ(HC-49U-500K-0.005%)[W64001005000]</A>
-												999¸ö
-												<B>¼Æ»®¼Û£¨Ôª/²»º¬Ë°£©</B>£º0.43
-												<BR>
-												<A href="javascript:showModalDialog('Apply_supplyList.html','status:{no}')">
-												<FONT
-													color=red><U>ÇëÎª¸ÃÎï×ÊÑ¡Ôñ¹©Ó¦ÉÌ</U> </FONT> </A><A
-													href="javascript:alert('¶ÔÓ¦±¨¼ÛÊéÏêÏ¸')"> ±¨¼ÛÃ÷Ï¸ÐÅÏ¢</A>&nbsp;&nbsp;
-											</TD>
-										</TR>
 										<TR class=t1>
-											<TD noWrap align=middle width="20%">
-												¹©Ó¦ÉÌ
+											<TD align=middle >
+												æ€»é‡‘é¢ï¼ˆå…ƒï¼‰
 											</TD>
-											<TD noWrap align=middle>
-												ÊýÁ¿
-											</TD>
-											<TD noWrap align=middle>
-												µ¥¼Û
-												<BR>
-												£¨Ôª/º¬Ë°£©
-											</TD>
-											<TD noWrap align=middle>
-												ÔËÔÓ·Ñ
-												<BR>
-												£¨Ôª£©
-											</TD>
-											<TD noWrap align=middle>
-												ÆäËü·ÑÓÃ
-												<BR>
-												£¨Ôª£©
-											</TD>
-											<TD noWrap align=middle>
-												×Ü¼Æ
-												<BR>
-												£¨Ôª£©
-											</TD>
-											<TD noWrap align=middle width="12%">
-												¼Æ»®¿ªÊ¼
-												<BR>
-												½»»õÆÚ
-											</TD>
-											<TD noWrap align=middle>
-												¿ªÊ¼
-												<BR>
-												½»»õÆÚ
-											</TD>
-											<TD noWrap align=middle>
-												½áÊø
-												<BR>
-												½»»õÆÚ
-											</TD>
-										</TR>
-										<TR class=t2>
-											<TD width="20%">
-												¹©Ó¦ÉÌ1
-												<BR>
-											</TD>
-											<TD align=right>
-												999
-												<BR>
-											</TD>
-											<TD align=right>
-												5
-												<BR>
-											</TD>
-											<TD align=right>
-												5
-												<BR>
-											</TD>
-											<TD align=right>
-												1
-												<BR>
-											</TD>
-											<TD align=right>
-												5001
-												<BR>
-											</TD>
-											<TD align=right>
-												2010/01/08
-											</TD>
-											<TD>
-												2010/01/08
-												<BR>
-											</TD>
-											<TD>
-												2010/02/25
-												<BR>
-											</TD>
-										</TR>
-										<TR class=t2>
-											<TD width="20%">
-												¹©Ó¦ÉÌ2
-												<BR>
-											</TD>
-											<TD align=right>
-												999
-												<BR>
-											</TD>
-											<TD align=right>
-												5
-												<BR>
-											</TD>
-											<TD align=right>
-												5
-												<BR>
-											</TD>
-											<TD align=right>
-												1
-												<BR>
-											</TD>
-											<TD align=right>
-												5001
-												<BR>
-											</TD>
-											<TD align=right>
-												2010/01/08
-											</TD>
-											<TD>
-												2010/01/08
-												<BR>
-											</TD>
-											<TD>
-												2010/02/25
-												<BR>
-											</TD>
-										</TR>
-										<TR class=t2>
-											<TD width="20%">
-												¹©Ó¦ÉÌ3
-												<BR>
-											</TD>
-											<TD align=right>
-												999
-												<BR>
-											</TD>
-											<TD align=right>
-												5
-												<BR>
-											</TD>
-											<TD align=right>
-												5
-												<BR>
-											</TD>
-											<TD align=right>
-												1
-												<BR>
-											</TD>
-											<TD align=right>
-												5001
-												<BR>
-											</TD>
-											<TD align=right>
-												2010/01/08
-											</TD>
-											<TD>
-												2010/01/08
-												<BR>
-											</TD>
-											<TD>
-												2010/02/25
-												<BR>
+											<TD colSpan=9>
+												<INPUT readOnly size=10 th:value="${queryObjetQuoteAndQuoteDetail.getQuoteDetail().getTotalPrice()}" name=p_total>
 											</TD>
 										</TR>
 										<TR class=t1>
 											<TD align=middle>
-												×Ü½ð¶î£¨Ôª£©
+												å¤‡æ³¨
+												<input type="hidden" name="authorId" th:value="${session.user.getId()}"/>
+												<input type="hidden" name="author" th:value="${session.user.getLoginId()}"/>
 											</TD>
 											<TD colSpan=9>
-												<INPUT readOnly size=10 value=5001 name=p_total>
+												<INPUT size=80 name="remark">
 											</TD>
 										</TR>
-										<TR class=t1>
-											<TD align=middle>
-												±¸×¢
-											</TD>
-											<TD colSpan=9>
-												<INPUT size=80 name=mark>
-											</TD>
-										</TR>
-
 
 									</TBODY>
 								</TABLE>
@@ -877,12 +665,10 @@ function check_num_dot()
 				</TABLE>
 				
 				<CENTER>
-				
 					<BR>
-					<INPUT onclick="queding();" type=button value=È·¶¨>
-					<INPUT onclick="baopi();" type=button value=±£´æ²¢±¨Åú>
-					<INPUT onclick=form.reset() type=button value=Çå³ý>
-					<INPUT onclick=" javascript:history.back()" type=button value=È¡Ïû>
+					<INPUT onclick="queding();" type=button value=ç¡®å®š>
+					<INPUT onclick="baopi();" type=button value=ä¿å­˜å¹¶æŠ¥æ‰¹>
+					<INPUT onclick=" javascript:history.back()" type=button value=å–æ¶ˆ>
 			</FORM>
 		</CENTER>
 		</CENTER>

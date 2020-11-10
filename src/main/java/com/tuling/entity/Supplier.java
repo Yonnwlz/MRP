@@ -164,4 +164,26 @@ public class Supplier implements Serializable {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
+
+    @Override
+    public String toString() {
+        return "Supplier{" +
+                "id=" + id +
+                ", supplierNum='" + supplierNum + '\'' +
+                ", certificate='" + certificate + '\'' +
+                ", company='" + company + '\'' +
+                ", kind='" + kind + '\'' +
+                ", contact='" + contact + '\'' +
+                ", phone='" + phone + '\'' +
+                ", fax='" + fax + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", zip='" + zip + '\'' +
+                ", regFund='" + regFund + '\'' +
+                ", corporation='" + corporation + '\'' +
+                ", achievement=" + achievement +
+                ", status='" + status + '\'' +
+                ", userId=" + userId +
+                '}';
+    }
 }

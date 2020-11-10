@@ -300,7 +300,7 @@ function release(){
                         <TD noWrap width="20%">Email</TD>
                         <TD class=t2 noWrap><input type="text" name="email" th:value="${enquireByIdAndIdMapper.getEmail()}"/></TD>
                         <TD noWrap width="20%">报价截止时间</TD>
-                        <TD class=t2 noWrap><input type="text" name="endDate" th:value="${enquireByIdAndIdMapper.getEndDate()}">
+                        <TD class=t2 noWrap><input type="text" name="endDate" th:value="${#dates.format(enquireByIdAndIdMapper.getEndDate(),'yyyy-MM-dd')}">
                         </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
     <TABLE cellSpacing=1 cellPadding=0 width="100%" bgColor=#ffffff
            borderColorLight=#ffffff border=0>
@@ -352,10 +352,10 @@ function release(){
 
                     <tr bgcolor="#FFFFFF">
                         <td nowrap >报价开始时间</td>
-                        <td nowrap ><input id="startDate" type="text" class="easyui-datebox" required="required"></input></td>
+                        <td nowrap ><input id="startDate" value="2020-11-11" type="text" class="easyui-datebox" required="required"></input></td>
                         </td>
                         <td nowrap >报价截止时间</td>
-                        <td nowrap ><input id="endDate" type="text" class="easyui-datebox" required="required"></input></td>
+                        <td nowrap ><input id="endDate" type="text" value="2020-11-11" class="easyui-datebox" required="required"></input></td>
                         <td nowrap ></td>
                         <td nowrap ></td>
                         </td>

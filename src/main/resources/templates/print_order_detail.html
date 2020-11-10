@@ -5,11 +5,11 @@
 <META content="MSHTML 6.00.2900.5626" name=GENERATOR></HEAD>
 <BODY>
 <TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0 width="100%" 
-bgColor=#336699 borderColorLight=#006699 border=0>
+bgColor=#9ea7bd borderColorLight=#9ea7bd border="1px">
   <TBODY>
   <TR>
     <TD>
-      <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+      <TABLE cellSpacing=1 cellPadding=3 width="100%" border="1px">
         <TBODY>
         <TR bgColor=#ffffff>
           <TD align=middle width="100%" bgColor=#ffffff colSpan=20 
@@ -39,7 +39,7 @@ bgColor=#336699 borderColorLight=#006699 border=0>
         </TR>
         <TR class=t1>
           <TD noWrap>开始交货期</TD>
-          <TD class=t2 th:text=${byIdOrders.startDate} noWrap>2010/01/08</TD>
+          <TD class=t2 th:text=${#dates.format(byIdOrders.startDate,'yyyy-MM-dd')} noWrap>2010/01/08</TD>
           <TD noWrap>业务员</TD>
           <TD class=t2 th:text=${byIdOrders.author} noWrap>杨春</TD>
         </TR>

@@ -54,4 +54,10 @@ public class OrdersService_impl implements OrdersService {
         //通过需求计划序号修改项
         return ordersMapper.updateByPrimaryKeySelective(orders);
     }
+
+    @Override
+    public Orders findByIdOrdersAndIdMapper(Integer ordersId) {
+        //通过需求计划序号查询信息  需求计划+编号对照
+        return ordersMapper.selectOrderByIdAndIdMapper(ordersId);
+    }
 }

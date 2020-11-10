@@ -30,6 +30,16 @@ public class Enquire implements Serializable {
 
     private IdMapping idMapping;
 
+    private EnquireDetail enquireDetail;
+
+    public EnquireDetail getEnquireDetail() {
+        return enquireDetail;
+    }
+
+    public void setEnquireDetail(EnquireDetail enquireDetail) {
+        this.enquireDetail = enquireDetail;
+    }
+
     public IdMapping getIdMapping() {
         return idMapping;
     }

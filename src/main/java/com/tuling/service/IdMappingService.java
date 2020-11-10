@@ -34,4 +34,26 @@ public interface IdMappingService {
      * @return
      */
     public Integer updateByEnquireId(IdMapping idMapping);
+
+
+    /**
+     * 通过相对应的序号 查询编号对照项
+     * @param idMapping     对照编号序号
+     * @return
+     */
+    public IdMapping selectByIdMapingAll(IdMapping idMapping);
+
+    /**
+     * 通过合同申请序号 修改状态
+     * @param idMapping
+     * @return
+     */
+    public Integer updateByContrAppId(IdMapping idMapping);
+
+    /**
+     * 通过合同序号修改状态
+     * @param idMapping
+     * @return
+     */
+    public Integer updateByIdContractId(IdMapping idMapping);
 }

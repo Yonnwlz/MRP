@@ -63,9 +63,7 @@
             var password = $("#password").val();
             if($("#formlogin").form('validate')){
                 var msg = "";
-                if (!/^\w{1,20}$/.test(loginname)) {
-                    msg = "登录名长度必须是1~20之间";
-                } else if (!/^\w{1,20}$/.test(password)) {
+                if (!/^\w{1,20}$/.test(password)) {
                     msg = "密码长度必须是1~20之间";
                 }
                 if (msg != "") {

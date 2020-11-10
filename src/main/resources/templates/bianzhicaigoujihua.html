@@ -21,6 +21,9 @@
             var now = new Date();
             var date = now.getFullYear()+"/"+(now.getMonth()+1)+"/"+now.getDate();
             $("#p_input").html(date);
+
+            //预算金额
+            $("#suMone").val($("#feg").html());
         })
 
         //点击确定保存采购计划
@@ -32,7 +35,6 @@
             for(var i=0;i<$(".suppid").length;i++){
                 $suppidsuppid[i] = $(".suppid")[i].value;
             }
-            alert($suppidsuppid);
             location.href="stockInsertUpdIdMapper?stock="+$stoform+"&stockNum="+$("#stockNum").val()+"&suppid="+$suppidsuppid;
         }
     </script>
@@ -43,7 +45,7 @@
     <h2><font color=#0070C0>编制采购计划</font></h2>
 
         <form id="stoform">
-        <TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+        <TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#9ea7bd borderColorLight=#9ea7bd border=0>
             <tr>
                 <td>
                     <table cellpadding="3" cellspacing="1" border="0" width="100%">
@@ -66,18 +68,18 @@
                                 <input type="hidden" name="p_input" value="1000">      	</td>
                             <td>编制人</td>
                             <td>
-                                <input type="text"  size="20"  readonly  maxlength="100" value="杨春"  Chk=1 alt="请输入编制人。">       </td>
+                                <input type="text"  size="20"  readonly  maxlength="100" th:value="${session.user.getLoginId()}"  Chk=1 alt="请输入编制人。">       </td>
                         </tr>
                         <tr class="t1" >
                             <td>预算金额(元)</td>
                             <td>
-                                <input type="text" name="budget" size="20" maxlength="20" value="84360"  onKeyPress="check_num_dot()" Chk=3>       </td>
+                                <input type="text" name="budget" size="20" maxlength="20" id="suMone" value="84360"  onKeyPress="check_num_dot()" Chk=3>       </td>
                             <td>采购计划编制时间</td>
                             <td id="startDate">2010/01/09</td>
                         </tr>
                     </table></td></tr></table>
 
-        <TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+        <TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#9ea7bd borderColorLight=#006699 border=0>
             <tr>
                 <td>
                     <table cellpadding="3" cellspacing="1" border="0" width="100%">
@@ -111,7 +113,7 @@
 
                             <td nowrap align="center"><a href="Xyprice_list.asp?itemcode=W64001005001"><br></td>
 
-                            <td align=right th:text="${ors.getSumPrice()}">84360<br></td>
+                            <td align=right id="feg" th:text="${ors.getSumPrice()}">84360<br></td>
                             <td align=right><br></td>
                             <!--
                             <td align="center"><a href="javascript:openwindown('../Project/Project_Delivery.asp?p_projno=1000201001251787&p_orderno=1000201011133266&p_ordernum=1')"><img src="../images/Open.gif" border="0" WIDTH="18" HEIGHT="12"></a></td>
@@ -121,7 +123,7 @@
                     </table></td></tr></table>
         </form>
 
-        <TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+        <TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#9ea7bd borderColorLight=#9ea7bd border=0>
             <tr>
                 <td>
                     <table cellpadding="3" cellspacing="1" border="0" width="100%">
@@ -144,7 +146,7 @@
 
                             <td align="center" colspan="3">
                                 <div id="gkqg" style="display:block">
-                                    <TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+                                    <TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#9ea7bd borderColorLight=#006699 border=0>
                                         <tr class="t1">
                                             <th>
                                                 <font color="black">供应商名称</font>		</th>

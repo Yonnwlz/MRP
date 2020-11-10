@@ -45,4 +45,11 @@ public interface OrdersService {
      * @return
      */
     public Integer updateOrderById(Orders orders);
+
+    /**
+     * 通过需求计划序号查询信息  需求计划+编号对照
+     * @param ordersId  需求计划序号
+     * @return
+     */
+    public Orders findByIdOrdersAndIdMapper(Integer ordersId);
 }

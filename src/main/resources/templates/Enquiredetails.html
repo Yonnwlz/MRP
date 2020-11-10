@@ -1,0 +1,176 @@
+<html xmlns:th="http://www.thyeleaf.org">
+<head>
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+    <link rel="stylesheet" type="text/css" href="jquery-easyui-1.8.5/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="jquery-easyui-1.8.5/themes/icon.css">
+    <script type="text/javascript" src="jquery-easyui-1.8.5/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery-easyui-1.8.5/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="jquery-easyui-1.8.5/locale/easyui-lang-zh_CN.js"></script>
+
+    <title>报价书</title>
+<body bgcolor="#B9D3EE">
+<center>
+
+    <form id="quoteform">
+        <input type="hidden" name="p_Enquireno" value="100020101347993">
+        <input type="hidden" name="p_QuoteNo" value="47792010146980">
+        <input type="hidden" name="p_Projno" value="1000201001251591">
+        <input type="hidden" name="p_opert" value="2">
+
+        <TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+            <tr>
+                <td>
+                    <table cellpadding="3" cellspacing="1" border="0" width="100%">
+
+                        <tr bgcolor="#ffffff">
+                            <td width="100%" colspan="6" bgcolor="#ffffff" align="center" height="30"><b><h2><font color="#0070C0">报价维护</b></td></tr>
+                        <tr bgcolor="#ffffff">
+                            <td width="100%" colspan="6" bgcolor="#ffffff" align="center" height="22"><center><font color="blue"><b><img src="../images/warning.gif" WIDTH="15" HEIGHT="15">&nbsp;请不要在输入金额的地方输入单位（如：元、圆），直接输入数字即可。</b></font></center></td></tr>
+
+                    </table></td></tr></table>
+
+        <TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+            <tr>
+                <td>
+                    <table cellpadding="3" cellspacing="1" border="0" width="100%">
+
+                        <tr>
+                            <td colspan=6 align="middle" bgcolor="#99ccff"><B>需求计划1
+                                <input type="hidden" name="p_ordernum0" value="1">
+                                <input type="hidden" name="enquireId" th:value="${enquireByIdAndIdMapper.getId()}">
+                                <input type="hidden" name="orderId" th:value="${enquireDetail.getOrderId()}">
+                            </td>
+                        </tr>
+                        <tr class=t2>
+                            <td >物资编码</td>
+                            <td th:text="${enquireDetail.getMaterialCode()}">W64001005000<br></td>
+                            <td >物资名称</td>
+                            <td th:text="${enquireDetail.getMaterialName()}">晶振(HC-49U-500K-0.005%)<br></td>
+                            <td >计量单位</td>
+                            <td th:text="${enquireDetail.getMeasureUnit()}">个<br></td>
+                        </tr>
+
+                        <tr bgcolor="#FFFFFF">
+                            <td nowrap >单价(元/含税)</td>
+                            <td nowrap ><input type="text" name="unitPrice" id="danj" size=8 Chk=2 onkeypress="check_num_dot()" onblur="vunitprice(this)"  maxlength=12 Value="2"></td>
+                            <td nowrap >数量</td>
+                            <td nowrap ><input type="text" id="nuob" name="amount" th:value="${enquireDetail.getAmount()}" size=8 Chk=2 onkeypress="check_num_dot()"  onblur="numberof(this)" onfocus="clearzero(form.p_intQty,0)"  maxlength=12 Value="1"></td>
+                            <td nowrap >总价(元/含税)</td>
+                            <td nowrap ><input type="text" name="sumPrice" id="prsun" size=8  readonly style="border: #333333; background-color: #f0f0ff;border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px" Value="543"></td>
+                        </tr>
+                        <tr bgcolor="#FFFFFF">
+                            <td nowrap >运杂费(元/含税)</td>
+                            <td nowrap ><input type="text" name="mixPrice" size=8 Chk=3 onkeypress="check_num_dot()"  onblur="tfhefreight(this)"  onfocus="clearzero(form.p_intFree,0)"  maxlength=12 Value="0"></td>
+                            <td nowrap >其他费用(元/含税)</td>
+                            <td nowrap ><input type="text" name="otherPrice" size=8 Chk=3 onkeypress="check_num_dot()"  onblur="totherfees(this)"  onfocus="clearzero(form.p_intOther,0)"  maxlength=12 Value="0"></td>
+                            <td nowrap >总计(元/含税)</td>
+                            <td nowrap ><input type="text" id="allSum" name="totalPrice" size=8 readonly style="border: #333333; background-color: #f0f0ff;border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px" Value="543"></td>
+                        </tr>
+                        <tr bgcolor="#FFFFFF">
+                            <td nowrap >起始到货期</td>
+                            <td nowrap ><input type="text" name="startDatev" size="10" readonly th:value="${#dates.format(enquireDetail.getStartDate(),'yyyy-MM-dd')}">&nbsp;
+                            </td>
+                            <td nowrap >结束到货期</td>
+                            <td nowrap ><input type="text" name="endDatev" size="10" readonly th:value="${#dates.format(enquireDetail.getEndDate(),'yyyy-MM-dd')}">&nbsp;
+                            <td nowrap ></td>
+                            <td nowrap ></td>
+                            </td>
+                        </tr>
+                    </table></td></tr></table>
+
+        <TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+            <tr>
+                <td>
+                    <table cellpadding="3" cellspacing="1" border="0" width="100%">
+
+                        <tr bgcolor="#f2f8ff">
+                            <td nowrap><a href="javascript:SumNum()">数量合计</a></td>
+                            <td><input type="text" name="sumAmount" id="nuberSum" size="25.5" readonly onclick="ClearNum()" class="border" Value="3427"></td>
+                            <td nowrap>总金额(元)</td><td><input id="zosum" type="text" name="overallPrice" size="25.5" readonly class="border" Value="121453"></td>
+                        </tr>
+
+                        <tr bgcolor="#f2f8ff">
+                            <td nowrap>报价书标题</td>
+                            <td><input type="text" name="queTitle" value="" style="width:100%" maxlength="30"></td>
+                            <td nowrap>报价有效期</td>
+                            <td><input class="easyui-datetimebox" name="queDatev"
+                                       data-options="required:true,showSeconds:false" value="3/4/2010 2:3" style="width:150px">
+                            </td>
+                        </tr>
+                        <tr bgcolor="#f2f8ff">
+                            <td nowrap>报价说明</td>
+                            <td colspan="3" style="width:100%"><textarea name="quoRemark" rows="4" style="width:100%"></textarea></td>
+                        </tr>
+
+                    </table></td></tr></table>
+
+        <p Align="center">
+            <input onclick=" javascript:form_subt()" type="button" name="TJBJ" value="开始报价">
+            <input onclick=" javascript:form_back()" type="button" name="TJBJ" value="返回">
+        </p>
+    </form>
+</center>
+<script type="text/javascript">
+
+    //总价格
+    var sumprice = 0;
+    //单价
+    var unitprice =0;
+    //数量
+    var numberof = 0;
+    //运杂费
+    var freight = 0;
+    //其他费用
+    var otherfees = 0;
+
+    unitprice = $("#danj").val();
+    numberof = $("#nuob").val();
+    sumprice = unitprice*numberof;
+    $("#nuberSum").val(numberof);
+
+    $("#prsun").val(sumprice);
+
+    $("#allSum").val(sumprice);
+    $("#zosum").val(sumprice);
+
+    //单价
+    function vunitprice(node){
+        unitprice=$(node).val();
+        sumprice = unitprice*numberof;
+        $("#prsun").val(sumprice);
+
+    }
+    //数量
+    function numberof(node){
+        numberof=$(node).val();
+        sumprice = unitprice*numberof;
+        $("#prsun").val(sumprice);
+    }
+    //运杂费
+    function tfhefreight(node){
+        freight=$(node).val();
+        sumprice = sumprice+parseInt(freight);
+        $("#allSum").val(sumprice);
+        $("#zosum").val(sumprice);
+    }
+    //其他费用
+    function totherfees(node){
+        otherfees=$(node).val();
+        sumprice = sumprice+parseInt(otherfees);
+        $("#allSum").val(sumprice);
+        $("#zosum").val(sumprice);
+    }
+
+    //开始报价
+    function form_subt(){
+        //询价书序列化
+        var $quoteform = $("#quoteform").serialize();
+        location.href="eganToOffer?quote="+$quoteform;
+        alert("报价书发送成功！");
+    }
+</script>
+</body>
+</html>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -36,6 +37,10 @@ public class EnquireController {
     //注入 询价书详情 业务层 EnquireDetailService
     @Autowired
     private EnquireDetailService enquireDetailService;
+
+    //注入报价书 业务层
+    @Autowired
+    private QuoteService quoteService;
 
     /**
      * 编辑询价书
@@ -69,7 +74,12 @@ public class EnquireController {
      * @return
      */
     @RequestMapping("enquireEditorSave")
-    public String enquireEditorSave(Enquire enquire,EnquireDetail enquireDetail,String status){
+    @ResponseBody
+    public String enquireEditorSave(Enquire enquire,EnquireDetail enquireDetail,String status,String endDatev,String bstartDatev,String bendDatev) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        enquire.setEndDate(format.parse(endDatev));
+        enquireDetail.setEndDate(format.parse(bendDatev));
+        enquireDetail.setStartDate(format.parse(bstartDatev));
         //添加询价书
         Integer insEnquire = enquireService.insertEnquire(enquire);
         if(insEnquire>0){
@@ -90,7 +100,7 @@ public class EnquireController {
                 //添加询价书详情
                 Integer integer = enquireDetailService.insertEnquireDetail(enquireDetail);
                 if(integer>0){
-                    return "redirect:/queryandqueto/Project_list.html";
+                    return "1";
                 }
             }
         }
@@ -107,7 +117,7 @@ public class EnquireController {
     @RequestMapping("enquireIMapperAll")
     @ResponseBody
     public EasyUiDataGrid enquireIMapperAll(@RequestParam(defaultValue = "1") Integer curPage,@RequestParam(defaultValue = "3") Integer pageSize,String enquireName){
-        EasyUiDataGrid enquireStatusNameAllPaging = enquireService.findEnquireStatusNameAllPaging(curPage, pageSize, enquireName);
+        EasyUiDataGrid enquireStatusNameAllPaging = enquireService.findEnquireStatusNameAllPaging(curPage, pageSize, enquireName,curPage+"");
         List<Object> list = new ArrayList<>();
         SimpleDateFormat format = new SimpleDateFormat();
         int i = 0;
@@ -128,20 +138,41 @@ public class EnquireController {
     }
 
     /**
-     * 修改询价书
+     * 查询询价书详情
      * @param id    询价书编号
      * @param model
      * @return
      */
     @RequestMapping("enquireByIdAll")
-    public String enquireByIdAll(Integer id,Model model){
+    public String enquireByIdAll(Integer id,Model model,String status){
         //查询询价书及对照编号表
         Enquire enquireByIdAndIdMapper = enquireService.findEnquireByIdAndIdMapper(id);
-        //查询需求计划项
-        Orders byIdOrders = ordersService.findByIdOrders(enquireByIdAndIdMapper.getIdMapping().getOrderId().intValue());
-        model.addAttribute("enquireByIdAndIdMapper",enquireByIdAndIdMapper);
-        model.addAttribute("byIdOrders",byIdOrders);
-        return "Enquire_update";
+        String url = "";
+        if(status.equals("1")){
+            //查询需求计划项
+            Orders byIdOrders = ordersService.findByIdOrders(enquireByIdAndIdMapper.getIdMapping().getOrderId().intValue());
+            model.addAttribute("enquireByIdAndIdMapper",enquireByIdAndIdMapper);
+            model.addAttribute("byIdOrders",byIdOrders);
+            url = "Enquire_update";
+        }else if(status.equals("2")){
+            Enquire enquireByIdDetail = enquireService.findEnquireByIdDetail(id);
+            model.addAttribute("enquireDetail",enquireByIdDetail.getEnquireDetail());
+            model.addAttribute("enquireByIdAndIdMapper",enquireByIdAndIdMapper);
+            url = "Enquiredetails";
+        }else if(status.equals("3")){
+            //揭示询价书详情
+            Enquire enquireByIdDetail = enquireService.findEnquireByIdDetail(id);
+            //查询询价书
+            model.addAttribute("enquireByIdDetail",enquireByIdDetail);
+            //查询报价书详情
+            Quote quote = new Quote();
+            quote.setEnquireId((long)id);
+            Quote queryObjetQuoteAndQuoteDetail = quoteService.findQueryObjetQuoteAndQuoteDetail(quote);
+            model.addAttribute("queryObjetQuoteAndQuoteDetail",queryObjetQuoteAndQuoteDetail);
+
+            url = "Apply_xjsmx";
+        }
+        return url;
     }
 
     /**
@@ -153,8 +184,6 @@ public class EnquireController {
      */
     @RequestMapping("enquireByidUpdate")
     public String enquireByidUpdate(Enquire enquire,EnquireDetail enquireDetail,String status){
-        System.out.println(enquire.toString());
-        System.out.println(enquireDetail.toString());
         //修改询价书
         Integer integer = enquireService.updateByIdEnquire(enquire);
         if(integer>0){

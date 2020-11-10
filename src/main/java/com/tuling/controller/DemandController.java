@@ -93,7 +93,7 @@ public class DemandController {
     public String saveSessionMaterial(Orders orders, HttpServletRequest request){
         ArrayList<Orders> ordList  = new ArrayList<Orders>();
         //流失号
-        int orderNum =0;
+        long orderNum =0;
         //当前时间
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
@@ -104,16 +104,16 @@ public class DemandController {
             //获取当前最大流失号
             String orderNum1 = ordList.get(ordList.size() - 1).getOrderNum();
             //截取最后七位数
-            orderNum = Integer.parseInt(orderNum1.substring(9))+1;
+            orderNum = Long.valueOf(orderNum1)+1;
 
         }else {
             //调用查询流水号的方法
             Orders byOrderNum = ordersService.findByOrderNum("100");
             //截取最后七位数
-            orderNum = Integer.parseInt(byOrderNum.getOrderNum().substring(9))+1;
+            orderNum = Long.valueOf(byOrderNum.getOrderNum())+1;
         }
         //需求计划编号  100+当前日期+5位流水号
-        String ordernum = "100"+simpleDateFormat.format(date)+String.valueOf(orderNum).substring(2);
+        String ordernum = "100"+simpleDateFormat.format(date)+String.valueOf(orderNum).substring(11);
         //赋值需求计划编号
         orders.setOrderNum(ordernum);
         //需求对象存入集合中

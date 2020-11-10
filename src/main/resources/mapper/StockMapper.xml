@@ -426,14 +426,14 @@
     on m.STOCK_ID=s.ID
     WHERE s.ID!=1
     <if test="status!=null">
-      and m.status=#{status}
+      and m.status=#{status} or m.status='C001-160'
     </if>
      LIMIT #{curPage},#{pageSize}
   </select>
 
   <!-- 采购计划==编号对照==需求计划  一对一对一 三表联查 -->
   <select id="selectStockAndIdMapperAndOrdersAll" resultMap="BaseResultMap">
-    select s.*,m.*,o.*,o.id as oid from STOCK s
+    select s.*,m.*,m.id as mid,o.*,o.id as oid from STOCK s
     INNER JOIN ID_MAPPING m
     on s.ID=m.STOCK_ID
     INNER JOIN ORDERS o

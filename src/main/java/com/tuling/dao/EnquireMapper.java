@@ -42,7 +42,7 @@ public interface EnquireMapper {
      * @param enquire   询价书对象 属性用于条件
      * @return
      */
-    List<Enquire> selectEnquireAndIdMapper(String enquireName);
+    List<Enquire> selectEnquireAndIdMapper(String enquireName,String status);
 
 
     /**
@@ -51,4 +51,11 @@ public interface EnquireMapper {
      * @return
      */
     public Enquire selectEnquireByIdAndIdMapper(Integer enquireId);
+
+    /**
+     * 通过询价书序号查询询价书详情
+     * @param enquireId
+     * @return
+     */
+    public Enquire selectEnquireByIdAndEnquireDetail(Integer enquireId);
 }

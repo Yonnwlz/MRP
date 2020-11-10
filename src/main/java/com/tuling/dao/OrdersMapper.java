@@ -5,6 +5,7 @@ import com.tuling.entity.OrdersExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.core.annotation.Order;
 
 public interface OrdersMapper {
     long countByExample(OrdersExample example);
@@ -50,4 +51,11 @@ public interface OrdersMapper {
      */
     @Select("SELECT count(*) from ORDERS o INNER JOIN ID_MAPPING i on o.id=i.ORDER_ID")
     Integer selectOrderCount();
+
+    /**
+     * 通过需求计划序号查询项  需求计划+编号对照
+     * @param oid
+     * @return
+     */
+    Orders selectOrderByIdAndIdMapper(Integer oid);
 }

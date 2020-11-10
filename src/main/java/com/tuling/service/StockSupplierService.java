@@ -13,4 +13,11 @@ public interface StockSupplierService {
      * @return
      */
     public Integer insertStockSupplier(StockSupplier stockSupplier);
+
+    /**
+     * 供应商序号查询
+     * @param stockId
+     * @return
+     */
+    public StockSupplier findByStockSupplier(Integer stockId);
 }

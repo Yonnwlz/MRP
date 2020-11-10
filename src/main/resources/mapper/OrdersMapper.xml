@@ -463,4 +463,10 @@
         where i.`STATUS`=#{status}
       </if>
   </select>
+
+  <select id="selectOrderByIdAndIdMapper" resultMap="OrderOneIdMapperResultMap">
+        SELECT o.*,i.id as idmapper,i.*  from ORDERS o
+      INNER JOIN ID_MAPPING i
+      on o.id=i.ORDER_ID WHERE o.id=${oid}
+  </select>
 </mapper>

@@ -62,6 +62,7 @@ public class StockService_impl implements StockService {
         //查询是否有编号对照项
         List<Stock> stocks = stockMapper.selectByExample(example);
         if(stocks.size()>0){
+            System.out.println(stocks.toString());
 //            if(stock!=null){
 //                stock.setId(stocks.get(0).getId());
 //                //添加当前采购计划下达时间

@@ -236,10 +236,21 @@ function check_num_dot()
      if(confirm("您确定信息正确并保存发出吗？")){
          //询价书序列化
          var $enquireform = $("#enquireform").serialize();
-         alert($enquireform);
-         //询价书详情序列化
-         var $enquireDetailform = $("#enquireDetailform").serialize();
-         location.href="enquireEditorSave?enquire="+$enquireform+"&enquireDetail="+$enquireDetailform+"&status=C001-80";
+         $.ajax({
+             url:'enquireEditorSave',
+             type:'post',
+             data:$enquireform+"&status=C001-80",
+             success:function(rdata){
+                 if(rdata=='1'){
+                     alert("发布成功！");
+                     location.href="queryandqueto/Project_list.html";
+                 }else{
+                     alert("发布失败！");
+                 }
+
+
+             }
+         })
          alert("发送+保存成功！")
      }
  }
@@ -285,7 +296,7 @@ function check_num_dot()
                   <TD class=t2 noWrap>株洲南车时代电气股份有限公司</TD>
                     <input type="hidden" value="株洲南车时代电气股份有限公司" name="company"/>
                   <TD noWrap width="20%">联系人</TD>
-                  <TD class=t2 noWrap><input type="text" name="linkman" value=></TD></TR>
+                  <TD class=t2 noWrap><input type="text" name="linkman" th:value="${session.user.getLoginId()}"></TD></TR>
                 <TR class=t1>
                   <TD noWrap width="20%">联系地址</TD>
                   <TD class=t2 noWrap><input type="text" name="address" value="湖南省株洲市石峰区时代路"/></TD>
@@ -300,10 +311,10 @@ function check_num_dot()
                   <TD noWrap width="20%">Email</TD>
                   <TD class=t2 noWrap><input type="text" name="email" value="caody@teg.cn"/></TD>
                   <TD noWrap width="20%">报价截止时间</TD>
-                  <TD class=t2 noWrap><input type="text" name="endDate" value="2010/01/09 10:51">
+                  <TD class=t2 noWrap><input type="text" name="endDatev" value="2010-01-09">
                   </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
-    <TABLE cellSpacing=1 cellPadding=0 width="100%" bgColor=#ffffff
-borderColorLight=#ffffff border=0>
+    <TABLE cellSpacing=1 cellPadding=0 width="100%" bgColor=#9ea7bd
+borderColorLight=#9ea7bd border="1px">
   <TBODY>
   <TR>
     <TD>
@@ -311,9 +322,9 @@ borderColorLight=#ffffff border=0>
         border=0><B>我公司欲采购下述物资，如贵单位有兴趣，可参与网上报价。详细物资情况如下：</B> 
         <TBODY></TBODY></TABLE></TD></TR></TBODY></TABLE>
 </table></td></tr></table>
-    </form>
-    <form id="enquireDetailform">
-<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+
+
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#9ea7bd borderColorLight=#9ea7bd border="1px">
 <tr>
 <td>
 <table cellpadding="3" cellspacing="1" border="0" width="100%" th:each="ors,index : ${stockAndIdMapperAndOrders.getIdMapping().getOrders()}">
@@ -337,6 +348,7 @@ borderColorLight=#ffffff border=0>
            <td ></td>
            <td ></td>
            </tr>
+             <input type="hidden" th:value="${ors.getId()}" name="enquireId"/>
             <input type="hidden" th:value="${ors.getId()}" name="enquireId"/>
            <tr bgcolor="#FFFFFF">
            <td nowrap >单价(元/含税)</td> 
@@ -352,10 +364,10 @@ borderColorLight=#ffffff border=0>
          
            <tr bgcolor="#FFFFFF">
            <td nowrap >报价开始时间</td>
-           <td nowrap ><input id="startDate" type="text" class="easyui-datebox" required="required"></input></td>
+           <td nowrap ><input id="bstartDatev" name="bstartDatev" type="text" class="easyui-datebox" required="required"></input></td>
            </td>
            <td nowrap >报价截止时间</td>
-           <td nowrap ><input id="endDate" type="text" class="easyui-datebox" required="required"></input></td>
+           <td nowrap ><input id="bendDatev" name="bendDatev" type="text" class="easyui-datebox" required="required"></input></td>
            <td nowrap ></td>
            <td nowrap ></td>
            </td>
@@ -364,10 +376,10 @@ borderColorLight=#ffffff border=0>
 </table></td></tr>
 </table>
 
-<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#9ea7bd borderColorLight=#9ea7bd border="1px">
 <tr>
 <td>
-<table cellpadding="3" cellspacing="1" border="0" width="100%">
+<table cellpadding="3" cellspacing="1" border="1px" width="100%">
 
 
     <tr class="t2">
@@ -384,7 +396,7 @@ borderColorLight=#ffffff border=0>
    }    
 </script>
 <TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0 width="100%" 
-bgColor=#336699 borderColorLight=#006699 border=0>
+bgColor=#9ea7bd borderColorLight=#9ea7bd border="1px">
   <TBODY>
   <TR>
     <TD>

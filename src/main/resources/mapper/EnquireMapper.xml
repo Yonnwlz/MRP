@@ -25,6 +25,38 @@
       <result column="STATUS" jdbcType="VARCHAR" property="status" />
     </association>
   </resultMap>
+
+  <!-- 询价书+询价书详情map -->
+  <resultMap id="BaseResultMapEnquireDetail" type="com.tuling.entity.Enquire">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="ENQUIRE_NUM" jdbcType="VARCHAR" property="enquireNum" />
+    <result column="ENQUIRE_NAME" jdbcType="VARCHAR" property="enquireName" />
+    <result column="COMPANY" jdbcType="VARCHAR" property="company" />
+    <result column="LINKMAN" jdbcType="VARCHAR" property="linkman" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="FAX" jdbcType="VARCHAR" property="fax" />
+    <result column="ZIP" jdbcType="VARCHAR" property="zip" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <association property="enquireDetail" javaType="com.tuling.entity.EnquireDetail">
+      <id column="cid" jdbcType="BIGINT" property="id" />
+      <result column="ENQUIRE_ID" jdbcType="BIGINT" property="enquireId" />
+      <result column="ORDER_ID" jdbcType="BIGINT" property="orderId" />
+      <result column="MATERIAL_CODE" jdbcType="VARCHAR" property="materialCode" />
+      <result column="MATERIAL_NAME" jdbcType="VARCHAR" property="materialName" />
+      <result column="AMOUNT" jdbcType="VARCHAR" property="amount" />
+      <result column="MEASURE_UNIT" jdbcType="VARCHAR" property="measureUnit" />
+      <result column="START_DATE" jdbcType="TIMESTAMP" property="startDate" />
+      <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+      <result column="STANDARD" jdbcType="VARCHAR" property="standard" />
+      <result column="FACTORY" jdbcType="VARCHAR" property="factory" />
+      <result column="PROD_YEAR" jdbcType="VARCHAR" property="prodYear" />
+      <result column="WRAP" jdbcType="VARCHAR" property="wrap" />
+      <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    </association>
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -336,18 +368,32 @@
 
   <!-- 询价书+编号对照 一对一查询 -->
   <select id="selectEnquireAndIdMapper" resultMap="BaseResultMap">
-        select e.*,i.*,i.id as iid from ENQUIRE e
-        INNER JOIN ID_MAPPING i
-        on e.id=i.ENQUIRE_ID where
-          (i.STATUS='C001-80' or i.STATUS='C001-70')
+    select e.*,i.*,i.id as iid from ENQUIRE e
+    INNER JOIN ID_MAPPING i
+    on e.id=i.ENQUIRE_ID where
+    (i.STATUS='C001-80'
+    <if test="status!=null">
+         or i.STATUS='C001-70'
+    </if>
+          )
           <if test="enquireName!=null">
             AND e.ENQUIRE_NAME LIKE ${enquireName}
           </if>
   </select>
 
+  <!-- 询价书+编号对照  一对一查询  通过询价书序号查询 -->
   <select id="selectEnquireByIdAndIdMapper" resultMap="BaseResultMap">
           select e.*,i.*,i.id as iid from ENQUIRE e
             INNER JOIN ID_MAPPING i
             on e.id=i.ENQUIRE_ID where e.id=${enquireId}
   </select>
+
+
+  <!-- 询价书+询价详情 -->
+  <select id="selectEnquireByIdAndEnquireDetail" resultMap="BaseResultMapEnquireDetail">
+      select e.*,c.*,c.id as cid from ENQUIRE e
+      INNER JOIN ENQUIRE_DETAIL c
+      on e.id=c.ENQUIRE_ID WHERE e.id=#{enquireId}
+  </select>
+
 </mapper>
